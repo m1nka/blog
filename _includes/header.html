@@ -10,24 +10,165 @@
               <a class='c-logo__link' href='{{ site.baseurl }}/'>{{ site.title }}</a>
             </div>
           </div>
-
+          
           <div class='o-grid__col o-grid__col--1-4-s'>
-            <label class='js-off-canvas-toggle c-off-canvas-toggle' aria-label='Toggle navigation'>
+            <label id="menu-toggle" onclick="toggleNav()" class='js-off-canvas-toggle c-off-canvas-toggle turnit-transition' aria-label='Toggle navigation'>
               <span class='c-off-canvas-toggle__icon'></span>
+            </label>
+            <label aria-label='Toggle theme' class='theme-toggle'>
+              <a id="mode" onclick="toggleTheme()" id='theme-toggle'>
+                <svg
+                  class="mode-sunny"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 512 512"
+                >
+                  <title>LIGHT</title>
+                  <line
+                    x1="256"
+                    y1="48"
+                    x2="256"
+                    y2="96"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="256"
+                    y1="416"
+                    x2="256"
+                    y2="464"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="403.08"
+                    y1="108.92"
+                    x2="369.14"
+                    y2="142.86"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="142.86"
+                    y1="369.14"
+                    x2="108.92"
+                    y2="403.08"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="464"
+                    y1="256"
+                    x2="416"
+                    y2="256"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="96"
+                    y1="256"
+                    x2="48"
+                    y2="256"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="403.08"
+                    y1="403.08"
+                    x2="369.14"
+                    y2="369.14"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="142.86"
+                    y1="142.86"
+                    x2="108.92"
+                    y2="108.92"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <circle
+                    cx="256"
+                    cy="256"
+                    r="80"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                </svg>
+                <svg
+                  class="mode-moon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 512 512"
+                >
+                  <title>DARK</title>
+                  <line
+                    x1="256"
+                    y1="48"
+                    x2="256"
+                    y2="96"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="256"
+                    y1="416"
+                    x2="256"
+                    y2="464"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="403.08"
+                    y1="108.92"
+                    x2="369.14"
+                    y2="142.86"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="142.86"
+                    y1="369.14"
+                    x2="108.92"
+                    y2="403.08"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="464"
+                    y1="256"
+                    x2="416"
+                    y2="256"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="96"
+                    y1="256"
+                    x2="48"
+                    y2="256"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="403.08"
+                    y1="403.08"
+                    x2="369.14"
+                    y2="369.14"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <line
+                    x1="142.86"
+                    y1="142.86"
+                    x2="108.92"
+                    y2="108.92"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                  <circle
+                    cx="256"
+                    cy="256"
+                    r="80"
+                    style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                  />
+                </svg>
+              </a>
+
             </label>
           </div>
 
-          <div class='o-grid__col o-grid__col--1-4-s'>
-            <div class='c-off-canvas-content'>
-              <label class='js-off-canvas-toggle c-off-canvas-toggle c-off-canvas-toggle--close'>
-                <span class='c-off-canvas-toggle__icon'></span>
-              </label>
-
-              <ul class='c-nav o-plain-list '>
-                {% include navigation.html %}
-              </ul>
-            </div>
+          <div id="mySidenav" class="sidenav">
+            <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+            {% include navigation.html %}
           </div>
+
         </div>
 
       </div>

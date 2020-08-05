@@ -1,23 +1,18 @@
-$(document).ready(function() {
+let navbar = false;
+function toggleNav() {
+  if (!navbar) {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("menu-toggle").classList.add('turnit');
+    document.getElementById("main").style.marginRight = "250px";
+    navbar = true;
+  } else {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("menu-toggle").classList.remove('turnit');
+    document.getElementById("main").style.marginRight = "0";
+    navbar = false;
+  }
+}
+let theme = false;
+function toggleTheme() {
 
-  'use strict';
-
-  // =================
-  // Responsive videos
-  // =================
-
-  $('.o-wrapper').fitVids({
-    'customSelector': ['iframe[src*="ted.com"]']
-  });
-
-  // =================
-  // Off Canvas menu
-  // =================
-
-  $('.js-off-canvas-toggle').click(function(e) {
-    e.preventDefault();
-    $('.js-off-canvas-toggle').toggleClass('is-active');
-    $('.js-off-canvas-container').toggleClass('is-active');
-  });
-
-});
+}
