@@ -19,7 +19,7 @@ $color-border: #E9EFF3;
 
 // Links
 $color-link:        $color-text;
-$color-link-hover:  $color-brand;
+$color-link-hover:  red;
 
 // Darkula
 $darkula-background: #282a36;
@@ -31,14 +31,22 @@ $darkula-cyan: #8be9fd;
 $darkula-purple: #bd93f9;
 $darkula-pink: #ff79c6;
 
+// Olive
+$olive-green: #a6a971;
+$olive-yellow: #edd989;
+$olive-beige: #c6baa4;
+$olive-brown: #957465;
+$olive-dark: #453b37;
+
 
 html, html[data-theme="light"] {
     --color-page-background: #{$bg-color-white};
     --color-text: #{$color-text};
+    --color-text-hover: #{$olive-beige};
     --color-link: #{$color-text};
-    --side-nav-bg-color: #{$darkula-selection};
-    --side-nave-text-color: #{$color-white};
-    --side-nave-text-color-hover: #{$darkula-pink};
+    --side-nav-bg-color: #{$olive-beige};
+    --side-nav-text-color: #{$color-white};
+    --side-nav-text-color-hover: #{$olive-dark};
     --sun-moon-stroke: #{$darkula-current-line};
     --sun-moon-fill: #{$darkula-current-line};
     --menu-toggle-color: #{$color-text};
@@ -50,10 +58,11 @@ html, html[data-theme="light"] {
 html[data-theme="dark"] {
     --color-page-background: #{$darkula-background};
     --color-text: #{$color-text-dark};
+    --color-text-hover: #{$darkula-comment};
     --color-link: #{$color-text-dark};
     --side-nav-bg-color: #{$darkula-comment};
-    --side-nave-text-color: #{$color-white};
-    --side-nave-text-color-hover: #{$darkula-pink};
+    --side-nav-text-color: #{$color-white};
+    --side-nav-text-color-hover: #{$darkula-background};
     --sun-moon-stroke: #{$color-text-dark};
     --sun-moon-fill: #{$color-text-dark};
     --menu-toggle-color: #{$color-text-dark};

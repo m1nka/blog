@@ -17,10 +17,9 @@
   </style>
   <script>
     const theme = localStorage.getItem('theme');
-    console.log(theme);
     if (theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
-    } else if (theme === 'light') {
+    } else {
       document.documentElement.setAttribute('data-theme', 'light');
     }
     </script>

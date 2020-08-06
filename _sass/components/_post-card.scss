@@ -43,11 +43,11 @@
   }
 
   &:hover {
-    color: $color-text;
+    color: var(--color-text);
     text-decoration: none;
 
     .c-post-card__title {
-      color: $color-brand;
+      color: var(--color-text-hover);
     }
   }
 }

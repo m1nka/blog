@@ -1,24 +1,22 @@
 // dark theme toggle
 function toggleTheme() {
-  if (!getTheme) {
+  if (!getTheme()) {
     setTheme('light');
   }
   if (getTheme() === 'dark') {
     document.documentElement.setAttribute('data-theme', 'light');
     setTheme('light');
-    console.log('Set theme: light');
   } else if (getTheme() === 'light') {
     document.documentElement.setAttribute('data-theme', 'dark');
     setTheme('dark');
-    console.log('Set theme: dark');
   }
 }
 
 function getTheme() {
-  return window.localStorage.getItem('theme');
+  return localStorage.getItem('theme');
 }
 function setTheme(t) {
-  window.localStorage.setItem('theme', t);
+  localStorage.setItem('theme', t);
 }
 
 

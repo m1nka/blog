@@ -93,13 +93,13 @@ $off-canvas-width: 300px;
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: var(--side-nave-text-color);
+  color: var(--side-nav-text-color);
   display: block;
   transition: 200ms;
 }
 
 .sidenav a:hover {
-  color: var(--side-nave-text-color-hover);
+  color: var(--side-nav-text-color-hover);
 }
 
 .sidenav .closebtn {
