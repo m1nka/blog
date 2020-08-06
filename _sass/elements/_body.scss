@@ -1,16 +1,29 @@
 /*------------------------------------*\
-  Elements > Page
+Elements > Page
 \*------------------------------------*/
 
 body {
-  color: $color-text;
+  background-color: var(--color-page-background);
+  color: var(--color-text);
   font-size: $font-size-base;
   font-family: $font-base;
   line-height: $line-height-base;
   transition: margin 100ms;
-
+  
   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media only screen and (min-width: 720px) {
+  .menu-open {
+    margin-right: 250px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .menu-open {
+    margin-right: 0px;
+  }
 }
 
 *::selection {

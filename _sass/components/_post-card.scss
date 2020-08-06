@@ -34,7 +34,7 @@
 
   &__date {
     display: block;
-    color: $color-gray;
+    color: var(--date-color);
     direction: ltr;
     font-size: $font-size-tiny;
     font-weight: $font-weight-bold;

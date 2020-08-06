@@ -12,12 +12,14 @@ $off-canvas-width: 300px;
   width: 25px;
   cursor: pointer;
 
+  
+
   &__icon {
     position: absolute;
     left: 0;
     height: 1px;
     width: 25px;
-    background: $color-text;
+    background: var(--menu-toggle-color);
     cursor: pointer;
 
     &:before,
@@ -25,7 +27,7 @@ $off-canvas-width: 300px;
       content: '';
       display: block;
       height: 100%;
-      background-color: inherit;
+      background-color: var(--menu-toggle-color);
       transition: $global-transition;
     }
 
@@ -80,23 +82,24 @@ $off-canvas-width: 300px;
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: #111;
+  background-color: var(--side-nav-bg-color);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
 }
 
 .sidenav a {
+  white-space: nowrap;
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: var(--side-nave-text-color);
   display: block;
   transition: 200ms;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: var(--side-nave-text-color-hover);
 }
 
 .sidenav .closebtn {
@@ -133,24 +136,24 @@ a#mode {
   .mode-moon {
     display: block;
     line {
-      stroke: #0d122b;
+      stroke: var(--sun-moon-stroke);
       fill: none;
     }
 
     circle {
-      fill: #0d122b;
-      stroke: #0d122b;
+      fill: var(--sun-moon-fill);
+      stroke: var(--sun-moon-stroke);
     }
   }
   .mode-sunny {
     display: none;
     line {
-      stroke: #eaeaea;
+      stroke: var(--sun-moon-stroke);;
       fill: none;
     }
     circle {
       fill: none;
-      stroke: #eaeaea;
+      stroke: var(--sun-moon-stroke);;
     }
   }
 }
