@@ -56,11 +56,11 @@ html, html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-    --color-page-background: #{$darkula-background};
-    --color-text: #{$color-text-dark};
-    --color-text-hover: #{$darkula-comment};
+    --color-page-background: #282a36;
+    --color-text: #fff;
+    --color-text-hover: #8be9fd;
     --color-link: #{$color-text-dark};
-    --side-nav-bg-color: #{$darkula-comment};
+    --side-nav-bg-color: #44475a;
     --side-nav-text-color: #{$color-white};
     --side-nav-text-color-hover: #{$darkula-background};
     --sun-moon-stroke: #{$color-text-dark};
