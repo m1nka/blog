@@ -1,3 +1,7 @@
+<li class='c-nav__item' style="list-style-type: none;" role='presentation'>
+  <a class='c-nav__link' href='{{ site.baseurl }}'>Blog</a>
+</li>
+
 {% for page in site.pages %}
   {% unless page.name == '404.md' %}
     {% if page.title %}

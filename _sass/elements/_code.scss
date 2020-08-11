@@ -5,7 +5,7 @@
 pre,
 code {
   font-family: $font-monospace;
-  background-color: $bg-color-gray;
+  background-color: var(--code-bg-color);
 }
 
 pre {

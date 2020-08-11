@@ -7,7 +7,7 @@
         <div class='o-grid'>
           <div class='o-grid__col o-grid__col--2-4-s'>
             <div class='c-logo u-text-left'>
-              <a class='c-logo__link' href='{{ site.baseurl }}/'>{{ site.title }}</a>
+              <a href='{{ site.baseurl }}/'><span class='c-logo__link'>{{ site.title }}</span><span class="hide-on-small-screen"> | </span><span class="blog-sub-title hide-on-small-screen">{{ site.sub-title }}</span></a>
             </div>
           </div>
           
@@ -25,7 +25,6 @@
                   height="24"
                   viewBox="0 0 512 512"
                 >
-                  <title>LIGHT</title>
                   <line
                     x1="256"
                     y1="48"
@@ -96,7 +95,7 @@
                   height="24"
                   viewBox="0 0 512 512"
                 >
-                  <title>DARK</title>
+                  <title>Light/Dark mode</title>
                   <line
                     x1="256"
                     y1="48"
@@ -166,8 +165,11 @@
           </div>
 
           <div id="mySidenav" class="sidenav">
-            <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+            <!-- <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a> -->
             {% include navigation.html %}
+            <div class="sidenav-small-links">
+              <a href="{{ site.baseurl }}/imprint">Imprint</a> <span>|</span> <a href="{{ site.baseurl }}/admin">Login</a>
+            </div>
           </div>
 
         </div>

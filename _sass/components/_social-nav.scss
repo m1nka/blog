@@ -8,7 +8,7 @@
   }
 
   &__icon {
-    fill: $color-text;
+    fill: var(--color-text);
     vertical-align: middle;
     transition: $global-transition;
 

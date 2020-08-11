@@ -7,6 +7,7 @@
 
 # Site settings
 title:       Blog
+sub-title: maximilian.tech
 email:       ''
 description: ''
 baseurl:     '' # The subpath of your site, e.g. /blog

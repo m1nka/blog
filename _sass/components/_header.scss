@@ -16,3 +16,13 @@
 a.c-logo__link :hover {
   color: var(--text-color-hover)
 }
+
+span.blog-sub-title {
+  color: var(--color-blog-subtitle);
+}
+
+@media screen and (max-width: 450px) {
+  span.hide-on-small-screen {
+    display: none;
+  }
+}

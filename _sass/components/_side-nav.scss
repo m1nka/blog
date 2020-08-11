@@ -158,6 +158,25 @@ a#mode {
   }
 }
 
+.sidenav-small-links {
+  margin-bottom: 25px;
+  position: absolute;
+  bottom: 0;
+  padding: 0px 8px 0px 32px;
+  
+}
+
+.sidenav-small-links > a {
+  padding: 0;
+  display: inline;
+  font-size: 60%;
+}
+
+.sidenav-small-links > span {
+  font-size: 60%;
+  color: #fff;
+}
+
 .theme-toggle {
   float: right;
   margin-right: 25px;
