@@ -11,7 +11,7 @@ sub-title: maximilian.tech
 email:       ''
 description: ''
 baseurl:     '' # The subpath of your site, e.g. /blog
-url:         'https://type-jekyll.aspirethemes.com/' # The base hostname & protocol for your site
+url:         'localhost:4000' # The base hostname & protocol for your site
 twitter:     ''
 github:      ''
 instagram:   ''
@@ -27,6 +27,8 @@ sass:
 plugins:
   - jekyll-paginate
   - jekyll/tagging
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 include:
   - _pages
@@ -35,6 +37,9 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
+  - CNAME
+  - LICENSE
+  - README.md
 
 # Tags
 tag_page_dir:         tag

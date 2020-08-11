@@ -60,7 +60,7 @@ html, html[data-theme="light"] {
 html[data-theme="dark"] {
     --color-page-background: #282a36;
     --color-text: #fff;
-    --color-text-hover: $olive-beige;
+    --color-text-hover: #{$olive-beige};
     --color-link: #{$color-text-dark};
     --side-nav-bg-color: #44475a;
     --side-nav-text-color: #{$color-white};
