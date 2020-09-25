@@ -39,6 +39,7 @@ exclude:
   - CNAME
   - LICENSE
   - README.md
+  - deploy
 
 # Tags
 tag_page_dir:         tag
