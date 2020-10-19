@@ -51,11 +51,13 @@ function toggleNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("menu-toggle").classList.add('turnit');
     document.getElementById("main").classList.add('menu-open');
+    document.getElementById("typer-text-container").classList.add('fix-typer-width');
     navbar = true;
   } else {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("menu-toggle").classList.remove('turnit');
     document.getElementById("main").classList.remove('menu-open');
+    document.getElementById("typer-text-container").classList.remove('fix-typer-width');
     navbar = false;
   }
 }

@@ -45,7 +45,7 @@
 
 @media all and (min-width: 700px) {
     .particles-container {
-        min-height: 355px !important;
+        min-height: 365px !important;
     }
 }
 
@@ -73,11 +73,18 @@
     left: 20%; 
     right: 20%;
     text-align: center;
+    transition: 100ms;
 }
 
 @media all and (max-width: 699px) {
     .typer-text-container {
         top:37vw;
+    }
+}
+
+@media all and (min-width: 721px) {
+    .fix-typer-width {
+        right: calc(20% + 250px);
     }
 }
 

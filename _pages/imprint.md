@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Disclaimer & Imprint
-image: '/images/pages/about.jpeg'
+image: '/images/pages/kaprun.jpeg'
 sitemap: false
 
 ---
