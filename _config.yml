@@ -13,7 +13,7 @@ description: ''
 baseurl:     '' # The subpath of your site, e.g. /blog
 url:         'https://maximilian.tech' # The base hostname & protocol for your site
 twitter:     ''
-github:      ''
+github:      'github.com/m1nka/'
 instagram:   ''
 facebook:    ''
 
