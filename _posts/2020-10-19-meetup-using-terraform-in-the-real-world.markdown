@@ -21,4 +21,4 @@ On October 20th 2020 I had the chance to talk at Enterprise Java User Group Aust
 
  Please find the slides for the second talk below. I will publish the slides in form of an article soon ;)
 
-[Terraform in the real-world - PDF](https://maximilian.tech/)
+[Terraform in the real-world - PDF](https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/CHBt9pzMxO5TSg46MacVI-jBZqwv8w8WMHSwC57UZrjoCzli1xhFlBnWIMYDbUqL/n/franqguxqsfs/b/public-resources/o/using-terraform-in-the-real-world.pdf)
