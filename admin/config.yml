@@ -4,7 +4,6 @@ backend:
   branch: master # Branch to update (master by default)
   site_domain: brave-galileo-2c1ea9.netlify.app
 
-display_url: maximilian.tech
 site_url: https://maximilian.tech
 media_folder: "images/posts" # Folder where user uploaded files should go
 

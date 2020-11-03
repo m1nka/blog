@@ -86,6 +86,7 @@ $off-canvas-width: 300px;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  box-shadow: inset 4px 1px 12px -6px rgba(0, 0, 0, 0.4), inset 4px 1px 12px -6px rgba(0, 0, 0, 0.3);
 }
 
 .sidenav a {
