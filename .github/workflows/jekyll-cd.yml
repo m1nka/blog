@@ -27,7 +27,7 @@ jobs:
           source: "docs/*"
           target: "/home/opc/temp/"
       - name: executing remote ssh commands using key
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@fd39ef0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
