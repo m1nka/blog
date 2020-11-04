@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog</title>
+    <title>Personal blog</title>
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 04 Nov 2020 22:04:26 +0000</pubDate>
-    <lastBuildDate>Wed, 04 Nov 2020 22:04:26 +0000</lastBuildDate>
+    <pubDate>Wed, 04 Nov 2020 23:10:57 +0000</pubDate>
+    <lastBuildDate>Wed, 04 Nov 2020 23:10:57 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -138,7 +138,7 @@ terraform apply
         
           <item>
             <title>About</title>
-            <description>&lt;p&gt;My name is Max and I currently work as a Cloud Engineer at Oracle. I’ve worked as a full stack developer for 5 years and got my degree in Business Informatics from University of Vienna. I’m especiialy passionate about all things related to travel and tech. Since I regularly work on cloud technologies (which are used by thousands of people around the world), I’ve decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️&lt;/p&gt;
+            <description>&lt;p&gt;My name is Max and I currently work as a Cloud Engineer at Oracle. I’ve worked as a full stack developer for 5 years and got my degree in Business Informatics from University of Vienna. I’m especially passionate about all things related to travel and tech. Since I regularly work on cloud technologies (which are used by thousands of people around the world), I’ve decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️&lt;/p&gt;
 </description>
             <link>https://maximilian.tech/about.html</link>
           </item>
