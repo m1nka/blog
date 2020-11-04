@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog</title>
+    <description></description>
+    <link>https://maximilian.tech/</link>
+    <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 04 Nov 2020 17:26:38 +0000</pubDate>
+    <lastBuildDate>Wed, 04 Nov 2020 17:26:38 +0000</lastBuildDate>
+    <generator>Jekyll v4.0.0</generator>
+
+    
+      <item>
+        <title>Tutorial: How to setup Terraform for Oracle Cloud Infrastructure (OCI) to create a simple web server</title>
+        <description>&lt;p&gt;In this article we will cover how to get started with a basic Terraform setup in Oracle Cloud Infrastructure (OCI) to create a simple web server. This tutorial can be done using the Always Free Tier.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This tutorial has been tested with Terraform v0.13.4 and will be updated for future releases.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;1-installing-terraform-cli&quot;&gt;1) Installing Terraform CLI&lt;/h2&gt;
+
+&lt;p&gt;The first step is to install Terraform CLI. If you are using MacOS you can simply run &lt;code class=&quot;highlighter-rouge&quot;&gt;brew install terraform&lt;/code&gt;. For other platforms follow the official instructions &lt;a href=&quot;https://learn.hashicorp.com/tutorials/terraform/install-cli&quot;&gt;here&lt;/a&gt;. You can verify your installation by running &lt;code class=&quot;highlighter-rouge&quot;&gt;terraform version&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-preparing-for-our-first-terraform-script&quot;&gt;2) Preparing for our first Terraform script&lt;/h2&gt;
+
+&lt;p&gt;Before we can get started we need the following information and &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm&quot;&gt;OCIDs&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Tenancy OCID: Open the top right profile menu and click &lt;strong&gt;Tenancy&lt;/strong&gt;. Copy the OCID as described &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm#tenancy_ocid&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;User OCID: Open the top right profile menu and click on &lt;strong&gt;User settings&lt;/strong&gt;. Copy the OCID as described &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm#five&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Region identifier: Next we need the region where we want to deploy resources. E.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;eu-frankfurt-1&lt;/code&gt;, all region identifiers can be found &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm#About&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you have already configured the OCI CLI you can skip the next step. Your private key has already been setup and is located at &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.oci/oci_api_key.pem&lt;/code&gt;. You can find your fingerprint by opening the top right profile menu, clicking &lt;strong&gt;User settings&lt;/strong&gt; and then choosing &lt;strong&gt;API Keys&lt;/strong&gt; in the bottom left corner.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Finally, we need a private key path and fingerprint. Make sure that you have already uploaded an API signing key to the Oracle Cloud dashboard. You can check this by opening the top right profile menu, clicking &lt;strong&gt;User settings&lt;/strong&gt; and then choosing &lt;strong&gt;API Keys&lt;/strong&gt; in the bottom left corner. If you have not yet added a public key, follow the instructions &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Functions/Tasks/functionssetupapikey.htm&quot;&gt;here&lt;/a&gt; to add a public/private key pair.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-testing-your-setup-with-a-basic-terraform-script&quot;&gt;3) Testing your setup with a basic Terraform script&lt;/h2&gt;
+
+&lt;p&gt;To test that all credentials are correct, we will run a &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf&quot;&gt;minimal Terraform configuration&lt;/a&gt;. This Terraform script will not create or modify any cloud resources.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Create a new folder
+mkdir minimal-terraform-config
+cd minimal-terraform-config
+
+# Download the minimal Terraform configuration
+curl https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf --output minimal-oci.tf
+
+# Initialize the Terraform provider 
+terraform init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You should see a message &lt;code class=&quot;highlighter-rouge&quot;&gt;Terraform has been successfully initialized!&lt;/code&gt;. Now, we must set the environment variables to authenticate our local Terraform installation with our Oracle Cloud account. Set your environment variables by running the following command (you need to fill in your values):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export TF_VAR_tenancy_ocid=ocid1.tenancy.oc1..aaaaaaaabu74o24dtegtq53thm2oxsx5mr6wbhtwefaos2rfwmzbtrujb3ya
+export TF_VAR_user_ocid=ocid1.user.oc1..aaaaaaaax5isirkhfebc5bbijbrkdh2acm4tbmhatkc2ijmiftizzjh2tgcq
+export TF_VAR_fingerprint=10:b9:c2:2a:09:93:42:1f:a2:2d:2e:d0:3b:04:29:79
+export TF_VAR_private_key_path=/Users/me/.oci/oci_api_key.pem
+export TF_VAR_region=eu-frankfurt-1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If your private key is encrypted with a password, you must create another variable &lt;code class=&quot;highlighter-rouge&quot;&gt;export TF_VAR_private_key_path=mypassword&lt;/code&gt; and reference it in your configuration.&lt;/p&gt;
+
+&lt;p&gt;Finally, run a &lt;code class=&quot;highlighter-rouge&quot;&gt;terraform apply&lt;/code&gt; to validate that everything has been setup correctly. If you get a message &lt;code class=&quot;highlighter-rouge&quot;&gt;Apply complete! Resources: 0 added, 0 changed, 0 destroyed.&lt;/code&gt; then you have successfully installed and configured Terraform!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you get an error message such as &lt;code class=&quot;highlighter-rouge&quot;&gt;provider.oci: can not create client, bad configuration: did not find a proper configuration for private key&lt;/code&gt;, you might have missed one of these things:&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Not specifying either a private_key or private_key_path in the config&lt;/li&gt;
+    &lt;li&gt;Specifying a private_key_path that’s not a valid path to a private key file&lt;/li&gt;
+    &lt;li&gt;Not specifying a private_key_password for a private key that’s encrypted&lt;/li&gt;
+    &lt;li&gt;Specifying an incorrect private_key_password for an encrypted private key&lt;/li&gt;
+    &lt;li&gt;Set up your API key incorrectly&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;For more info check &lt;a href=&quot;https://registry.terraform.io/providers/hashicorp/oci/latest/docs&quot;&gt;docs&lt;/a&gt; or the &lt;a href=&quot;https://github.com/terraform-providers/terraform-provider-oci&quot;&gt;Github repository&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;4-deploying-a-simple-web-server-with-terraform&quot;&gt;4) Deploying a simple web server with Terraform&lt;/h2&gt;
+
+&lt;p&gt;Now that we have validated our Terraform setup, we can move on to deploy our first application with Terraform. This Terraform script will deploy a set of networking resources and a virtual machine with a simple webserver installed.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone git@github.com:m1nka/oci-terraform-simple-web-server.git
+cd oci-terraform-simple-web-server
+terraform plan
+terraform apply
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You might get a message asking you to provide a value for &lt;code class=&quot;highlighter-rouge&quot;&gt;var.compartment_ocid&lt;/code&gt;. In this case, we not to find a &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcompartments.htm&quot;&gt;compartment&lt;/a&gt; where we can deploy our resources. Go to the Oracle Cloud console and open the main menu (top left corner). Scroll down and choose “Identity” -&amp;gt; “Compartments”. Choose the compartment you would like to use and copy the compartment OCID. You can set the environment variable by running:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export TF_VAR_compartment_ocid=ocid1.compartment.oc1..aaaaaaaac6uytbhiw5lsnx6lbdlw7bajgf7uhoitnn7ryknuhyi5fdw537sa
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 04 Nov 2020 15:22:52 +0000</pubDate>
+        <link>https://maximilian.tech/2020/11/04/tutorial-how-to-setup-terraform-for-oracle-cloud-infrastructure-oci-to-create-a-simple-web-server/</link>
+        <guid isPermaLink="true">https://maximilian.tech/2020/11/04/tutorial-how-to-setup-terraform-for-oracle-cloud-infrastructure-oci-to-create-a-simple-web-server/</guid>
+      </item>
+    
+      <item>
+        <title>Meetup: Using Terraform in the real-world</title>
+        <description>&lt;p&gt;On October 20th 2020 I had the chance to talk at Enterprise Java User Group Austria’s online &lt;a href=&quot;https://www.meetup.com/Enterprise-Java-User-Group-Austria/events/273258102/&quot;&gt;meetup&lt;/a&gt;. There were two talks:&lt;/p&gt;
+
+&lt;h4 id=&quot;taking-micronaut-out-for-a-spin---from-andres-almiray&quot;&gt;Taking Micronaut out for a spin - from &lt;a href=&quot;http://andresalmiray.com/&quot;&gt;Andres Almiray&lt;/a&gt;&lt;/h4&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Micronaut is a modern JVM framework for developing applications (web apps, micro services, CLI, etc) using Java, Groovy, or Kotlin. Micronaut is built from scratch using AoT (Ahead of Time) compilation that avoids any run time reflection. This allows Micronaut applications to start up really fast and consume very little memory. Pair it with GraalVM’s Native Image and you get a winning combination for lean deployment and even faster startup.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You can find Andres’ slides &lt;a href=&quot;https://www.slideshare.net/aalmiray/taking-micronaut-out-for-a-spin&quot;&gt;on Slideshare&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;using-terraform-in-the-real-world-lessons-learned&quot;&gt;Using Terraform in the real-world: Lessons learned&lt;/h4&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;While Terraform presents powerful mechanisms to automate cloud infrastructure it does have its limitations and pitfalls. This talk focuses on lessons learned when managing large production environments with Terraform. We talk about some Terraform basics, managing Terraform state, version control, collaboration, configuration drift, variables and integration with other DevOps tools such as Ansible.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Please find the slides for the second talk below. I will publish the slides in form of an article soon ;)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/CHBt9pzMxO5TSg46MacVI-jBZqwv8w8WMHSwC57UZrjoCzli1xhFlBnWIMYDbUqL/n/franqguxqsfs/b/public-resources/o/using-terraform-in-the-real-world.pdf&quot;&gt;Terraform in the real-world - PDF&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 19 Oct 2020 19:45:55 +0000</pubDate>
+        <link>https://maximilian.tech/2020/10/19/meetup-using-terraform-in-the-real-world/</link>
+        <guid isPermaLink="true">https://maximilian.tech/2020/10/19/meetup-using-terraform-in-the-real-world/</guid>
+      </item>
+    
+
+    
+      
+        
+      
+    
+      
+        
+          <item>
+            <title>About</title>
+            <description>&lt;p&gt;My name is Max and I currently work as a Cloud Engineer at Oracle. I’ve worked as a full stack developer for 5 years and got my degree in Business Informatics from University of Vienna. I’m especiialy passionate about all things related to travel and tech. Since I regularly work on cloud technologies (which are used by thousands of people around the world), I’ve decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️&lt;/p&gt;
+</description>
+            <link>https://maximilian.tech/about.html</link>
+          </item>
+        
+      
+    
+      
+    
+      
+        
+          <item>
+            <title>Disclaimer &amp; Imprint</title>
+            <description>### Disclaimer
+
+This is a personal blog. Any views or opinions represented in this blog are my own and do not represent those of people, institutions or organizations that I may or may not be associated with in professional or personal capacity. All views or opinions are not intended to malign any religion, ethnic group, club, organization, company, or individual.
+
+All content provided on this blog is for informational purposes only. The owner of this blog makes no representations as to the accuracy or completeness of any information on this site or found by following any link on this site. The owner will not be liable for any errors or omissions in this information nor for the availability of this information. The owner will not be liable for any losses, injuries, or damages from the display or use of this information.
+
+### Imprint
+
+&lt;div id=&quot;hcard-Maximilian-Jerg&quot; class=&quot;vcard&quot;&gt;
+ &lt;span class=&quot;fn&quot;&gt;Maximilian Jerg&lt;/span&gt;
+ &lt;div class=&quot;adr&quot;&gt;
+  &lt;div class=&quot;street-address&quot; style=&quot;display:none;&quot;&gt;Ausstellungsstrasse 50/506&lt;/div&gt;
+  &lt;span class=&quot;locality&quot;&gt;Vienna&lt;/span&gt;, 
+  &lt;span class=&quot;postal-code&quot;&gt;1020&lt;/span&gt;
+  &lt;span class=&quot;country-name&quot;&gt;AT&lt;/span&gt;
+ &lt;/div&gt;
+&lt;p style=&quot;font-size:70%;&quot;&gt;Adress information is encoded with &lt;a href=&quot;http://microformats.org/wiki/hcard&quot;&gt;hCard&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+            <link>https://maximilian.tech/imprint.html</link>
+          </item>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+  </channel>
+</rss>
