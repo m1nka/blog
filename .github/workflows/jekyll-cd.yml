@@ -35,4 +35,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             sudo rm -rf /var/www/html/*
-            sudo mv /home/opc/temp/* /var/www/html/
+            sudo mv /home/opc/temp/docs/* /var/www/html/
