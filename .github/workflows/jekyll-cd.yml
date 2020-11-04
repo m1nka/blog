@@ -16,4 +16,23 @@ jobs:
         with:
           fetch-depth: 1
       - name: 🧪 Build and deploy
-        uses: victoriadrake/jekyll-cd@master
+        uses: victoriadrake/jekyll-cd@698f19e
+      - name: copy files via ssh key
+        uses: appleboy/scp-action@edc8ec9        
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          source: "docs/*"
+          target: "/home/opc/temp/"
+      - name: executing remote ssh commands using key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            sudo rm -rf /var/www/html/*
+            sudo mv /home/opc/temp/* /var/www/html/
