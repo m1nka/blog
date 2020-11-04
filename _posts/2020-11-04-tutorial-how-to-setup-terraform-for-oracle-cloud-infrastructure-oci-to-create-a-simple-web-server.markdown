@@ -2,7 +2,7 @@
 layout: post
 title: "Tutorial: How to setup Terraform for Oracle Cloud Infrastructure (OCI)
   to create a simple web server"
-image: /images/posts/terraform-alpaca.png
+image: /images/posts/terraform-alpaca.jpg
 date: 2020-11-04T15:22:52.080Z
 ---
 In this article we will cover how to get started with a basic Terraform setup in Oracle Cloud Infrastructure (OCI) to create a simple web server. This tutorial can be done using the Always Free Tier.
