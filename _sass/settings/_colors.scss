@@ -37,16 +37,20 @@ $olive-beige: #c6baa4;
 $olive-brown: #957465;
 $olive-dark: #453b37;
 
+$blueish: #4040bf;
+$ecru: #D8C99B;
+$independence: #44475a;
+
 $color-brand: #c6baa4;
 
 html, html[data-theme="light"] {
     --color-page-background: #{$bg-color-white};
     --color-text: #{$color-text};
-    --color-text-hover: #{$olive-beige};
+    --color-text-hover: #{$independence};
     --color-link: #{$color-text};
-    --side-nav-bg-color: #44475a;
+    --side-nav-bg-color: #{$independence};
     --side-nav-text-color: #{$color-white};
-    --side-nav-text-color-hover: #{$olive-dark};
+    --side-nav-text-color-hover: #{$ecru};
     --sun-moon-stroke: #{$darkula-current-line};
     --sun-moon-fill: #{$darkula-current-line};
     --menu-toggle-color: #{$color-text};
@@ -60,11 +64,11 @@ html, html[data-theme="light"] {
 html[data-theme="dark"] {
     --color-page-background: #282a36;
     --color-text: #fff;
-    --color-text-hover: #{$olive-beige};
+    --color-text-hover: #{$independence};
     --color-link: #{$color-text-dark};
-    --side-nav-bg-color: #44475a;
+    --side-nav-bg-color: #{$independence};
     --side-nav-text-color: #{$color-white};
-    --side-nav-text-color-hover: #{$darkula-background};
+    --side-nav-text-color-hover: #{$ecru};
     --sun-moon-stroke: #{$color-text-dark};
     --sun-moon-fill: #{$color-text-dark};
     --menu-toggle-color: #{$color-text-dark};
