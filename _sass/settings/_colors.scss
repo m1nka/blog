@@ -5,6 +5,7 @@
 // Colors
 $color-white: #FFFFFF;
 $color-gray:  #2B5F72;
+$color-gray:  #2b5f723d;
 
 // Background Colors
 $bg-color-white: $color-white;
@@ -40,6 +41,8 @@ $olive-dark: #453b37;
 $blueish: #4040bf;
 $ecru: #D8C99B;
 $independence: #44475a;
+$easy:  #f0efef;
+
 
 $color-brand: #c6baa4;
 
@@ -59,6 +62,7 @@ html, html[data-theme="light"] {
     --footer-color: #{$bg-color-gray};
     --code-bg-color: #{#fafafa};
     --color-blog-subtitle: #{rgba(0, 0, 0, 0.315)};
+    --codebox-bg-color: #{$easy};
 }
 
 html[data-theme="dark"] {
@@ -77,4 +81,5 @@ html[data-theme="dark"] {
     --footer-color: #{$darkula-current-line};
     --code-bg-color: #{#3c3f4b};
     --color-blog-subtitle: #{rgb(218, 218, 218)};
+    --codebox-bg-color: #{$independence};
 }

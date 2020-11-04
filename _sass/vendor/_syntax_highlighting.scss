@@ -7,7 +7,7 @@
   background: #fff;
 
   .highlighter-rouge & {
-    background: #FAFAFA;
+    background: var(--codebox-bg-color);
   }
 
   .c     { color: #998; font-style: italic } // Comment

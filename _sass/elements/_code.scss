@@ -5,7 +5,8 @@
 pre,
 code {
   font-family: $font-monospace;
-  background-color: var(--code-bg-color);
+  background-color: var(--codebox-bg-color);
+  border-radius: 4px;
 }
 
 pre {
@@ -14,7 +15,7 @@ pre {
   margin-bottom: $base-spacing-unit;
   font-size: $font-size-medium;
   line-height: $line-height-medium;
-  white-space: pre-wrap;
+  white-space: no-wrap;
   word-wrap: break-word;
   word-break: break-all;
 }
