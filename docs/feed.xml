@@ -5,14 +5,14 @@
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 04 Nov 2020 23:10:57 +0000</pubDate>
-    <lastBuildDate>Wed, 04 Nov 2020 23:10:57 +0000</lastBuildDate>
+    <pubDate>Thu, 12 Nov 2020 15:46:50 +0000</pubDate>
+    <lastBuildDate>Thu, 12 Nov 2020 15:46:50 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
       <item>
         <title>Tutorial: How to setup Terraform for Oracle Cloud Infrastructure (OCI) to create a simple web server</title>
-        <description>&lt;p&gt;In this article we will cover how to get started with a basic Terraform setup in Oracle Cloud Infrastructure (OCI) to create a simple web server. This tutorial can be done using the Always Free Tier.&lt;/p&gt;
+        <description>&lt;p&gt;In this article we will cover how to get started with a basic Terraform setup in Oracle Cloud Infrastructure (OCI) to create a simple web server. This tutorial can be done using the &lt;a href=&quot;https://www.oracle.com/cloud/free/&quot;&gt;Always Free Tier&lt;/a&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;This tutorial has been tested with Terraform v0.13.4 and will be updated for future releases.&lt;/p&gt;
@@ -24,32 +24,37 @@
 
 &lt;h2 id=&quot;2-preparing-for-our-first-terraform-script&quot;&gt;2) Preparing for our first Terraform script&lt;/h2&gt;
 
-&lt;p&gt;Before we can get started we need the following information and &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm&quot;&gt;OCIDs&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;Before we can get started we need the following credentials and &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm&quot;&gt;OCIDs&lt;/a&gt; (Oracle Cloud Identifiers):&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Tenancy OCID: Open the top right profile menu and click &lt;strong&gt;Tenancy&lt;/strong&gt;. Copy the OCID as described &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm#tenancy_ocid&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;User OCID: Open the top right profile menu and click on &lt;strong&gt;User settings&lt;/strong&gt;. Copy the OCID as described &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm#five&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Region identifier: Next we need the region where we want to deploy resources. E.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;eu-frankfurt-1&lt;/code&gt;, all region identifiers can be found &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm#About&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Tenancy OCID&lt;/strong&gt;: Open the Oracle Cloud top right profile menu and click Tenancy. Note the OCID as described &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm#tenancy_ocid&quot;&gt;here&lt;/a&gt;, as we will need it later.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;User OCID&lt;/strong&gt;: Open the Oracle Cloud top right profile menu and click on User settings. Copy the OCID as described &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm#five&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Region identifier&lt;/strong&gt;: Next we need the region where we want to deploy resources. E.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;eu-frankfurt-1&lt;/code&gt;, all region identifiers can be found &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm#About&quot;&gt;here&lt;/a&gt;. If you are using the &lt;em&gt;Alway Free Tier&lt;/em&gt; you must choose your &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Identity/Tasks/managingregions.htm#The&quot;&gt;home region&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;If you have already configured the OCI CLI you can skip the next step. Your private key has already been setup and is located at &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.oci/oci_api_key.pem&lt;/code&gt;. You can find your fingerprint by opening the top right profile menu, clicking &lt;strong&gt;User settings&lt;/strong&gt; and then choosing &lt;strong&gt;API Keys&lt;/strong&gt; in the bottom left corner.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Finally, we need a private key path and fingerprint. Make sure that you have already uploaded an API signing key to the Oracle Cloud dashboard. You can check this by opening the top right profile menu, clicking &lt;strong&gt;User settings&lt;/strong&gt; and then choosing &lt;strong&gt;API Keys&lt;/strong&gt; in the bottom left corner. If you have not yet added a public key, follow the instructions &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Functions/Tasks/functionssetupapikey.htm&quot;&gt;here&lt;/a&gt; to add a public/private key pair.&lt;/p&gt;
+&lt;p&gt;Finally, we need to make sure that we have uploaded an API signing key to the Oracle Cloud dashboard. You can check this by opening the top right profile menu, clicking &lt;strong&gt;User settings&lt;/strong&gt; and then choosing &lt;strong&gt;API Keys&lt;/strong&gt; in the bottom left corner. If you have not yet added a public key, follow the instructions &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Functions/Tasks/functionssetupapikey.htm&quot;&gt;here&lt;/a&gt; to add a public/private key pair. To configure Terraform we need:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;API key fingerprint&lt;/strong&gt;: This is displayed in the cloud console section, where we uploaded the API key&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Path to our private key&lt;/strong&gt;: The location of our private key on our local machine.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;3-testing-your-setup-with-a-basic-terraform-script&quot;&gt;3) Testing your setup with a basic Terraform script&lt;/h2&gt;
 
 &lt;p&gt;To test that all credentials are correct, we will run a &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf&quot;&gt;minimal Terraform configuration&lt;/a&gt;. This Terraform script will not create or modify any cloud resources.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Create a new folder
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Create a new folder and change directory
 mkdir minimal-terraform-config
 cd minimal-terraform-config
 
 # Download the minimal Terraform configuration
 curl https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf --output minimal-oci.tf
 
-# Initialize the Terraform provider 
+# Initialize the Terraform provider (it downloads Oracle Cloud specific binaries)
 terraform init
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -84,17 +89,23 @@ export TF_VAR_region=eu-frankfurt-1
 
 &lt;p&gt;Now that we have validated our Terraform setup, we can move on to deploy our first application with Terraform. This Terraform script will deploy a set of networking resources and a virtual machine with a simple webserver installed.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone git@github.com:m1nka/oci-terraform-simple-web-server.git
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Download the Terraform scripts
+git clone git@github.com:m1nka/oci-terraform-simple-web-server.git
+
+# Change directory
 cd oci-terraform-simple-web-server
+
+# Plan and run your Terraform scripts
 terraform plan
 terraform apply
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;You might get a message asking you to provide a value for &lt;code class=&quot;highlighter-rouge&quot;&gt;var.compartment_ocid&lt;/code&gt;. In this case, we not to find a &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcompartments.htm&quot;&gt;compartment&lt;/a&gt; where we can deploy our resources. Go to the Oracle Cloud console and open the main menu (top left corner). Scroll down and choose “Identity” -&amp;gt; “Compartments”. Choose the compartment you would like to use and copy the compartment OCID. You can set the environment variable by running:&lt;/p&gt;
+&lt;p&gt;You might get a message asking you to provide a value for &lt;code class=&quot;highlighter-rouge&quot;&gt;var.compartment_ocid&lt;/code&gt;. In this case, we need to find a &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcompartments.htm&quot;&gt;compartment&lt;/a&gt; where we can deploy our resources. Go to the Oracle Cloud console and open the main menu (top left corner). Scroll down and choose “Identity” -&amp;gt; “Compartments”. Choose the compartment you would like to use and copy the compartment OCID. Make sure your user has sufficient permission to create the cloud resources in that compartment. You can set the environment variable by running:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export TF_VAR_compartment_ocid=ocid1.compartment.oc1..aaaaaaaac6uytbhiw5lsnx6lbdlw7bajgf7uhoitnn7ryknuhyi5fdw537sa
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;That’s it. The web server will be online in a matter of minutes.&lt;/p&gt;
 </description>
         <pubDate>Wed, 04 Nov 2020 15:22:52 +0000</pubDate>
         <link>https://maximilian.tech/2020/11/04/tutorial-how-to-setup-terraform-for-oracle-cloud-infrastructure-oci-to-create-a-simple-web-server/</link>
