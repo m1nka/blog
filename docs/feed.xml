@@ -5,8 +5,8 @@
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 13 Nov 2020 14:46:35 +0000</pubDate>
-    <lastBuildDate>Fri, 13 Nov 2020 14:46:35 +0000</lastBuildDate>
+    <pubDate>Fri, 13 Nov 2020 15:59:05 +0000</pubDate>
+    <lastBuildDate>Fri, 13 Nov 2020 15:59:05 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -97,24 +97,24 @@
 
 &lt;p&gt;To test that all credentials are correct, we will run a &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf&quot;&gt;minimal Terraform configuration&lt;/a&gt;. This Terraform script will not create or modify any cloud resources.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Create a new folder and change directory
-mkdir minimal-terraform-config
-cd minimal-terraform-config
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Create a new folder and change directory&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;minimal-terraform-config
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;minimal-terraform-config
 
-# Download the minimal Terraform configuration
-curl https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf --output minimal-oci.tf
+&lt;span class=&quot;c&quot;&gt;# Download the minimal Terraform configuration&lt;/span&gt;
+curl https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf &lt;span class=&quot;nt&quot;&gt;--output&lt;/span&gt; minimal-oci.tf
 
-# Initialize the Terraform provider (it downloads Oracle Cloud specific binaries)
+&lt;span class=&quot;c&quot;&gt;# Initialize the Terraform provider (it downloads Oracle Cloud specific binaries)&lt;/span&gt;
 terraform init
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;You should see a message &lt;code class=&quot;highlighter-rouge&quot;&gt;Terraform has been successfully initialized!&lt;/code&gt;. Now, we must set the environment variables to authenticate our local Terraform installation with our Oracle Cloud account. Set your environment variables by running the following command (you need to fill in your values):&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export TF_VAR_tenancy_ocid=ocid1.tenancy.oc1..aaaaaaaabu74o24dtegtq53thm2oxsx5mr6wbhtwefaos2rfwmzbtrujb3ya
-export TF_VAR_user_ocid=ocid1.user.oc1..aaaaaaaax5isirkhfebc5bbijbrkdh2acm4tbmhatkc2ijmiftizzjh2tgcq
-export TF_VAR_fingerprint=10:b9:c2:2a:09:93:42:1f:a2:2d:2e:d0:3b:04:29:79
-export TF_VAR_private_key_path=/Users/me/.oci/oci_api_key.pem
-export TF_VAR_region=eu-frankfurt-1
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TF_VAR_tenancy_ocid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ocid1.tenancy.oc1..aaaaaaaabu74o24dtegtq53thm2oxsx5mr6wbhtwefaos2rfwmzbtrujb3ya
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TF_VAR_user_ocid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ocid1.user.oc1..aaaaaaaax5isirkhfebc5bbijbrkdh2acm4tbmhatkc2ijmiftizzjh2tgcq
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TF_VAR_fingerprint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;10:b9:c2:2a:09:93:42:1f:a2:2d:2e:d0:3b:04:29:79
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TF_VAR_private_key_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/Users/me/.oci/oci_api_key.pem
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TF_VAR_region&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;eu-frankfurt-1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;If your private key is encrypted with a password, you must create another variable &lt;code class=&quot;highlighter-rouge&quot;&gt;export TF_VAR_private_key_path=mypassword&lt;/code&gt; and reference it in your configuration.&lt;/p&gt;
@@ -139,20 +139,20 @@ export TF_VAR_region=eu-frankfurt-1
 
 &lt;p&gt;Now that we have validated our Terraform setup, we can move on to deploy our first application with Terraform. This Terraform script will deploy a set of networking resources and a virtual machine with a simple webserver installed.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Download the Terraform scripts
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Download the Terraform scripts&lt;/span&gt;
 git clone git@github.com:m1nka/oci-terraform-simple-web-server.git
 
-# Change directory
-cd oci-terraform-simple-web-server
+&lt;span class=&quot;c&quot;&gt;# Change directory&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;oci-terraform-simple-web-server
 
-# Plan and run your Terraform scripts
+&lt;span class=&quot;c&quot;&gt;# Plan and run your Terraform scripts&lt;/span&gt;
 terraform plan
 terraform apply
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;You might get a message asking you to provide a value for &lt;code class=&quot;highlighter-rouge&quot;&gt;var.compartment_ocid&lt;/code&gt;. In this case, we need to find a &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcompartments.htm&quot;&gt;compartment&lt;/a&gt; where we can deploy our resources. Go to the Oracle Cloud console and open the main menu (top left corner). Scroll down and choose “Identity” -&amp;gt; “Compartments”. Choose the compartment you would like to use and copy the compartment OCID. Make sure your user has sufficient permission to create the cloud resources in that compartment. You can set the environment variable by running:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export TF_VAR_compartment_ocid=ocid1.compartment.oc1..aaaaaaaac6uytbhiw5lsnx6lbdlw7bajgf7uhoitnn7ryknuhyi5fdw537sa
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TF_VAR_compartment_ocid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ocid1.compartment.oc1..aaaaaaaac6uytbhiw5lsnx6lbdlw7bajgf7uhoitnn7ryknuhyi5fdw537sa
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;That’s it. The web server will be online in a matter of minutes.&lt;/p&gt;
@@ -234,6 +234,10 @@ All content provided on this blog is for informational purposes only. The owner 
             <link>https://maximilian.tech/imprint.html</link>
           </item>
         
+      
+    
+      
+    
       
     
       
