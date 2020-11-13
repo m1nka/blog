@@ -6,7 +6,8 @@ pre,
 code {
   font-family: $font-monospace;
   background-color: var(--codebox-bg-color);
-  border-radius: 4px;
+  border-radius: 7px;
+  color: var(--color-text-code);
 }
 
 pre {

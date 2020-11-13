@@ -43,10 +43,18 @@ $ecru: #D8C99B;
 $independence: #44475a;
 $easy:  #f0efef;
 
+$blockquote-dark: #44475a5d;
+$blockquote-light: #44475a11;
+
+$blockquote-border-dark: #cccedd;
+$blockquote-border-light: #44475a;
 
 $color-brand: #c6baa4;
 
+
 html, html[data-theme="light"] {
+    --blockquote-border-color: #{$blockquote-border-light};
+    --blockquote-color: #{$blockquote-light};
     --color-page-background: #{$bg-color-white};
     --color-text: #{$color-text};
     --color-text-hover: #{$independence};
@@ -63,9 +71,12 @@ html, html[data-theme="light"] {
     --code-bg-color: #{#fafafa};
     --color-blog-subtitle: #{rgba(0, 0, 0, 0.315)};
     --codebox-bg-color: #{$easy};
+    --color-text-code: #{$color-text};
 }
 
 html[data-theme="dark"] {
+    --blockquote-border-color: #{$blockquote-border-dark};
+    --blockquote-color: #{$blockquote-dark};
     --color-page-background: #282a36;
     --color-text: #fff;
     --color-text-hover: #{$independence};
@@ -82,4 +93,5 @@ html[data-theme="dark"] {
     --code-bg-color: #{#3c3f4b};
     --color-blog-subtitle: #{rgb(218, 218, 218)};
     --codebox-bg-color: #{$independence};
+    --color-text-code: #fff;
 }

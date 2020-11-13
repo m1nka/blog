@@ -4,11 +4,13 @@
 
 blockquote {
   padding-left: $base-spacing-unit;
-  border-left: 5px solid #44475a;
-  background-color: #44475a09;
+  border-left: 6px solid var(--blockquote-border-color);
+  background-color: var(--blockquote-color);
   border-radius: 0 7px 7px 0;
 }
 
 blockquote > p {
+  padding-top: 12px;
+  padding-bottom: 12px;
   padding-left: 5px;
 }
