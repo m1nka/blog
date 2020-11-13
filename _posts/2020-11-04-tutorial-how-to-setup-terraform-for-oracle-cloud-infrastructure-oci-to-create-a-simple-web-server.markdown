@@ -4,7 +4,10 @@ title: "Tutorial: How to setup Terraform for Oracle Cloud Infrastructure (OCI)
   to create a simple web server"
 tags:
   - oci
+  - cloud
   - terraform
+  - automation
+  - tutorial
 image: /images/posts/terraform-alpaca.jpg
 date: 2020-11-04T15:22:52.080Z
 ---
@@ -35,7 +38,7 @@ Finally, we need to make sure that we have uploaded an API signing key to the Or
 
 To test that all credentials are correct, we will run a [minimal Terraform configuration](https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf). This Terraform script will not create or modify any cloud resources.
 
-```
+```shell
 # Create a new folder and change directory
 mkdir minimal-terraform-config
 cd minimal-terraform-config
@@ -49,7 +52,7 @@ terraform init
 
 You should see a message `Terraform has been successfully initialized!`. Now, we must set the environment variables to authenticate our local Terraform installation with our Oracle Cloud account. Set your environment variables by running the following command (you need to fill in your values):
 
-```
+```shell
 export TF_VAR_tenancy_ocid=ocid1.tenancy.oc1..aaaaaaaabu74o24dtegtq53thm2oxsx5mr6wbhtwefaos2rfwmzbtrujb3ya
 export TF_VAR_user_ocid=ocid1.user.oc1..aaaaaaaax5isirkhfebc5bbijbrkdh2acm4tbmhatkc2ijmiftizzjh2tgcq
 export TF_VAR_fingerprint=10:b9:c2:2a:09:93:42:1f:a2:2d:2e:d0:3b:04:29:79
@@ -75,7 +78,7 @@ Finally, run a `terraform apply` to validate that everything has been setup corr
 
 Now that we have validated our Terraform setup, we can move on to deploy our first application with Terraform. This Terraform script will deploy a set of networking resources and a virtual machine with a simple webserver installed.
 
-```
+```shell
 # Download the Terraform scripts
 git clone git@github.com:m1nka/oci-terraform-simple-web-server.git
 
@@ -89,7 +92,7 @@ terraform apply
 
 You might get a message asking you to provide a value for `var.compartment_ocid`. In this case, we need to find a [compartment](https://docs.cloud.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcompartments.htm) where we can deploy our resources. Go to the Oracle Cloud console and open the main menu (top left corner). Scroll down and choose "Identity" -> "Compartments". Choose the compartment you would like to use and copy the compartment OCID. Make sure your user has sufficient permission to create the cloud resources in that compartment. You can set the environment variable by running:
 
-```
+```shell
 export TF_VAR_compartment_ocid=ocid1.compartment.oc1..aaaaaaaac6uytbhiw5lsnx6lbdlw7bajgf7uhoitnn7ryknuhyi5fdw537sa
 ```
 
