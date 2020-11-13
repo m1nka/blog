@@ -5,8 +5,8 @@
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 13 Nov 2020 15:59:05 +0000</pubDate>
-    <lastBuildDate>Fri, 13 Nov 2020 15:59:05 +0000</lastBuildDate>
+    <pubDate>Fri, 13 Nov 2020 17:08:05 +0000</pubDate>
+    <lastBuildDate>Fri, 13 Nov 2020 17:08:05 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -15,11 +15,9 @@
         <description>&lt;p&gt;Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;The VCN cannot be terminated because there are associated resources in one or more compartments that you do not have access to.&lt;/p&gt;
-
-  &lt;p&gt;(Conflict - &lt;strong&gt;The Subnet ocid1.subnet… references the VNIC  coid1.vniic… You must remove the reference to proceed with this operation.)&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;p&gt;The process has been stopped. Resources terminated up to this point cannot be restored.&lt;/p&gt;
+  &lt;p&gt;The VCN cannot be terminated because there are associated resources in one or more compartments that you do not have access to.
+(Conflict - &lt;strong&gt;The Subnet ocid1.subnet… references the VNIC  coid1.vniic… You must remove the reference to proceed with this operation.)&lt;/strong&gt;
+The process has been stopped. Resources terminated up to this point cannot be restored.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/error-vnic-ocid.png&quot; alt=&quot;OCI error deleting virtual cloud network&quot; title=&quot;OCI error deleting virtual cloud network&quot; /&gt;&lt;/p&gt;
