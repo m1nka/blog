@@ -6,9 +6,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>Personal blog | maximilian.tech</title>
-  <meta name='description' content="">
-  <link rel='canonical' href="https://maximilian.tech/tag/oci/">
+  <title>How to delete subnets and virtual cloud networks (when deletion fails) in OCI | maximilian.tech</title>
+  <meta name='description' content="Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error:">
+  <link rel='canonical' href="https://maximilian.tech/2020/11/13/how-to-delete-subnets-and-virtual-cloud-networks-when-deletion-fails-in-oci/">
   <link rel='alternate' type='application/rss+xml' title='Personal blog' href="https://maximilian.tech/feed.xml">
 
   <style>
@@ -267,76 +267,103 @@
 </header>
 
     
-    <div class='o-wrapper'>
+    
 
+
+  <meta itemprop='og:image' content='https://maximilian.tech/images/posts/just-some-errors.jpg'>
+
+
+<div class='o-wrapper'>
   <div class='o-grid'>
     <div class='o-grid__col'>
-      <h4>oci</h4>
+      <article class='c-post' itemscope itemtype='http://schema.org/BlogPosting'>
+
+        <h1 class='c-post__title u-text-center'>How to delete subnets and virtual cloud networks (when deletion fails) in OCI</h1>
+
+        <time class='c-post__date' datetime='2020-11-13T12:59:02+00:00' itemprop='datePublished'>13 Nov 2020</time>
+
+        <div class='c-content' itemprop='articleBody'>
+          
+  <img src='/images/posts/just-some-errors.jpg' style="margin-bottom: 3px;" class='c-post__image' alt='How to delete subnets and virtual cloud networks (when deletion fails) in OCI'>
+  <!-- <p style="text-align: center; font-size: smaller;">An alpaca with a Terraform logo.</p> -->
+  <br/>
+
+
+          <p>Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error:</p>
+
+<blockquote>
+  <p>The VCN cannot be terminated because there are associated resources in one or more compartments that you do not have access to.</p>
+
+  <p>(Conflict - <strong>The Subnet ocid1.subnet… references the VNIC  coid1.vniic… You must remove the reference to proceed with this operation.)</strong></p>
+
+  <p>The process has been stopped. Resources terminated up to this point cannot be restored.</p>
+</blockquote>
+
+<p><img src="/images/posts/error-vnic-ocid.png" alt="OCI error deleting virtual cloud network" title="OCI error deleting virtual cloud network" /></p>
+
+<p>This error signals that there is a VNIC (virtual network interface card) that still exists in your subnet. And because there is still a VNIC in your subnet, the subnet (and the virtual cloud network) cannot be deleted.</p>
+
+<p>VNICs are automatically created with the following cloud resources:</p>
+
+<ul>
+  <li>Compute instances</li>
+  <li>Load balancers</li>
+  <li>Database systems</li>
+  <li>API gateways</li>
+  <li>Mount targets (for file storage)</li>
+  <li>And basically everything else that exists in a subnet and has an IPv4 address</li>
+</ul>
+
+<h2 id="how-to-find-the-vnic-and-associated-cloud-resouce">How to find the VNIC and associated cloud resouce</h2>
+
+<p>Let’s find the VNIC and the associated cloud resource. Copy the VNIC OCID (Oracle Cloud Identifier) from the error message and paste it into the search bar in the top navigation bar.</p>
+
+<p><img src="/images/posts/search-vnic.png" alt="OCI search for VNIC" title="How to search for a VNIC in OCI" /></p>
+
+<p>In our case the search reveals that the VNIC is associated to a loadbalancer, because the name of the VNIC is <code class="highlighter-rouge">VNIC for LB</code>. Should your VNIC be associated with a compute instance, then you can directly click on the VNIC to find the compute instance.</p>
+
+<p>In case you are still having troube finding out, which resource the VNIC is attached to try to click ‘View all’ within the search results. Within the resource search results you can see the details of the VNIC and associated resouces (see screenshot below).</p>
+
+<p><img src="/images/posts/search-results.png" alt="resource search results" title="OCI resource search results" /></p>
+
+<h2 id="how-to-destroy-the-associated-cloud-resource">How to destroy the associated cloud resource</h2>
+
+<p>There is no need to destroy the VNIC itself, it’s better to destroy the associated cloud resource. In our case, we head over to the Loadbalancer section (Menu -&gt; Networking -&gt; Loadbalancers) and delete the “problematic” loadbalancer. Alternatively, you can copy and paste the loadbalancer OCID into the search bar to find it more quickly.</p>
+
+<p>Now, we can delete our virtual cloud network or subnet without problem.</p>
+
+        </div>
+
+        <div class='c-tags'>
+          
+            <a href='/tag/oci'>oci</a>
+          
+        </div>
+
+        <hr>
+
+        <section class='disqus'>
+  <div id='disqus_thread'></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://maximilian.tech/2020/11/13/how-to-delete-subnets-and-virtual-cloud-networks-when-deletion-fails-in-oci/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      // Change `aspirethemes-demos` with your Disqus shortcode
+      s.src = '//maximilian-tech.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href='https://disqus.com/?ref_noscript' rel='nofollow'>comments powered by Disqus.</a></noscript>
+</section>
+
+      </article>
     </div>
-  </div>
-
-  <div class='o-grid'>
-    
-      <div class='o-grid__col'>
-
-  <a href='/2020/11/13/how-to-delete-subnets-and-virtual-cloud-networks-when-deletion-fails-in-oci/' class='c-post-card  c-post-card--first  '>
-    <h3 class='c-post-card__title'>How to delete subnets and virtual cloud networks (when deletion fails) in OCI</h3>
-
-    
-      <img src='/images/posts/just-some-errors.jpg' class='c-post__image' alt='How to delete subnets and virtual cloud networks (when deletion fails) in OCI'>
-    
-
-    <p class='c-post-card__excerpt u-font-medium'>
-      Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error: The VCN cannot be terminated because there are associated resources in one or...
-    </p>
-
-    <span class='c-post-card__date'>13 Nov 2020</span>
-  </a>
-
-</div>
-    
-      <div class='o-grid__col'>
-
-  <a href='/2020/11/04/tutorial-how-to-setup-terraform-for-oracle-cloud-infrastructure-oci-to-create-a-simple-web-server/' class='c-post-card  '>
-    <h3 class='c-post-card__title'>Tutorial: How to setup Terraform for Oracle Cloud Infrastructure (OCI) to create a simple web server</h3>
-
-    
-      <img src='/images/posts/terraform-alpaca.jpg' class='c-post__image' alt='Tutorial: How to setup Terraform for Oracle Cloud Infrastructure (OCI) to create a simple web server'>
-    
-
-    <p class='c-post-card__excerpt u-font-medium'>
-      In this article we will cover how to get started with a basic Terraform setup in Oracle Cloud Infrastructure (OCI) to create a simple web server. This tutorial can be done using the Always Free...
-    </p>
-
-    <span class='c-post-card__date'>04 Nov 2020</span>
-  </a>
-
-</div>
-    
-      <div class='o-grid__col'>
-
-  <a href='/2020/10/19/meetup-using-terraform-in-the-real-world/' class='c-post-card   c-post-card--last '>
-    <h3 class='c-post-card__title'>Meetup: Using Terraform in the real-world</h3>
-
-    
-      <img src='/images/posts/terraform-in-the-real-world.jpg' class='c-post__image' alt='Meetup: Using Terraform in the real-world'>
-    
-
-    <p class='c-post-card__excerpt u-font-medium'>
-      On October 20th 2020 I had the chance to talk at Enterprise Java User Group Austria’s online meetup. There were two talks: Taking Micronaut out for a spin - from Andres Almiray Micronaut is a...
-    </p>
-
-    <span class='c-post-card__date'>19 Oct 2020</span>
-  </a>
-
-</div>
-    
-  </div>
-
-  <div class='o-grid'>
-    
-
-
   </div>
 </div>
     
