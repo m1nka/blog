@@ -4,6 +4,8 @@ title: How to delete subnets and virtual cloud networks (when deletion fails) in
   Oracle Cloud Infrastructure
 tags:
   - oci
+  - cloud
+  - troubleshooting
 image: /images/posts/just-some-errors.jpg
 date: 2020-11-13T12:59:02.035Z
 ---
