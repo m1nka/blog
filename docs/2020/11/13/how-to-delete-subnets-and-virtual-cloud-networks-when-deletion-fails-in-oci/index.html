@@ -6,8 +6,8 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>How to delete subnets and virtual cloud networks (when deletion fails) in OCI | maximilian.tech</title>
-  <meta name='description' content="Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error:">
+  <title>How to delete subnets and virtual cloud networks (when deletion fails) in Oracle Cloud Infrastructure | maximilian.tech</title>
+  <meta name='description' content="Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error.">
   <link rel='canonical' href="https://maximilian.tech/2020/11/13/how-to-delete-subnets-and-virtual-cloud-networks-when-deletion-fails-in-oci/">
   <link rel='alternate' type='application/rss+xml' title='Personal blog' href="https://maximilian.tech/feed.xml">
 
@@ -278,18 +278,20 @@
     <div class='o-grid__col'>
       <article class='c-post' itemscope itemtype='http://schema.org/BlogPosting'>
 
-        <h1 class='c-post__title u-text-center'>How to delete subnets and virtual cloud networks (when deletion fails) in OCI</h1>
+        <h1 class='c-post__title u-text-center'>How to delete subnets and virtual cloud networks (when deletion fails) in Oracle Cloud Infrastructure</h1>
 
         <time class='c-post__date' datetime='2020-11-13T12:59:02+00:00' itemprop='datePublished'>13 Nov 2020</time>
 
         <div class='c-content' itemprop='articleBody'>
           
-  <img src='/images/posts/just-some-errors.jpg' style="margin-bottom: 3px;" class='c-post__image' alt='How to delete subnets and virtual cloud networks (when deletion fails) in OCI'>
+  <img src='/images/posts/just-some-errors.jpg' style="margin-bottom: 3px;" class='c-post__image' alt='How to delete subnets and virtual cloud networks (when deletion fails) in Oracle Cloud Infrastructure'>
   <!-- <p style="text-align: center; font-size: smaller;">An alpaca with a Terraform logo.</p> -->
   <br/>
 
 
-          <p>Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error:</p>
+          <p>Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error.</p>
+
+<p><img src="/images/posts/error-vnic-ocid.png" alt="OCI error deleting virtual cloud network" title="OCI error deleting virtual cloud network" /></p>
 
 <blockquote>
   <p>The VCN cannot be terminated because there are associated resources in one or more compartments that you do not have access to.</p>
@@ -299,9 +301,7 @@
   <p>The process has been stopped. Resources terminated up to this point cannot be restored.</p>
 </blockquote>
 
-<p><img src="/images/posts/error-vnic-ocid.png" alt="OCI error deleting virtual cloud network" title="OCI error deleting virtual cloud network" /></p>
-
-<p>This error signals that there is a VNIC (virtual network interface card) that still exists in your subnet. And because there is still a VNIC in your subnet, the subnet (and the virtual cloud network) cannot be deleted.</p>
+<p>This error signals that there is a VNIC (virtual network interface card) that exists in your subnet. And because there is still a VNIC in your subnet, the subnet (and the virtual cloud network) cannot be deleted.</p>
 
 <p>VNICs are automatically created with the following cloud resources:</p>
 
@@ -320,7 +320,7 @@
 
 <p><img src="/images/posts/search-vnic.png" alt="OCI search for VNIC" title="How to search for a VNIC in OCI" /></p>
 
-<p>In our case the search reveals that the VNIC is associated to a loadbalancer, because the name of the VNIC is <code class="highlighter-rouge">VNIC for LB</code>. Should your VNIC be associated with a compute instance, then you can directly click on the VNIC to find the compute instance.</p>
+<p>In our case the search reveals that the VNIC is associated to a load balancer, because the name of the VNIC is <code class="highlighter-rouge">VNIC for LB</code>. Should your VNIC be associated with a compute instance, then you can directly click on the VNIC to find the compute instance.</p>
 
 <p>In case you are still having troube finding out, which resource the VNIC is attached to try to click ‘View all’ within the search results. Within the resource search results you can see the details of the VNIC and associated resouces (see screenshot below).</p>
 
@@ -328,9 +328,9 @@
 
 <h2 id="how-to-destroy-the-associated-cloud-resource">How to destroy the associated cloud resource</h2>
 
-<p>There is no need to destroy the VNIC itself, it’s better to destroy the associated cloud resource. In our case, we head over to the Loadbalancer section (Menu -&gt; Networking -&gt; Loadbalancers) and delete the “problematic” loadbalancer. Alternatively, you can copy and paste the loadbalancer OCID into the search bar to find it more quickly.</p>
+<p>There is no need to destroy the VNIC itself, it’s better to destroy the associated cloud resource. In our case, we head over to the load balancer section (Menu -&gt; Networking -&gt; Load Balancers) and delete the “problematic” load balancer. Alternatively, you can copy and paste the loadbalancer OCID into the search bar to find it more quickly.</p>
 
-<p>Now, we can delete our virtual cloud network or subnet without problem.</p>
+<p>Done! Now, we can delete our virtual cloud network or subnet without problem.</p>
 
         </div>
 
