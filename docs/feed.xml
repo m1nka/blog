@@ -5,8 +5,8 @@
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 13 Nov 2020 17:08:05 +0000</pubDate>
-    <lastBuildDate>Fri, 13 Nov 2020 17:08:05 +0000</lastBuildDate>
+    <pubDate>Sun, 15 Nov 2020 11:03:49 +0000</pubDate>
+    <lastBuildDate>Sun, 15 Nov 2020 11:03:49 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -93,7 +93,7 @@ The process has been stopped. Resources terminated up to this point cannot be re
 
 &lt;h2 id=&quot;3-testing-your-setup-with-a-basic-terraform-script&quot;&gt;3) Testing your setup with a basic Terraform script&lt;/h2&gt;
 
-&lt;p&gt;To test that all credentials are correct, we will run a &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf&quot;&gt;minimal Terraform configuration&lt;/a&gt;. This Terraform script will not create or modify any cloud resources.&lt;/p&gt;
+&lt;p&gt;To test that all credentials are correct, we will run a &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf&quot;&gt;minimal Terraform configuration&lt;/a&gt;. This Terraform script will not create or modify any cloud resources (it only lists information about the availability domains).&lt;/p&gt;
 
 &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Create a new folder and change directory&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;minimal-terraform-config
@@ -121,7 +121,6 @@ terraform init
 
 &lt;blockquote&gt;
   &lt;p&gt;If you get an error message such as &lt;code class=&quot;highlighter-rouge&quot;&gt;provider.oci: can not create client, bad configuration: did not find a proper configuration for private key&lt;/code&gt;, you might have missed one of these things:&lt;/p&gt;
-
   &lt;ul&gt;
     &lt;li&gt;Not specifying either a private_key or private_key_path in the config&lt;/li&gt;
     &lt;li&gt;Specifying a private_key_path that’s not a valid path to a private key file&lt;/li&gt;
