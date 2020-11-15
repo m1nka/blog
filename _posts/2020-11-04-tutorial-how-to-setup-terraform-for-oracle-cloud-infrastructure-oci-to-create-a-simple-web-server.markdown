@@ -36,7 +36,7 @@ Finally, we need to make sure that we have uploaded an API signing key to the Or
 
 ## 3) Testing your setup with a basic Terraform script
 
-To test that all credentials are correct, we will run a [minimal Terraform configuration](https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf). This Terraform script will not create or modify any cloud resources.
+To test that all credentials are correct, we will run a [minimal Terraform configuration](https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf). This Terraform script will not create or modify any cloud resources (it only lists information about the availability domains).
 
 ```shell
 # Create a new folder and change directory
@@ -65,7 +65,6 @@ If your private key is encrypted with a password, you must create another variab
 Finally, run a `terraform apply` to validate that everything has been setup correctly. If you get a message `Apply complete! Resources: 0 added, 0 changed, 0 destroyed.` then you have successfully installed and configured Terraform!
 
 > If you get an error message such as `provider.oci: can not create client, bad configuration: did not find a proper configuration for private key`, you might have missed one of these things:
->
 > * Not specifying either a private_key or private_key_path in the config
 > * Specifying a private_key_path that's not a valid path to a private key file
 > * Not specifying a private_key_password for a private key that's encrypted
