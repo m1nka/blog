@@ -8,17 +8,18 @@ code {
   background-color: var(--codebox-bg-color);
   border-radius: 7px;
   color: var(--color-text-code);
+  overflow-wrap: anywhere;
 }
 
 pre {
   overflow: auto;
-  padding: double($base-spacing-unit);
-  margin-bottom: $base-spacing-unit;
-  font-size: $font-size-medium;
-  line-height: $line-height-medium;
-  white-space: no-wrap;
   word-wrap: break-word;
   word-break: break-all;
+  white-space: no-wrap;
+  padding: double($base-spacing-unit);
+  margin-bottom: 0;
+  font-size: $font-size-medium;
+  line-height: $line-height-medium;
 }
 
 li code,
