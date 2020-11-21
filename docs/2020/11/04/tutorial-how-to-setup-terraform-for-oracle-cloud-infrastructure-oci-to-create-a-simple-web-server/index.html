@@ -330,7 +330,7 @@
 
 <h2 id="3-testing-your-setup-with-a-basic-terraform-script">3) Testing your setup with a basic Terraform script</h2>
 
-<p>To test that all credentials are correct, we will run a <a href="https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf">minimal Terraform configuration</a>. This Terraform script will not create or modify any cloud resources.</p>
+<p>To test that all credentials are correct, we will run a <a href="https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/YW3pknrFQlw37eknN1toi6YezuH8WLqjXBO69kTKnxsbgNJGuasyokZWKGDcfW5W/n/franqguxqsfs/b/public-resources/o/minimal-oci.tf">minimal Terraform configuration</a>. This Terraform script will not create or modify any cloud resources (it only lists information about the availability domains).</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a new folder and change directory</span>
 <span class="nb">mkdir </span>minimal-terraform-config
@@ -358,7 +358,6 @@ terraform init
 
 <blockquote>
   <p>If you get an error message such as <code class="highlighter-rouge">provider.oci: can not create client, bad configuration: did not find a proper configuration for private key</code>, you might have missed one of these things:</p>
-
   <ul>
     <li>Not specifying either a private_key or private_key_path in the config</li>
     <li>Specifying a private_key_path that’s not a valid path to a private key file</li>
