@@ -6,9 +6,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>Personal blog | maximilian.tech</title>
-  <meta name='description' content="">
-  <link rel='canonical' href="https://maximilian.tech/">
+  <title>How to create architecture diagrams for Oracle Cloud infrastructure (OCI) | maximilian.tech</title>
+  <meta name='description' content="Sometimes, we need to visualize cloud architectures. Usually we do this to share, document and discuss architectural decisions with colleagues, partners or c...">
+  <link rel='canonical' href="https://maximilian.tech/2020/11/22/how-to-create-architecture-diagrams-for-oracle-cloud-infrastructure-oci/">
   <link rel='alternate' type='application/rss+xml' title='Personal blog' href="https://maximilian.tech/feed.xml">
 
   <style>
@@ -275,102 +275,90 @@
 </header>
 
     
-    <div class='o-wrapper particles-container'>
-  <div id="particles-js" class='o-grid particles-itself'>
-  </div>
-  <div id="typer-text-container" class="typer-text-container">
-    <h3 class="typer-text">
-      <span class="typewrite" data-period="6000" data-type='[ "Cloud computing", "Cloud automation", "Cloud infrastructure" ]'>
-      <span class="wrap"></span>
-      </span><span class="blink-me">|</span>
-    </h3>
-  </div>
-</div>
+    
 
-<div class='o-wrapper' style="padding-top: 20px !important;">
+
+  <meta itemprop='og:image' content='https://maximilian.tech/images/posts/visualize-oci-diagrams.jpg'>
+
+
+<div class='o-wrapper'>
   <div class='o-grid'>
-    
     <div class='o-grid__col'>
+      <article class='c-post' itemscope itemtype='http://schema.org/BlogPosting'>
 
-  <a href='/2020/11/22/how-to-create-architecture-diagrams-for-oracle-cloud-infrastructure-oci/' class='c-post-card  c-post-card--first  '>
-    <h3 class='c-post-card__title'>How to create architecture diagrams for Oracle Cloud infrastructure (OCI)</h3>
+        <h1 class='c-post__title u-text-center'>How to create architecture diagrams for Oracle Cloud infrastructure (OCI)</h1>
 
-    
-      <img src='/images/posts/visualize-oci-diagrams.jpg' class='c-post__image' alt='How to create architecture diagrams for Oracle Cloud infrastructure (OCI)'>
-    
+        <time class='c-post__date' datetime='2020-11-22T16:00:05+00:00' itemprop='datePublished'>22 Nov 2020</time>
 
-    <p class='c-post-card__excerpt u-font-medium'>
-      Sometimes, we need to visualize cloud architectures. Usually we do this to share, document and discuss architectural decisions with colleagues, partners or clients. This article will introduce and compare multiple options on how to visualize...
-    </p>
-
-    <span class='c-post-card__date'>22 Nov 2020</span>
-  </a>
-
-</div>
-    
-    <div class='o-grid__col'>
-
-  <a href='/2020/11/13/how-to-delete-subnets-and-virtual-cloud-networks-when-deletion-fails-in-oci/' class='c-post-card  '>
-    <h3 class='c-post-card__title'>How to delete subnets and virtual cloud networks (when deletion fails) in Oracle Cloud Infrastructure</h3>
-
-    
-      <img src='/images/posts/just-some-errors.jpg' class='c-post__image' alt='How to delete subnets and virtual cloud networks (when deletion fails) in Oracle Cloud Infrastructure'>
-    
-
-    <p class='c-post-card__excerpt u-font-medium'>
-      Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error: The VCN cannot be terminated because there are associated resources in one or...
-    </p>
-
-    <span class='c-post-card__date'>13 Nov 2020</span>
-  </a>
-
-</div>
-    
-    <div class='o-grid__col'>
-
-  <a href='/2020/11/04/tutorial-how-to-setup-terraform-for-oracle-cloud-infrastructure-oci-to-create-a-simple-web-server/' class='c-post-card  '>
-    <h3 class='c-post-card__title'>Tutorial: How to setup Terraform for Oracle Cloud Infrastructure (OCI) to create a simple web server</h3>
-
-    
-      <img src='/images/posts/terraform-alpaca.jpg' class='c-post__image' alt='Tutorial: How to setup Terraform for Oracle Cloud Infrastructure (OCI) to create a simple web server'>
-    
-
-    <p class='c-post-card__excerpt u-font-medium'>
-      In this article we will cover how to get started with a basic Terraform setup in Oracle Cloud Infrastructure (OCI) to create a simple web server. This tutorial can be done using the Always Free...
-    </p>
-
-    <span class='c-post-card__date'>04 Nov 2020</span>
-  </a>
-
-</div>
-    
-    <div class='o-grid__col'>
-
-  <a href='/2020/10/19/meetup-using-terraform-in-the-real-world/' class='c-post-card   c-post-card--last '>
-    <h3 class='c-post-card__title'>Meetup: Using Terraform in the real-world</h3>
-
-    
-      <img src='/images/posts/terraform-in-the-real-world.jpg' class='c-post__image' alt='Meetup: Using Terraform in the real-world'>
-    
-
-    <p class='c-post-card__excerpt u-font-medium'>
-      On October 20th 2020 I had the chance to talk at Enterprise Java User Group Austria’s online meetup. There were two talks: Taking Micronaut out for a spin - from Andres Almiray Micronaut is a...
-    </p>
-
-    <span class='c-post-card__date'>19 Oct 2020</span>
-  </a>
-
-</div>
-    
-  </div>
-  
-  <div class='o-grid'>
-    
+        <div class='c-content' itemprop='articleBody'>
+          
+  <img src='/images/posts/visualize-oci-diagrams.jpg' style="margin-bottom: 3px;" class='c-post__image' alt='How to create architecture diagrams for Oracle Cloud infrastructure (OCI)'>
+  <!-- <p style="text-align: center; font-size: smaller;">An alpaca with a Terraform logo.</p> -->
+  <br/>
 
 
+          <p>Sometimes, we need to visualize cloud architectures. Usually we do this to share, document and discuss architectural decisions with colleagues, partners or clients. This article will introduce and compare multiple options on how to visualize cloud architectures for Oracle Cloud Infrastructure.</p>
+
+<h2 id="option-1-diagramsnet-also-known-as-drawio">Option 1: diagrams.net (also known as draw.io)</h2>
+
+<p>This tool currently seems like the best option to visualize architectures for OCI. Diagrams.net is available as a browser-based tool at <a href="https://diagrams.net">diagrams.net</a>, but also offers a <a href="https://github.com/jgraph/drawio-desktop/releases/">free desktop client</a> for a number of platforms. It’s easy to use, yet quite powerful. The tool supports many file storage and synchronization tools and diagrams can be exported in many formats, such as PNG, SVG, JPEG and HTML. One of the biggest downsides is that complex architectures can be tedious to work with (<em>“send element to front”</em> and <em>“send element to back”</em> are your friends). Also the OCI icon library is somewhat limited.</p>
+
+<p><img src="/images/posts/diagrams-net-oci.png" alt="Working with diagrams.net to design OCI architectures" title="Working with diagrams.net to design OCI architectures" /></p>
+
+<p>To get started designing architectures for Oracle Cloud Infrastructure you need to download and import the OCI architecture icon library. Head over to <a href="https://draw.io">draw.io</a> (or download the desktop application) and select <strong>File</strong> → <strong>Open Library from</strong> → <strong>URL</strong> and enter <code class="highlighter-rouge">https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/mRHFjVorUCYMI5L8lSp-_Hc2F4Y7_9gnMOWvox0bNdpsqLE-x0VKjH17UDWk8P-3/n/franqguxqsfs/b/public-resources/o/oracle-cloud-architecture-icons-01-2019.xml</code>.</p>
+
+<h2 id="option-2-oci-designer-toolkit-okit">Option 2: OCI Designer ToolKit (OKIT)</h2>
+
+<p>OKIT is a tool designed specifically to design, deploy and visualize Oracle Cloud Infrastructure environments. It’s open source and available on <a href="https://github.com/oracle/oci-designer-toolkit">Github</a>. It’s a great tool with a lot of potential, however it’s currently only available by running or self-hosting a Docker container (or Vagrant image). Also, it <a href="https://github.com/oracle/oci-designer-toolkit/blob/master/documentation/Usage.md#currently-implemented-artifacts">currently does not support</a> all Oracle Cloud resources. On the contrary, it is much more powerful than other visualization tools, since it can automatically create Terraform and Ansible configurations.</p>
+
+<p><img src="/images/posts/okit.png" alt="Working with OKIT to design OCI architectures" title="Working with OKIT to design OCI architectures" /></p>
+
+<h2 id="option-3-visual-paradigmcom">Option 3: visual-paradigm.com</h2>
+
+<p>Finally, there is visual-paradigm.com, which offers some out-of-the-box OCI visualizations. I’ve personally never tried it, since it’s not open source and only offers a limited free version. It does however provide multiple sample diagrams and overall seems like a well designed tool.</p>
+
+<p>You can get started designing OCI architectures with visual-paradigm-com <a href="https://online.visual-paradigm.com/diagrams/features/oracle-cloud-infrastructure-diagram-software/">here</a>.</p>
+
+<p><img src="/images/posts/visual-paradigm-oci.png" alt="Working with visual-paradigm to design OCI architectures" title="Working with visual-paradigm to design OCI architectures" /></p>
+
+<p>That’s it. If you have found a better way to design and visualize OCI architectures, feel free drop me an email or comment below.</p>
+
+        </div>
+
+        <div class='c-tags'>
+          
+            <a href='/tag/cloud'>cloud</a>
+          
+            <a href='/tag/oci'>oci</a>
+          
+        </div>
+
+        <hr>
+
+        <section class='disqus'>
+  <div id='disqus_thread'></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = 'https://maximilian.tech/2020/11/22/how-to-create-architecture-diagrams-for-oracle-cloud-infrastructure-oci/';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      // Change `aspirethemes-demos` with your Disqus shortcode
+      s.src = '//maximilian-tech.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href='https://disqus.com/?ref_noscript' rel='nofollow'>comments powered by Disqus.</a></noscript>
+</section>
+
+      </article>
+    </div>
   </div>
 </div>
-
     
     <footer class='c-footer'>
   <div class='o-grid'>
