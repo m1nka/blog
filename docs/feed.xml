@@ -5,8 +5,8 @@
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 21 Nov 2020 23:39:42 +0000</pubDate>
-    <lastBuildDate>Sat, 21 Nov 2020 23:39:42 +0000</lastBuildDate>
+    <pubDate>Sun, 22 Nov 2020 15:01:54 +0000</pubDate>
+    <lastBuildDate>Sun, 22 Nov 2020 15:01:54 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -186,70 +186,7 @@ terraform apply
         <guid isPermaLink="true">https://maximilian.tech/2020/10/19/meetup-using-terraform-in-the-real-world/</guid>
       </item>
     
-
     
-      
-        
-      
-    
-      
-        
-          <item>
-            <title>About</title>
-            <description>&lt;p&gt;My name is Max and I currently work as a Cloud Engineer at Oracle. I’ve worked as a full stack developer for 5 years and got my degree in Business Informatics from University of Vienna. I’m especially passionate about all things related to travel and tech. Since I regularly work on cloud technologies (which are used by thousands of people around the world), I’ve decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️&lt;/p&gt;
-</description>
-            <link>https://maximilian.tech/about.html</link>
-          </item>
-        
-      
-    
-      
-    
-      
-        
-          <item>
-            <title>Disclaimer &amp; Imprint</title>
-            <description>### Disclaimer
-
-This is a personal blog. Any views or opinions represented in this blog are my own and do not represent those of people, institutions or organizations that I may or may not be associated with in professional or personal capacity. All views or opinions are not intended to malign any religion, ethnic group, club, organization, company, or individual.
-
-All content provided on this blog is for informational purposes only. The owner of this blog makes no representations as to the accuracy or completeness of any information on this site or found by following any link on this site. The owner will not be liable for any errors or omissions in this information nor for the availability of this information. The owner will not be liable for any losses, injuries, or damages from the display or use of this information.
-
-### Imprint
-
-&lt;div id=&quot;hcard-Maximilian-Jerg&quot; class=&quot;vcard&quot;&gt;
- &lt;span class=&quot;fn&quot;&gt;Maximilian Jerg&lt;/span&gt;
- &lt;div class=&quot;adr&quot;&gt;
-  &lt;div class=&quot;street-address&quot; style=&quot;display:none;&quot;&gt;Ausstellungsstrasse 50/506&lt;/div&gt;
-  &lt;span class=&quot;locality&quot;&gt;Vienna&lt;/span&gt;, 
-  &lt;span class=&quot;postal-code&quot;&gt;1020&lt;/span&gt;
-  &lt;span class=&quot;country-name&quot;&gt;AT&lt;/span&gt;
- &lt;/div&gt;
-&lt;p style=&quot;font-size:70%;&quot;&gt;Adress information is encoded with &lt;a href=&quot;http://microformats.org/wiki/hcard&quot;&gt;hCard&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-</description>
-            <link>https://maximilian.tech/imprint.html</link>
-          </item>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
     
 
   </channel>
