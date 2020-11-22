@@ -21,7 +21,8 @@ layout: null
         <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
       </item>
     {% endfor %}
-
+    
+    {% comment %}
     {% for page in site.pages %}
       {% if page.layout == 'page' %}
         {% if page.name != '404.md' %}
@@ -33,6 +34,7 @@ layout: null
         {% endif %}
       {% endif %}
     {% endfor %}
+    {% endcomment %}
 
   </channel>
 </rss>
