@@ -1,4 +1,4 @@
-name: jekyll-cd
+name: deploy-blog
 
 on:
   push:
