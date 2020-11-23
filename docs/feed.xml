@@ -5,36 +5,62 @@
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 22 Nov 2020 16:56:34 +0000</pubDate>
-    <lastBuildDate>Sun, 22 Nov 2020 16:56:34 +0000</lastBuildDate>
+    <pubDate>Mon, 23 Nov 2020 18:42:25 +0000</pubDate>
+    <lastBuildDate>Mon, 23 Nov 2020 18:42:25 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
       <item>
         <title>How to create architecture diagrams for Oracle Cloud infrastructure (OCI)</title>
-        <description>&lt;p&gt;Sometimes, we need to visualize cloud architectures. Usually we do this to share, document and discuss architectural decisions with colleagues, partners or clients. This article will introduce and compare multiple options on how to visualize cloud architectures for Oracle Cloud Infrastructure.&lt;/p&gt;
+        <description>&lt;p&gt;Sometimes, we need to visualize cloud architectures. Usually we do this to share, document and discuss architectural decisions with colleagues, partners or clients. This article will introduce and compare multiple options on how to visualize cloud architectures for Oracle Cloud Infrastructure. The following tools are available:&lt;/p&gt;
 
-&lt;h2 id=&quot;option-1-diagramsnet-also-known-as-drawio&quot;&gt;Option 1: diagrams.net (also known as draw.io)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Powerpoint&lt;/li&gt;
+  &lt;li&gt;Diagrams.net (also known as draw.io)&lt;/li&gt;
+  &lt;li&gt;OCI Designer ToolKit (OKIT)&lt;/li&gt;
+  &lt;li&gt;visual-paradigm.com&lt;/li&gt;
+  &lt;li&gt;Cacoo&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;This tool currently seems like the best option to visualize architectures for OCI. Diagrams.net is available as a browser-based tool at &lt;a href=&quot;https://diagrams.net&quot;&gt;diagrams.net&lt;/a&gt;, but also offers a &lt;a href=&quot;https://github.com/jgraph/drawio-desktop/releases/&quot;&gt;free desktop client&lt;/a&gt; for a number of platforms. It’s easy to use, yet quite powerful. The tool supports many file storage and synchronization tools and diagrams can be exported in many formats, such as PNG, SVG, JPEG and HTML. One of the biggest downsides is that complex architectures can be tedious to work with (&lt;em&gt;“send element to front”&lt;/em&gt; and &lt;em&gt;“send element to back”&lt;/em&gt; are your friends). Also the OCI icon library is somewhat limited.&lt;/p&gt;
+&lt;h2 id=&quot;powerpoint&quot;&gt;Powerpoint&lt;/h2&gt;
+
+&lt;p&gt;Powerpoint is the easiest and quickest way to create beautiful architectural diagrams for OCI. It’s the recommended ‘go-to’ option visualizing simple deployments. It also supports diagrams in ‘light mode’ and ‘dark mode’. The downside of designing architectures with Powerpoint is that it is not suited for complex architectures. Managing lot’s of objects without a proper layering system is annoying to work with. Also Powerpoint is limited when exporting diagrams (PPTX, PDF, PNG, JPEG).&lt;/p&gt;
+
+&lt;p&gt;Download the &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/Resources/Assets/OCI_Icons.pptx&quot;&gt;OCI Powerpoint Icon Set&lt;/a&gt; to get started, it includes a sample architecture.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/oci-powerpoint.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;diagramsnet-also-known-as-drawio&quot;&gt;Diagrams.net (also known as draw.io)&lt;/h2&gt;
+
+&lt;p&gt;This tool currently seems like the best option to visualize architectures for OCI. Diagrams.net is available as a browser-based tool at &lt;a href=&quot;https://diagrams.net&quot;&gt;diagrams.net&lt;/a&gt;, but also offers a &lt;a href=&quot;https://github.com/jgraph/drawio-desktop/releases/&quot;&gt;free desktop client&lt;/a&gt; for a number of platforms. It’s easy to use, yet quite powerful. The tool supports many file storage and synchronization tools and diagrams can be exported in many formats, such as PNG, SVG, JPEG and HTML. It supports a layering system to group resources. The only downside is that the OCI icon library is somewhat limited.&lt;/p&gt;
+
+&lt;p&gt;To get started designing architectures for Oracle Cloud Infrastructure you need to download and import the OCI architecture icon library. Head over to &lt;a href=&quot;https://draw.io&quot;&gt;draw.io&lt;/a&gt; (or download the desktop application) and select &lt;strong&gt;File&lt;/strong&gt; → &lt;strong&gt;Open Library from&lt;/strong&gt; → &lt;strong&gt;URL&lt;/strong&gt; and enter &lt;code class=&quot;highlighter-rouge&quot;&gt;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/McExqfcEsJm8aHPUhenguP34LS9oAI0Qzzbm5sTXplQ-ySee8W_688WZPF-nhZMe/n/franqguxqsfs/b/public-resources/o/OCI_Icons_Drawio_Bark.drawio&lt;/code&gt;. Alternatively, you can use &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/mRHFjVorUCYMI5L8lSp-_Hc2F4Y7_9gnMOWvox0bNdpsqLE-x0VKjH17UDWk8P-3/n/franqguxqsfs/b/public-resources/o/oracle-cloud-architecture-icons-01-2019.xml&quot;&gt;these legacy icons&lt;/a&gt;. Also, make sure to enable &lt;a href=&quot;https://desk.draw.io/support/solutions/articles/16000067815-how-to-use-layers-&quot;&gt;layers&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/diagrams-net-oci.png&quot; alt=&quot;Working with diagrams.net to design OCI architectures&quot; title=&quot;Working with diagrams.net to design OCI architectures&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;To get started designing architectures for Oracle Cloud Infrastructure you need to download and import the OCI architecture icon library. Head over to &lt;a href=&quot;https://draw.io&quot;&gt;draw.io&lt;/a&gt; (or download the desktop application) and select &lt;strong&gt;File&lt;/strong&gt; → &lt;strong&gt;Open Library from&lt;/strong&gt; → &lt;strong&gt;URL&lt;/strong&gt; and enter &lt;code class=&quot;highlighter-rouge&quot;&gt;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/mRHFjVorUCYMI5L8lSp-_Hc2F4Y7_9gnMOWvox0bNdpsqLE-x0VKjH17UDWk8P-3/n/franqguxqsfs/b/public-resources/o/oracle-cloud-architecture-icons-01-2019.xml&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;option-2-oci-designer-toolkit-okit&quot;&gt;Option 2: OCI Designer ToolKit (OKIT)&lt;/h2&gt;
+&lt;h2 id=&quot;oci-designer-toolkit-okit&quot;&gt;OCI Designer ToolKit (OKIT)&lt;/h2&gt;
 
 &lt;p&gt;OKIT is a tool designed specifically to design, deploy and visualize Oracle Cloud Infrastructure environments. It’s open source and available on &lt;a href=&quot;https://github.com/oracle/oci-designer-toolkit&quot;&gt;Github&lt;/a&gt;. It’s a great tool with a lot of potential, however it’s currently only available by running or self-hosting a Docker container (or Vagrant image). Also, it &lt;a href=&quot;https://github.com/oracle/oci-designer-toolkit/blob/master/documentation/Usage.md#currently-implemented-artifacts&quot;&gt;currently does not support&lt;/a&gt; all Oracle Cloud resources. On the contrary, it is much more powerful than other visualization tools, since it can automatically create Terraform and Ansible configurations.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/okit.png&quot; alt=&quot;Working with OKIT to design OCI architectures&quot; title=&quot;Working with OKIT to design OCI architectures&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;option-3-visual-paradigmcom&quot;&gt;Option 3: visual-paradigm.com&lt;/h2&gt;
+&lt;h2 id=&quot;visual-paradigmcom&quot;&gt;Visual-paradigm.com&lt;/h2&gt;
 
-&lt;p&gt;Finally, there is visual-paradigm.com, which offers some out-of-the-box OCI visualizations. I’ve personally never tried it, since it’s not open source and only offers a limited free version. It does however provide multiple sample diagrams and overall seems like a well designed tool.&lt;/p&gt;
+&lt;p&gt;There is also visual-paradigm.com, which offers some out-of-the-box OCI visualizations. I’ve personally never tried it, since it’s not open source and only offers a limited free version. It does however provide multiple sample diagrams and overall seems like a well designed tool.&lt;/p&gt;
 
 &lt;p&gt;You can get started designing OCI architectures with visual-paradigm-com &lt;a href=&quot;https://online.visual-paradigm.com/diagrams/features/oracle-cloud-infrastructure-diagram-software/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/visual-paradigm-oci.png&quot; alt=&quot;Working with visual-paradigm to design OCI architectures&quot; title=&quot;Working with visual-paradigm to design OCI architectures&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/visual-paradigm-oci.png&quot; alt=&quot;Working with Powerpoint to design OCI architectures&quot; title=&quot;Working with Powerpoint to design OCI architectures&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;cacoo&quot;&gt;Cacoo&lt;/h2&gt;
+
+&lt;p&gt;Finally there is Cacoo, which also offers out-of-the-box OCI visualizations. Like visual-paradigm I’ve not personally tried it, since it’s neither open source nor completely free. You can get started with Cacoo modeling for &lt;a href=&quot;https://cacoo.com/templates/oracle-cloud-infrastructure-template&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/oci-cacoo.png&quot; alt=&quot;Working with Cacoo to design OCI architectures&quot; title=&quot;Working with Cacoo to design OCI architectures&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;even-more-options&quot;&gt;Even more options&lt;/h2&gt;
+
+&lt;p&gt;Check out the official site for Oracle Cloud Infrastructure icons and graphics &lt;a href=&quot;https://docs.cloud.oracle.com/en-us/iaas/Content/General/Reference/graphicsfordiagrams.htm&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;That’s it. If you have found a better way to design and visualize OCI architectures, feel free drop me an email or comment below.&lt;/p&gt;
 </description>
