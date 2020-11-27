@@ -3,3 +3,6 @@ layout: none
 ---
 User-agent: *
 Disallow: /imprint.html
+Allow: /
+
+Sitemap: https://maximilian.tech/sitemap.xml
