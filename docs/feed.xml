@@ -5,8 +5,8 @@
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 Nov 2020 15:47:34 +0000</pubDate>
-    <lastBuildDate>Fri, 27 Nov 2020 15:47:34 +0000</lastBuildDate>
+    <pubDate>Sun, 29 Nov 2020 11:23:42 +0000</pubDate>
+    <lastBuildDate>Sun, 29 Nov 2020 11:23:42 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -38,6 +38,38 @@
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/diagrams-layers.png&quot; alt=&quot;Use layers within the diagram&quot; title=&quot;Use layers within the diagram&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It is recommended to start editing the diagram starting with the bottom ‘region layer’. The continue to work your way up: Region layer → Availability domain layer → Network layer → Compute &amp;amp; service layer → Labels &amp;amp; comment layer&lt;/li&gt;
+  &lt;li&gt;These are the color codes used for the diagram:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Element&lt;/th&gt;
+      &lt;th&gt;Color code&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Region&lt;/td&gt;
+      &lt;td&gt;#f4f3ef&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Availability domain&lt;/td&gt;
+      &lt;td&gt;#dfddd9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Networking&lt;/td&gt;
+      &lt;td&gt;#bd7652&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Font color&lt;/td&gt;
+      &lt;td&gt;#3f3a36&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;That’s it. If there any problems, feel free to reach out in the comment section.&lt;/p&gt;
 </description>
