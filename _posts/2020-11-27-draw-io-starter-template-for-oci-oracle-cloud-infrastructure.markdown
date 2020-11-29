@@ -28,4 +28,14 @@ The template currently includes one architecture, which features a highly availa
 
 ![Use layers within the diagram](/images/posts/diagrams-layers.png "Use layers within the diagram")
 
+* It is recommended to start editing the diagram starting with the bottom 'region layer'. The continue to work your way up: Region layer → Availability domain layer → Network layer → Compute & service layer → Labels & comment layer
+* These are the color codes used for the diagram:
+
+| Element             	| Color code 	|
+|---------------------	|------------	|
+| Region              	| #f4f3ef    	|
+| Availability domain 	| #dfddd9    	|
+| Networking          	| #bd7652    	|
+| Font color          	| #3f3a36    	|
+
 That's it. If there any problems, feel free to reach out in the comment section.
