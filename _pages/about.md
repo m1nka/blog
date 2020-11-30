@@ -5,7 +5,7 @@ image: '/images/pages/me.jpg'
 ---
 
 
-Hi 👋 I'm Max. You have stumbled across my blog where I write about cloud computing, tech, travel and more. Currently, I work as a Cloud Engineer at Oracle. Previously, I've worked as a full stack developer and got my degree in Business Informatics from University of Vienna. Since I regularly work on cloud technologies, I've decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️
+Hi 👋 I'm Max. You have stumbled across my blog where I write about cloud computing, tech, travel and more. Currently, I work as a Cloud Engineer at Oracle. I graduated from University of Vienna with a degree in Business Informatics and have worked as a full stack developer after that. Since I regularly work on cloud technologies, I've decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️
 
 For any inquiries you can reach out to me [by mail](mailto:blog@maximilian.tech).
 
