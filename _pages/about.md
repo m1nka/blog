@@ -9,6 +9,8 @@ Hi 👋 I'm Max. You have stumbled across my blog where I write about cloud comp
 
 ## About this blog
 
-This blog is hosted on Oracle Cloud free tier (in combination with Cloudflare DNS and CDN). See an overview of the architecture below.
+This blog is hosted completely for free on [Oracle Cloud free tier](https://www.oracle.com/cloud/free/) (in combination with [Cloudflare](https://www.cloudflare.com/) DNS and CDN). See an overview of the architecture below. 
 
 ![](/images/pages/personal-blog-architecture.png)
+
+The blog is based on the static-site generator Jekyll. [Netlify CMS](https://www.netlifycms.org/) is used to manage the blog content. Netlify CMS commits all changes to a Git repository hosted by Github. There are Github action pipelines in place, which build the page using Jekyll and use `scp` to copy the static files to the webserver.
