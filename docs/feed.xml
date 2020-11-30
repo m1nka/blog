@@ -5,8 +5,8 @@
     <description></description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Nov 2020 11:44:51 +0000</pubDate>
-    <lastBuildDate>Mon, 30 Nov 2020 11:44:51 +0000</lastBuildDate>
+    <pubDate>Mon, 30 Nov 2020 17:13:29 +0000</pubDate>
+    <lastBuildDate>Mon, 30 Nov 2020 17:13:29 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -75,7 +75,11 @@
 
 &lt;p&gt;This tool currently seems like the best option to visualize architectures for OCI. Diagrams.net is available as a browser-based tool at &lt;a href=&quot;https://diagrams.net&quot;&gt;diagrams.net&lt;/a&gt;, but also offers a &lt;a href=&quot;https://github.com/jgraph/drawio-desktop/releases/&quot;&gt;free desktop client&lt;/a&gt; for a number of platforms. It’s easy to use, yet quite powerful. The tool supports many file storage and synchronization tools and diagrams can be exported in many formats, such as PNG, SVG, JPEG and HTML. It supports a layering system to group resources. The only downside is that the OCI icon library is somewhat limited.&lt;/p&gt;
 
-&lt;p&gt;To get started designing architectures for Oracle Cloud Infrastructure you need to download and import the OCI architecture icon library. Head over to &lt;a href=&quot;https://draw.io&quot;&gt;draw.io&lt;/a&gt; (or download the desktop application) and select &lt;strong&gt;File&lt;/strong&gt; → &lt;strong&gt;Open Library from&lt;/strong&gt; → &lt;strong&gt;URL&lt;/strong&gt; and enter &lt;code class=&quot;highlighter-rouge&quot;&gt;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/McExqfcEsJm8aHPUhenguP34LS9oAI0Qzzbm5sTXplQ-ySee8W_688WZPF-nhZMe/n/franqguxqsfs/b/public-resources/o/OCI_Icons_Drawio_Bark.drawio&lt;/code&gt;. Alternatively, you can use &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/mRHFjVorUCYMI5L8lSp-_Hc2F4Y7_9gnMOWvox0bNdpsqLE-x0VKjH17UDWk8P-3/n/franqguxqsfs/b/public-resources/o/oracle-cloud-architecture-icons-01-2019.xml&quot;&gt;these legacy icons&lt;/a&gt;. Also, make sure to enable &lt;a href=&quot;https://desk.draw.io/support/solutions/articles/16000067815-how-to-use-layers-&quot;&gt;layers&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;If you are looking to &lt;strong&gt;get started with draw.io using a template&lt;/strong&gt; for OCI, check out my article &lt;a href=&quot;https://maximilian.tech/2020/11/27/draw-io-starter-template-for-oci-oracle-cloud-infrastructure/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To begin designing architectures for Oracle Cloud Infrastructure you need to download and import the OCI architecture icon library. Head over to &lt;a href=&quot;https://draw.io&quot;&gt;draw.io&lt;/a&gt; (or download the desktop application) and select &lt;strong&gt;File&lt;/strong&gt; → &lt;strong&gt;Open Library from&lt;/strong&gt; → &lt;strong&gt;URL&lt;/strong&gt; and enter &lt;code class=&quot;highlighter-rouge&quot;&gt;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/McExqfcEsJm8aHPUhenguP34LS9oAI0Qzzbm5sTXplQ-ySee8W_688WZPF-nhZMe/n/franqguxqsfs/b/public-resources/o/OCI_Icons_Drawio_Bark.drawio&lt;/code&gt;. Alternatively, you can use &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/mRHFjVorUCYMI5L8lSp-_Hc2F4Y7_9gnMOWvox0bNdpsqLE-x0VKjH17UDWk8P-3/n/franqguxqsfs/b/public-resources/o/oracle-cloud-architecture-icons-01-2019.xml&quot;&gt;these legacy icons&lt;/a&gt;. Also, make sure to enable &lt;a href=&quot;https://desk.draw.io/support/solutions/articles/16000067815-how-to-use-layers-&quot;&gt;layers&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/diagrams-net-oci.png&quot; alt=&quot;Working with diagrams.net to design OCI architectures&quot; title=&quot;Working with diagrams.net to design OCI architectures&quot; /&gt;&lt;/p&gt;
 
