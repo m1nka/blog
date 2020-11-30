@@ -22,5 +22,6 @@ All content provided on this blog is for informational purposes only. The owner 
   <span class="postal-code">1020</span>
   <span class="country-name">AT</span>
  </div>
+<a class="email" href="mailto:blog@maximilian.tech">E-mail</a> 
 <p style="font-size:70%;">Adress information is encoded with <a href="http://microformats.org/wiki/hcard">hCard</a>.</p>
 </div>

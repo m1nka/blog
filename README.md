@@ -1,6 +1,10 @@
-# Type: Minimal and Clean Free Jekyll Theme
+# Personal blog: maximilian.tech
 
-<img alt="Type: Minimal and Clean Free Jekyll Theme" src="https://user-images.githubusercontent.com/626005/63093493-c3daa880-bf65-11e9-860e-da88047cce24.png">
+Run `bundle exec jekyll serve` to serve locally. Commit to master to deploy with Github actions.
+
+Project was forked from [aspirethemes/type](https://github.com/aspirethemes/type).
+
+## Type: Minimal and Clean Free Jekyll Theme
 
 - [Configurations](#configurations)
 - [Deployment](#deployment)
