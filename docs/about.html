@@ -293,9 +293,11 @@
 
 <h2 id="about-this-blog">About this blog</h2>
 
-<p>This blog is hosted on Oracle Cloud free tier (in combination with Cloudflare DNS and CDN). See an overview of the architecture below.</p>
+<p>This blog is hosted completely for free on <a href="https://www.oracle.com/cloud/free/">Oracle Cloud free tier</a> (in combination with <a href="https://www.cloudflare.com/">Cloudflare</a> DNS and CDN). See an overview of the architecture below.</p>
 
 <p><img src="/images/pages/personal-blog-architecture.png" alt="" /></p>
+
+<p>The blog is based on the static-site generator Jekyll. <a href="https://www.netlifycms.org/">Netlify CMS</a> is used to manage the blog content. Netlify CMS commits all changes to a Git repository hosted by Github. There are Github action pipelines in place, which build the page using Jekyll and use <code class="highlighter-rouge">scp</code> to copy the static files to the webserver.</p>
 
         </div>
       </article>
