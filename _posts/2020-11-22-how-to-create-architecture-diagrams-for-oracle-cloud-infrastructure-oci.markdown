@@ -7,7 +7,7 @@ tags:
 image: /images/posts/visualize-oci-diagrams.jpg
 date: 2020-11-22T16:00:05.625Z
 ---
-Sometimes, we need to visualize cloud architectures. Usually we do this to share, document and discuss architectural decisions with colleagues, partners or clients. This article will introduce and compare multiple options on how to visualize cloud architectures for Oracle Cloud Infrastructure. The following tools are available:
+Sometimes, we need to visualize cloud architectures. Usually we do this to share, document and discuss architectural decisions with colleagues, partners or clients. This article will introduce and compare multiple options on how to visualize cloud architectures for Oracle Cloud Infrastructure. The following tools were tested:
 
 * [Powerpoint](#powerpoint)
 * [Diagrams.net](#drawio) (also known as draw.io)
@@ -17,7 +17,7 @@ Sometimes, we need to visualize cloud architectures. Usually we do this to share
 
 ## Powerpoint <a name="powerpoint"></a>
 
-Powerpoint is the easiest and quickest way to create beautiful architectural diagrams for OCI. It's the recommended 'go-to' option visualizing simple deployments. It also supports diagrams in 'light mode' and 'dark mode'. The downside of designing architectures with Powerpoint is that it is not suited for complex architectures. Managing lot's of objects without a proper layering system is annoying to work with. Also Powerpoint is limited when exporting diagrams (PPTX, PDF, PNG, JPEG). 
+Powerpoint is the easiest and quickest way to create beautiful architectural diagrams for OCI. It's the recommended 'go-to' option visualizing simple deployments and supports diagrams in 'light mode' and 'dark mode'. The downside of designing architectures with Powerpoint is that it is not very well suited for complex architectures. Managing lot's of objects without a proper layering system can be tedious to work with. Also Powerpoint is limited when exporting diagrams (PPTX, PDF, PNG, JPEG) compared to other tools. 
 
 Download the [OCI Powerpoint Icon Set](https://docs.cloud.oracle.com/en-us/iaas/Content/Resources/Assets/OCI_Icons.pptx) to get started, it includes a sample architecture.
 
