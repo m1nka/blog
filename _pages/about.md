@@ -9,7 +9,7 @@ Hi 👋 I'm Max. You have stumbled across my blog where I write about cloud comp
 
 For any inquiries you can reach out to me [by mail](mailto:blog@maximilian.tech).
 
-## About this blog
+## About this blog <a name="blog-architecture"></a>
 
 This blog is hosted completely for free on [Oracle Cloud free tier](https://www.oracle.com/cloud/free/) (in combination with [Cloudflare](https://www.cloudflare.com/) DNS and CDN). See an overview of the architecture below. 
 
