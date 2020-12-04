@@ -1,5 +1,5 @@
 /*------------------------------------*\
-  Components > Tags
+Components > Tags
 \*------------------------------------*/
 
 .c-tags {
@@ -7,21 +7,57 @@
     display: inline-block;
     padding: quarter($base-spacing-unit) $base-spacing-unit;
     margin: 0 half($base-spacing-unit) quarter($base-spacing-unit) 0;
-
+    
     font-size: $font-size-tiny;
     font-family: $font-base;
     line-height: $line-height-medium;
-
+    
     background-color: var(--tag-color);
     transition: $global-transition;
-
+    
     @include attention() {
       text-decoration: none;
       background-color: var(--tag-color);
     }
   }
-
+  
   @include mq($until: tablet) {
     margin-bottom: $line-height-medium - half(quarter($line-height-medium));
   }
+}
+
+.parallelogram {
+  
+  width: auto;
+  height: auto;
+  margin: 10px;
+  padding: 0 10px;
+  
+  background: var(--color-page-background);
+  transform: skew(-10deg);
+  
+  box-shadow: 3px 3px var(--color-shadow);
+  
+  border: 5px 5px;
+  border-width: 1px;
+  border-color: var(--color-text);
+  border-style: solid;
+  
+  display: inline-block;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+a.parallelogram:hover {
+  box-shadow: none;
+  background: var(--color-text);
+  color: var(--color-page-background);
+  cursor: pointer;
+}
+
+span.tag {
+  font-weight: smaller;
+  text-transform: lowercase;
+  font-size: 13px !important;
+  color: inherit;
 }

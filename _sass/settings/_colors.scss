@@ -46,11 +46,13 @@ $easy:  #f0efef;
 $blockquote-dark: #44475a5d;
 $blockquote-light: #44475a11;
 
-$blockquote-border-dark: #cccedd;
+$blockquote-border-dark: #ffffff;
 $blockquote-border-light: #44475a;
 
 $color-brand: #c6baa4;
 
+$color-shadow-dark: rgba(10, 10, 10, 0.582);
+$color-shadow-light: rgba(238, 238, 238, 0.349);
 
 html, html[data-theme="light"] {
     --blockquote-border-color: #{$blockquote-border-light};
@@ -61,7 +63,7 @@ html, html[data-theme="light"] {
     --color-link: #{$color-text};
     --side-nav-bg-color: #{$independence};
     --side-nav-text-color: #{$color-white};
-    --side-nav-text-color-hover: #{$ecru};
+    --side-nav-text-color-hover: #{$color-shadow-light};
     --sun-moon-stroke: #{$darkula-current-line};
     --sun-moon-fill: #{$darkula-current-line};
     --menu-toggle-color: #{$color-text};
@@ -72,6 +74,7 @@ html, html[data-theme="light"] {
     --color-blog-subtitle: #{rgba(0, 0, 0, 0.315)};
     --codebox-bg-color: #{$easy};
     --color-text-code: #{$color-text};
+    --color-shadow: #{$color-shadow-dark};
 }
 
 html[data-theme="dark"] {
@@ -83,7 +86,7 @@ html[data-theme="dark"] {
     --color-link: #{$color-text-dark};
     --side-nav-bg-color: #{$independence};
     --side-nav-text-color: #{$color-white};
-    --side-nav-text-color-hover: #{$ecru};
+    --side-nav-text-color-hover: #{$color-shadow-light};
     --sun-moon-stroke: #{$color-text-dark};
     --sun-moon-fill: #{$color-text-dark};
     --menu-toggle-color: #{$color-text-dark};
@@ -94,4 +97,5 @@ html[data-theme="dark"] {
     --color-blog-subtitle: #{rgb(218, 218, 218)};
     --codebox-bg-color: #{$independence};
     --color-text-code: #fff;
+    --color-shadow: #{$color-shadow-light};
 }

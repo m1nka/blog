@@ -13,8 +13,9 @@
   }
 }
 
-a.c-logo__link :hover {
-  color: var(--text-color-hover)
+span.c-logo__link:hover {
+  color: var(--color-text) !important;
+  text-decoration: none;
 }
 
 span.blog-sub-title {
