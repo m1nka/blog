@@ -12,10 +12,6 @@
     background-color: var(--color-hover-transparent-background);
   }
 
-  &--first {
-    // padding-top: 0;
-  }
-
   &--last {
     padding-bottom: 0;
     border-bottom: 0;
@@ -23,7 +19,7 @@
 
   &__title {
     margin-bottom: half($font-size-base);
-    font-size: $font-size-base;
+    font-size: 25px !important;
     font-weight: $font-weight-bold;
     transition: $global-transition;
 
@@ -59,8 +55,4 @@
 .c-post-card__excerpt {
   text-align: justify;
   text-justify: inter-word;
-}
-
-.c-post-card__title {
-  font-size: 24px !important;
 }
