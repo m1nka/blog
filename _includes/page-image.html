@@ -1,5 +1,6 @@
 {% if page.image %}
-  <img src='{{ page.image | prepend: site.baseurl }}' style="margin-bottom: 3px;" class='c-post__image' alt='{{ page.title }}'>
+<div class="img-wrapper">
+  <img src='{{ page.image | prepend: site.baseurl }}' class='c-post__image article-img' alt='{{ page.title }}'>
+</div>
   <!-- <p style="text-align: center; font-size: smaller;">An alpaca with a Terraform logo.</p> -->
-  <br/>
 {% endif %}

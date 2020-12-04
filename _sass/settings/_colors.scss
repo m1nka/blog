@@ -75,6 +75,7 @@ html, html[data-theme="light"] {
     --codebox-bg-color: #{$easy};
     --color-text-code: #{$color-text};
     --color-shadow: #{$color-shadow-dark};
+    --color-dark-light-tag: #353535;
 }
 
 html[data-theme="dark"] {
@@ -98,4 +99,5 @@ html[data-theme="dark"] {
     --codebox-bg-color: #{$independence};
     --color-text-code: #fff;
     --color-shadow: #{$color-shadow-light};
+    --color-dark-light-tag: #bdbdbd;
 }

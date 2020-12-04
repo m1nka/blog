@@ -7,3 +7,17 @@ img {
   max-width: 100%;
   font-style: italic;
 }
+
+.img-wrapper {
+  position: relative;
+  height: 0;
+  /* Formula is: (height / width * 100%) */
+  padding-top: calc(7 / 16 * 100%);
+}
+.article-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  height: auto; 
+}

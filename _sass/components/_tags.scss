@@ -36,12 +36,12 @@ Components > Tags
   background: var(--color-page-background);
   transform: skew(-10deg);
   
-  box-shadow: 3px 3px var(--color-shadow);
-  
   border: 5px 5px;
   border-width: 1px;
   border-color: var(--color-text);
   border-style: solid;
+
+  // box-shadow: 3px 3px var(--color-shadow);
   
   display: inline-block;
   text-align: center;
@@ -49,7 +49,7 @@ Components > Tags
 }
 
 a.parallelogram:hover {
-  box-shadow: none;
+  box-shadow: none !important;
   background: var(--color-text);
   color: var(--color-page-background);
   cursor: pointer;
@@ -60,4 +60,13 @@ span.tag {
   text-transform: lowercase;
   font-size: 13px !important;
   color: inherit;
+}
+
+
+$colorarray: var(--color-dark-light-tag) #C66455 #959DAE #63aa6c #8A897C #979dad;
+
+@for $i from 1 through length($colorarray) {
+  a.parallelogram:nth-child(#{length($colorarray)}n+#{$i}) {
+      box-shadow: 4px 3px nth($colorarray, $i);
+  }
 }
