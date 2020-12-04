@@ -3,10 +3,12 @@
 \*------------------------------------*/
 
 blockquote {
-  padding-left: $base-spacing-unit;
+  padding: 0 $base-spacing-unit;
   border-left: 6px solid var(--blockquote-border-color);
   background-color: var(--blockquote-color);
   border-radius: 0 7px 7px 0;
+  text-align: left;
+  text-justify: auto;
 }
 
 blockquote > p {
