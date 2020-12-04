@@ -4,12 +4,16 @@
 
 .c-post-card {
   display: block;
-  padding: double($base-spacing-unit) 0;
+  padding: double($base-spacing-unit) 5px;
   word-break: break-word;
   border-bottom: 1px solid $color-border;
 
+  &:hover {
+    background-color: var(--color-hover-transparent-background);
+  }
+
   &--first {
-    padding-top: 0;
+    // padding-top: 0;
   }
 
   &--last {
