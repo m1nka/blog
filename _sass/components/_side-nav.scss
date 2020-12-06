@@ -3,6 +3,17 @@
 \*------------------------------------*/
 $off-canvas-width: 300px;
 
+// fix icon color menu open light theme small screen
+@media all and (max-width: 725px) {
+  .menu-open .c-off-canvas-toggle__icon {
+    background: white !important;
+    &:before,
+    &:after {
+      background-color: white !important;
+    }
+  }
+}
+
 .c-off-canvas-toggle {
   float: right;
   position: relative;
@@ -11,8 +22,6 @@ $off-canvas-width: 300px;
   height: 19px;
   width: 25px;
   cursor: pointer;
-
-  
 
   &__icon {
     position: absolute;

@@ -8,8 +8,8 @@
 # Site settings
 title: Personal blog
 sub-title: maximilian.tech
-email:       ''
-description: ''
+email:       'blog@maximilian.tech'
+description: 'Personal blog where I write about cloud computing, cloud automation, tech, travel and more.'
 baseurl:     '' # The subpath of your site, e.g. /blog
 url:         'https://maximilian.tech' # The base hostname & protocol for your site
 twitter:     ''
