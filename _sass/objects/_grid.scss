@@ -5,6 +5,11 @@
 $grid-width: 700px;
 $grid-gutter: $base-spacing-unit;
 
+.o-grid-margin {
+  padding-right: 16px !important;
+  padding-left: 16px !important;
+}
+
 .o-grid {
   margin: 0 auto;
   display: flex;

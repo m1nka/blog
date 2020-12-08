@@ -21,3 +21,35 @@ img {
   max-width: 100%;
   height: auto; 
 }
+
+.about-this-blog {
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+
+  text-align: left;
+  //  border-radius: 3px;
+  padding: 15px !important;
+  margin: 10px 16px 0 16px !important;
+  // border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: var(--color-hover-transparent-background);
+    cursor: pointer;
+  }
+  text-decoration: none !important;
+}
+.avatar {
+  vertical-align: middle;
+  width: 20vw;
+  height: 20vw;
+  max-width: 85px;
+  max-height: 85px;
+  border-radius: 50%;
+  float: right;
+  margin: 3px 20px 3px 3px;
+}
+.avatar-description {
+  
+}

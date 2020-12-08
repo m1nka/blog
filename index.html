@@ -2,7 +2,6 @@
 layout: default
 ---
 
-
 <div class='o-wrapper particles-container'>
   <div id="particles-js" class='o-grid particles-itself'>
   </div>
@@ -19,9 +18,9 @@ layout: default
   <div class='o-grid' style="padding: 0 10px;">
     {% for tag in site.tags %}
     <a class="parallelogram" href="/tag/{{ tag[0] }}/">
-        <span class="tag">{{ tag[0] }}</span>
+      <span class="tag">{{ tag[0] }}</span>
     </a>
-  {% endfor %}
+    {% endfor %}
   </div>
 </div>
 

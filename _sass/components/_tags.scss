@@ -26,7 +26,21 @@ Components > Tags
   }
 }
 
+.tagpage-container {
+  margin-bottom: 20px;
+  @media all and (max-width: 725px) { 
+    margin: 10px 0 30px 0; 
+    display: flex;
+    justify-content: center;
+  }
+}
+
 .parallelogram {
+
+  &_tagpage {
+    padding: 15px; 
+    box-shadow: 7px 7px var(--color-dark-light-tag);
+  }
   
   width: auto;
   height: auto;
@@ -70,3 +84,4 @@ $colorarray: var(--color-dark-light-tag) #C66455 #959DAE #63aa6c #8A897C #979dad
       box-shadow: 4px 3px nth($colorarray, $i);
   }
 }
+
