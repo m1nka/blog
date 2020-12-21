@@ -2,6 +2,9 @@
 layout: default
 ---
 
+
+
+
 <div class='o-wrapper particles-container'>
   <div id="particles-js" class='o-grid particles-itself'>
   </div>
@@ -16,6 +19,7 @@ layout: default
 
 <div class='o-wrapper' style="padding: 25px 0 10px 0 !important;">
   <div class='o-grid' style="padding: 0 10px;">
+    <span style="font-weight: bold; padding: 12px 10px 0 12px;">Tags:</span>
     {% for tag in site.tags %}
     <a class="parallelogram" href="/tag/{{ tag[0] }}/">
       <span class="tag">{{ tag[0] }}</span>
@@ -23,6 +27,12 @@ layout: default
     {% endfor %}
   </div>
 </div>
+
+
+
+
+
+
 
 <div class='o-wrapper' style="padding: 0 0 25px 0 !important;">
   <div class='o-grid'>
@@ -35,3 +45,4 @@ layout: default
     {% include pagination.html %}
   </div>
 </div>
+
