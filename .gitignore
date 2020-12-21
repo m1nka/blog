@@ -7,3 +7,4 @@ _drafts
 .jekyll-metadata
 vendor/*
 config
+docs/

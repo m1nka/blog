@@ -2,20 +2,29 @@
 layout: default
 ---
 
-
 <div class='o-wrapper particles-container'>
   <div id="particles-js" class='o-grid particles-itself'>
   </div>
   <div id="typer-text-container" class="typer-text-container">
     <h3 class="typer-text">
-      <span class="typewrite" data-period="6000" data-type='[ "Cloud computing", "Cloud automation", "Cloud infrastructure" ]'>
-      <span class="wrap"></span>
+      <span class="typewrite" data-period="4000" data-type='[ "Cloud computing", "Cloud automation", "Cloud infrastructure" ]'>
+        <span class="wrap"></span>
       </span><span class="blink-me">|</span>
     </h3>
   </div>
 </div>
 
-<div class='o-wrapper' style="padding-top: 20px !important;">
+<div class='o-wrapper' style="padding: 25px 0 10px 0 !important;">
+  <div class='o-grid' style="padding: 0 10px;">
+    {% for tag in site.tags %}
+    <a class="parallelogram" href="/tag/{{ tag[0] }}/">
+      <span class="tag">{{ tag[0] }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<div class='o-wrapper' style="padding: 0 0 25px 0 !important;">
   <div class='o-grid'>
     {% for post in paginator.posts %}
     {% include post-card.liquid %}

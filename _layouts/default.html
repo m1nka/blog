@@ -4,17 +4,14 @@
 {% include head.html %}
 
 <body id="main" data-theme="light">
-  
-</div>
 
-<div class='js-off-canvas-container c-off-canvas-container'>
-  {% include header.html %}
+  <div class='js-off-canvas-container c-off-canvas-container'>
+    {% include header.html %}
     
-    {{ content }}
+      {{ content }}
     
     {% include footer.html %}
   </div>
-  
   
   <script src="{{ '/js/evil-icons.min.js' | prepend: site.baseurl }}">   </script>
   <script src="{{ '/js/particles.min.js' | prepend: site.baseurl }}">   </script>

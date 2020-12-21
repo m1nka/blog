@@ -1,5 +1,5 @@
 /*------------------------------------*\
-  Components > Tags
+Components > Tags
 \*------------------------------------*/
 
 .c-tags {
@@ -7,21 +7,81 @@
     display: inline-block;
     padding: quarter($base-spacing-unit) $base-spacing-unit;
     margin: 0 half($base-spacing-unit) quarter($base-spacing-unit) 0;
-
+    
     font-size: $font-size-tiny;
     font-family: $font-base;
     line-height: $line-height-medium;
-
+    
     background-color: var(--tag-color);
     transition: $global-transition;
-
+    
     @include attention() {
       text-decoration: none;
       background-color: var(--tag-color);
     }
   }
-
+  
   @include mq($until: tablet) {
     margin-bottom: $line-height-medium - half(quarter($line-height-medium));
   }
 }
+
+.tagpage-container {
+  margin-bottom: 20px;
+  @media all and (max-width: 725px) { 
+    margin: 10px 0 30px 0; 
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.parallelogram {
+
+  &_tagpage {
+    padding: 15px; 
+    box-shadow: 7px 7px var(--color-dark-light-tag);
+  }
+  
+  width: auto;
+  height: auto;
+  margin: 10px;
+  padding: 0 10px;
+  
+  background: var(--color-page-background);
+  transform: skew(-10deg);
+  
+  border: 5px 5px;
+  border-width: 1px;
+  border-color: var(--color-text);
+  border-style: solid;
+
+  // box-shadow: 3px 3px var(--color-shadow);
+  
+  display: inline-block;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+a.parallelogram:hover {
+  box-shadow: none !important;
+  background: var(--color-text);
+  color: var(--color-page-background);
+  cursor: pointer;
+}
+
+span.tag {
+  font-weight: smaller;
+  text-transform: lowercase;
+  font-size: 13px !important;
+  color: inherit;
+}
+
+
+$colorarray: var(--color-dark-light-tag) #C66455 #959DAE #63aa6c #8A897C #979dad;
+
+@for $i from 1 through length($colorarray) {
+  a.parallelogram:nth-child(#{length($colorarray)}n+#{$i}) {
+      box-shadow: 4px 3px nth($colorarray, $i);
+  }
+}
+

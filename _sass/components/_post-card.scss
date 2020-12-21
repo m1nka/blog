@@ -4,13 +4,17 @@
 
 .c-post-card {
   display: block;
-  padding: double($base-spacing-unit) 0;
+  padding: double($base-spacing-unit) 5px;
   word-break: break-word;
   border-bottom: 1px solid $color-border;
 
-  &--first {
-    padding-top: 0;
+  &:hover {
+    background-color: var(--color-hover-transparent-background);
   }
+
+  // &--first {
+    // border-top: 1px solid $color-border;
+  // }
 
   &--last {
     padding-bottom: 0;
@@ -19,7 +23,7 @@
 
   &__title {
     margin-bottom: half($font-size-base);
-    font-size: $font-size-base;
+    font-size: 25px !important;
     font-weight: $font-weight-bold;
     transition: $global-transition;
 
@@ -50,4 +54,9 @@
       color: var(--color-text-hover);
     }
   }
+}
+
+.c-post-card__excerpt {
+  text-align: justify;
+  text-justify: inter-word;
 }

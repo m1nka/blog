@@ -3,6 +3,8 @@
 \*------------------------------------*/
 
 .c-content {
+  text-align: justify;
+  text-justify: inter-word;
   a:not(.c-btn) {
     text-decoration: underline;
     text-decoration-skip: ink;

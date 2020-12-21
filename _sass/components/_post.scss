@@ -10,9 +10,15 @@
   margin: 0 auto;
   max-width: 740px;
 
+  &__info {
+    color: var(--color-dark-light-tag); 
+    font-size: smaller;
+    opacity: 0.8;
+  }
+
   &__title {
-    font-size: double($font-size-tiny);
-    margin-bottom: $base-spacing-unit;
+    font-size: 31px !important;
+    margin: 8px 0 5px 0;
 
     @include mq($from: tablet) {
       font-size: double($font-size-small);
