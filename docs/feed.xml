@@ -5,10 +5,109 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 Jan 2021 16:22:39 +0000</pubDate>
-    <lastBuildDate>Fri, 29 Jan 2021 16:22:39 +0000</lastBuildDate>
+    <pubDate>Fri, 29 Jan 2021 16:48:19 +0000</pubDate>
+    <lastBuildDate>Fri, 29 Jan 2021 16:48:19 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
+    
+      <item>
+        <title>Free blog hosting: Getting the perfect Lighthouse score (100/100/100/100) </title>
+        <description>&lt;p&gt;When I launched this blog, I aimed at hosting it using free tier offerings only. When using any kind of free services, usually performance is not great. So, is it possible to host a blog completely for free and still archieve a perfect Lighthouse score?&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-lighthouse-and-why-is-it-important&quot;&gt;What’s Lighthouse and why is it important?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developers.google.com/web/tools/lighthouse&quot;&gt;Lighthouse&lt;/a&gt; is an &lt;a href=&quot;https://github.com/GoogleChrome/lighthouse&quot;&gt;open-source&lt;/a&gt;, automated tool made by Google for measuring the quality of web pages. It is important, since search engines like Google rank search results not only on relevance, but also on metrics such as page load speed and accessibility.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/lighthouse-score.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Lighthouse features audits for performance, accessibility, progressive web apps, SEO and more. Lighthouse is available through the Chrome browser or alternatively using &lt;a href=&quot;https://web.dev/&quot;&gt;web.dev&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-get-the-perfect-score-on-lighthouse-100100100100&quot;&gt;How to get the perfect score on Lighthouse? (100/100/100/100)&lt;/h2&gt;
+
+&lt;p&gt;The Lighthouse score is comprised of four categories:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Performance&lt;/li&gt;
+  &lt;li&gt;Accessibility&lt;/li&gt;
+  &lt;li&gt;Best Practices&lt;/li&gt;
+  &lt;li&gt;SEO&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While the last three categories are quite easy to archive, the first one (performance) was quite challenging using the free tier offerings only.&lt;/p&gt;
+
+&lt;h3 id=&quot;architectural-overview&quot;&gt;Architectural overview&lt;/h3&gt;
+
+&lt;p&gt;This blog is hosted completely for free on &lt;a href=&quot;https://www.oracle.com/cloud/free/&quot;&gt;Oracle Cloud free tier&lt;/a&gt;. See an overview of the architecture below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/pages/personal-blog-architecture.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Oracle Cloud offers small virtual machines &lt;code class=&quot;highlighter-rouge&quot;&gt;VM E2.1.Micro&lt;/code&gt; for free, where the site runs on an Apache web server.&lt;/p&gt;
+
+&lt;p&gt;The main performance bottleneck in this architecture is this virtual machine &lt;code class=&quot;highlighter-rouge&quot;&gt;VM E2.1.Micro&lt;/code&gt;. This shape is an oversubscribed 1/8th AMD core, which frankly is not very fast. It can only the most basic of applications and is not suited for most workloads.&lt;/p&gt;
+
+&lt;p&gt;So in order to get a perfect Lighthouse score the blog itself needs to be optimized as much as possible.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-static-html&quot;&gt;Using static HTML&lt;/h3&gt;
+
+&lt;p&gt;The most efficient way I could imagine to run this blog is to use static HTML only, in combination with a lightweight web server. At the same time, I wanted the blog to be easily manageable and to have a nice CMS (Content Management System) for creating blog articles.&lt;/p&gt;
+
+&lt;p&gt;This is where Jekyll comes into play. Jekyll is a static site generator that is perfectly suited for creating a blog. A static site generator (SSG) is a software application that creates plain HTML pages from text templates. I chose Jekyll over other SSGs, because:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It uses Markdown as source templating language (and I use markdown anyways my personal notes). This way I can write my articles using &lt;a href=&quot;https://joplinapp.org/&quot;&gt;Joplin&lt;/a&gt; and publish them easily.&lt;/li&gt;
+  &lt;li&gt;It’s easy to use and has a huge ecosystem, including tools for SEO optimization&lt;/li&gt;
+  &lt;li&gt;Can be customized in almost any way&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What is also useful is that I can use Github actions to run my Jekyll build pipelines for free. This means that every time I commit my Markdown files to my Git repo, the static HTML files get generated automatically.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-a-cms-and-versioning&quot;&gt;Adding a CMS and versioning&lt;/h3&gt;
+
+&lt;p&gt;As I mentioned, even though the site is based on static HTML only, I prefer to use a CMS for content management (editing, adding pictures, etc). Since my code was already hosted in a private repository on Github I found the perfect solution: Netflify CMS.&lt;/p&gt;
+
+&lt;p&gt;Netlify CMS is an open-source content management system. It can be integrated into the site by simply adding a single HTML file:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width, initial-scale=1.0&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Content Manager&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- Magic happens here! --&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The CMS accesses my personal Github account where all code is hosted. This way I get a full CMS as well as article versioning (through Git) for free and without any performance impact to my site 😎.&lt;/p&gt;
+
+&lt;video width=&quot;320&quot; height=&quot;240&quot; autoplay=&quot;&quot;&gt;
+  &lt;source src=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/1ZOMn5PpduboChp9fCalZIvLQXxfcPAtZM-V8tJMfxmkprsp-qIGwV79pouX8flB/n/franqguxqsfs/b/public-resources/o/blog-publish-with-netflify-cms.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;h3 id=&quot;hosting-large-files-such-as-gifs-and-videos&quot;&gt;Hosting large files such as GIFs and videos&lt;/h3&gt;
+
+&lt;p&gt;In order to host larger files such as GIFs and videos I use Oracle Cloud Object Storage. This is basically the equivalent to AWS S3 (it is even S3 compatible). Objects in the object storage can be easily published via a link and videos can be consumed seamlessly.&lt;/p&gt;
+
+&lt;h3 id=&quot;hiding-behind-a-cdn-for-scalability&quot;&gt;Hiding behind a CDN for scalability&lt;/h3&gt;
+
+&lt;p&gt;While the site seemed to perform well and my Lighthouse performance score reached almost 100, my site would basically crash if &amp;gt;10 Users would access the site. The reason for this is of course the underpowered free virtual machine in Oracle Cloud.&lt;/p&gt;
+
+&lt;p&gt;This is where Cloudflare came to the rescue. I put the complete domain behind Cloudflare CDN (and switched to Cloudflare DNS in the process). Cloudflare’s caching mechanisms are enough to make the site performant enough for concurrent user access.&lt;/p&gt;
+
+&lt;h2 id=&quot;bringing-it-all-together&quot;&gt;Bringing it all together&lt;/h2&gt;
+
+&lt;p&gt;I use Markdown to compose blog articles using Joplin. These blog articles are then published using Netflify CMS, which is hosted for free using unpkg.com. Once an article is published, Netlify CMS (which is authorized through my Github account) pushes the changes to my Github repository. There are Github Action pipelines in place, which are triggered on every commit and build the site using Jekyll. Jekyll transforms my Markdown files to static HTML and copies all files into a &lt;code class=&quot;highlighter-rouge&quot;&gt;dist&lt;/code&gt; folder. Another pipeline then copies the &lt;code class=&quot;highlighter-rouge&quot;&gt;dist&lt;/code&gt; folder to my virtual machine using &lt;code class=&quot;highlighter-rouge&quot;&gt;scp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can find the full Lighthouse report on my blog &lt;a href=&quot;https://maximilian.tech/lighthouse.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 29 Jan 2021 16:15:41 +0000</pubDate>
+        <link>https://maximilian.tech/2021/01/29/free-blog-hosting-getting-the-perfect-lighthouse-score-100-100-100-100/</link>
+        <guid isPermaLink="true">https://maximilian.tech/2021/01/29/free-blog-hosting-getting-the-perfect-lighthouse-score-100-100-100-100/</guid>
+      </item>
     
       <item>
         <title>Easiest way to connect to Autonomous Database using Docker</title>
