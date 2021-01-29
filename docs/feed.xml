@@ -5,14 +5,14 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 Jan 2021 16:48:19 +0000</pubDate>
-    <lastBuildDate>Fri, 29 Jan 2021 16:48:19 +0000</lastBuildDate>
+    <pubDate>Fri, 29 Jan 2021 17:18:14 +0000</pubDate>
+    <lastBuildDate>Fri, 29 Jan 2021 17:18:14 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
       <item>
         <title>Free blog hosting: Getting the perfect Lighthouse score (100/100/100/100) </title>
-        <description>&lt;p&gt;When I launched this blog, I aimed at hosting it using free tier offerings only. When using any kind of free services, usually performance is not great. So, is it possible to host a blog completely for free and still archieve a perfect Lighthouse score?&lt;/p&gt;
+        <description>&lt;p&gt;When I launched this blog, I aimed at hosting it using free tier offerings only. Pretty cheap right ;) When using any kind of free services, usually performance is not great. So, is it possible to host a blog completely for free and still archieve the perfect Lighthouse score?&lt;/p&gt;
 
 &lt;h2 id=&quot;whats-lighthouse-and-why-is-it-important&quot;&gt;What’s Lighthouse and why is it important?&lt;/h2&gt;
 
@@ -20,11 +20,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/lighthouse-score.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Lighthouse features audits for performance, accessibility, progressive web apps, SEO and more. Lighthouse is available through the Chrome browser or alternatively using &lt;a href=&quot;https://web.dev/&quot;&gt;web.dev&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-get-the-perfect-score-on-lighthouse-100100100100&quot;&gt;How to get the perfect score on Lighthouse? (100/100/100/100)&lt;/h2&gt;
-
-&lt;p&gt;The Lighthouse score is comprised of four categories:&lt;/p&gt;
+&lt;p&gt;Lighthouse features audits for performance, accessibility, progressive web apps, SEO and more. Lighthouse is available through the Chrome browser or alternatively you can try it out on any website using &lt;a href=&quot;https://web.dev/&quot;&gt;web.dev&lt;/a&gt;. The Lighthouse score is comprised of four categories:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Performance&lt;/li&gt;
@@ -37,7 +33,7 @@
 
 &lt;h3 id=&quot;architectural-overview&quot;&gt;Architectural overview&lt;/h3&gt;
 
-&lt;p&gt;This blog is hosted completely for free on &lt;a href=&quot;https://www.oracle.com/cloud/free/&quot;&gt;Oracle Cloud free tier&lt;/a&gt;. See an overview of the architecture below.&lt;/p&gt;
+&lt;p&gt;This blog is hosted completely for free on &lt;a href=&quot;https://www.oracle.com/cloud/free/&quot;&gt;Oracle Cloud free tier&lt;/a&gt;. See an overview of the architecture below, I will provide more details throughout this article.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/pages/personal-blog-architecture.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -56,14 +52,14 @@
 &lt;ul&gt;
   &lt;li&gt;It uses Markdown as source templating language (and I use markdown anyways my personal notes). This way I can write my articles using &lt;a href=&quot;https://joplinapp.org/&quot;&gt;Joplin&lt;/a&gt; and publish them easily.&lt;/li&gt;
   &lt;li&gt;It’s easy to use and has a huge ecosystem, including tools for SEO optimization&lt;/li&gt;
-  &lt;li&gt;Can be customized in almost any way&lt;/li&gt;
+  &lt;li&gt;Can be customized in almost any way (e.g. using CSS for styling or adding some minimal Javascript, which powers the light/dark mode on this page).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;What is also useful is that I can use Github actions to run my Jekyll build pipelines for free. This means that every time I commit my Markdown files to my Git repo, the static HTML files get generated automatically.&lt;/p&gt;
+&lt;p&gt;What is also useful is that I can use Github actions to run my Jekyll build pipelines for free. This means that every time I commit my Markdown files to my Git repository, the static HTML files get generated automatically.&lt;/p&gt;
 
 &lt;h3 id=&quot;adding-a-cms-and-versioning&quot;&gt;Adding a CMS and versioning&lt;/h3&gt;
 
-&lt;p&gt;As I mentioned, even though the site is based on static HTML only, I prefer to use a CMS for content management (editing, adding pictures, etc). Since my code was already hosted in a private repository on Github I found the perfect solution: Netflify CMS.&lt;/p&gt;
+&lt;p&gt;As I mentioned, even though the site is based on Markdown and static HTML only, I prefer to use a CMS for content management (editing, adding pictures, etc). Since my code was already hosted in a private repository on Github I found the perfect solution: Netflify CMS.&lt;/p&gt;
 
 &lt;p&gt;Netlify CMS is an open-source content management system. It can be integrated into the site by simply adding a single HTML file:&lt;/p&gt;
 
@@ -83,7 +79,7 @@
 
 &lt;p&gt;The CMS accesses my personal Github account where all code is hosted. This way I get a full CMS as well as article versioning (through Git) for free and without any performance impact to my site 😎.&lt;/p&gt;
 
-&lt;video width=&quot;320&quot; height=&quot;240&quot; autoplay=&quot;&quot;&gt;
+&lt;video controls=&quot;&quot; autoplay=&quot;&quot; loop=&quot;&quot;&gt;
   &lt;source src=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/1ZOMn5PpduboChp9fCalZIvLQXxfcPAtZM-V8tJMfxmkprsp-qIGwV79pouX8flB/n/franqguxqsfs/b/public-resources/o/blog-publish-with-netflify-cms.mp4&quot; type=&quot;video/mp4&quot; /&gt;
 Your browser does not support the video tag.
 &lt;/video&gt;
