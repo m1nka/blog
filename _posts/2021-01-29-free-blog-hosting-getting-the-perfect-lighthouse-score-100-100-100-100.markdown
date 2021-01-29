@@ -7,7 +7,7 @@ tags:
 image: /images/posts/perfect-lighthouse-score.jpg
 date: 2021-01-29T16:15:41.052Z
 ---
-When I launched this blog, I aimed at hosting it using free tier offerings only. When using any kind of free services, usually performance is not great. So, is it possible to host a blog completely for free and still archieve a perfect Lighthouse score?
+When I launched this blog, I aimed at hosting it using free tier offerings only. Pretty cheap right ;) When using any kind of free services, usually performance is not great. So, is it possible to host a blog completely for free and still archieve the perfect Lighthouse score?
 
 ## What's Lighthouse and why is it important?
 
@@ -15,11 +15,7 @@ When I launched this blog, I aimed at hosting it using free tier offerings only.
 
 ![](/images/posts/lighthouse-score.png)
 
-Lighthouse features audits for performance, accessibility, progressive web apps, SEO and more. Lighthouse is available through the Chrome browser or alternatively using [web.dev](https://web.dev/).
-
-## How to get the perfect score on Lighthouse? (100/100/100/100)
-
-The Lighthouse score is comprised of four categories:
+Lighthouse features audits for performance, accessibility, progressive web apps, SEO and more. Lighthouse is available through the Chrome browser or alternatively you can try it out on any website using [web.dev](https://web.dev/). The Lighthouse score is comprised of four categories:
 
 * Performance
 * Accessibility
@@ -30,7 +26,7 @@ While the last three categories are quite easy to archive, the first one (perfor
 
 ### Architectural overview
 
-This blog is hosted completely for free on [Oracle Cloud free tier](https://www.oracle.com/cloud/free/). See an overview of the architecture below.
+This blog is hosted completely for free on [Oracle Cloud free tier](https://www.oracle.com/cloud/free/). See an overview of the architecture below, I will provide more details throughout this article.
 
 ![](/images/pages/personal-blog-architecture.png)
 
@@ -48,13 +44,13 @@ This is where Jekyll comes into play. Jekyll is a static site generator that is 
 
 * It uses Markdown as source templating language (and I use markdown anyways my personal notes). This way I can write my articles using [Joplin](https://joplinapp.org/) and publish them easily.
 * It's easy to use and has a huge ecosystem, including tools for SEO optimization
-* Can be customized in almost any way
+* Can be customized in almost any way (e.g. using CSS for styling or adding some minimal Javascript, which powers the light/dark mode on this page).
 
-What is also useful is that I can use Github actions to run my Jekyll build pipelines for free. This means that every time I commit my Markdown files to my Git repo, the static HTML files get generated automatically.
+What is also useful is that I can use Github actions to run my Jekyll build pipelines for free. This means that every time I commit my Markdown files to my Git repository, the static HTML files get generated automatically.
 
 ### Adding a CMS and versioning
 
-As I mentioned, even though the site is based on static HTML only, I prefer to use a CMS for content management (editing, adding pictures, etc). Since my code was already hosted in a private repository on Github I found the perfect solution: Netflify CMS.
+As I mentioned, even though the site is based on Markdown and static HTML only, I prefer to use a CMS for content management (editing, adding pictures, etc). Since my code was already hosted in a private repository on Github I found the perfect solution: Netflify CMS.
 
 Netlify CMS is an open-source content management system. It can be integrated into the site by simply adding a single HTML file:
 
@@ -75,7 +71,7 @@ Netlify CMS is an open-source content management system. It can be integrated in
 
 The CMS accesses my personal Github account where all code is hosted. This way I get a full CMS as well as article versioning (through Git) for free and without any performance impact to my site 😎.
 
-<video width="320" height="240" autoplay>
+<video controls autoplay>
   <source src="https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/1ZOMn5PpduboChp9fCalZIvLQXxfcPAtZM-V8tJMfxmkprsp-qIGwV79pouX8flB/n/franqguxqsfs/b/public-resources/o/blog-publish-with-netflify-cms.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video> 
