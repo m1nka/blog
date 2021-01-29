@@ -5,16 +5,18 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 Jan 2021 17:27:24 +0000</pubDate>
-    <lastBuildDate>Fri, 29 Jan 2021 17:27:24 +0000</lastBuildDate>
+    <pubDate>Fri, 29 Jan 2021 17:45:28 +0000</pubDate>
+    <lastBuildDate>Fri, 29 Jan 2021 17:45:28 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
       <item>
-        <title>Achieving the perfect Lighthouse score for my blog using free services only</title>
-        <description>&lt;p&gt;When I launched this blog, I aimed at hosting it &lt;em&gt;using free services only&lt;/em&gt;. Pretty cheap right ;) When using any kind of free tier offerings usually performance is not great. So, is it possible to host a blog completely for free and still achieve &lt;a href=&quot;https://maximilian.tech/lighthouse.html&quot;&gt;the perfect Lighthouse score&lt;/a&gt;?&lt;/p&gt;
+        <title>Achieving the perfect Lighthouse score for my blog (using free services only)</title>
+        <description>&lt;p&gt;When I launched this blog, I aimed at hosting it &lt;em&gt;using free services only&lt;/em&gt;. Pretty cheap right? ;)&lt;/p&gt;
 
-&lt;h2 id=&quot;whats-lighthouse-and-why-is-it-important&quot;&gt;What’s Lighthouse and why is it important?&lt;/h2&gt;
+&lt;p&gt;When using any kind of free tier offerings usually performance is not great. So, is it possible to host a blog completely for free and still achieve &lt;a href=&quot;https://maximilian.tech/lighthouse.html&quot;&gt;the perfect Lighthouse score&lt;/a&gt;?&lt;/p&gt;
+
+&lt;h3 id=&quot;whats-lighthouse-and-why-is-it-important&quot;&gt;What’s Lighthouse and why is it important?&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://developers.google.com/web/tools/lighthouse&quot;&gt;Lighthouse&lt;/a&gt; is an &lt;a href=&quot;https://github.com/GoogleChrome/lighthouse&quot;&gt;open-source&lt;/a&gt;, automated tool made by Google for measuring the quality of web pages. It is important, since search engines like Google rank search results not only on relevance, but also on metrics such as page load speed and accessibility.&lt;/p&gt;
 
@@ -39,20 +41,20 @@
 
 &lt;p&gt;Oracle Cloud offers small virtual machines &lt;code class=&quot;highlighter-rouge&quot;&gt;VM E2.1.Micro&lt;/code&gt; for free, where the site runs on an Apache web server.&lt;/p&gt;
 
-&lt;p&gt;The main performance bottleneck in this architecture is this virtual machine &lt;code class=&quot;highlighter-rouge&quot;&gt;VM E2.1.Micro&lt;/code&gt;. This shape is an oversubscribed 1/8th AMD core, which frankly is not very fast. It can only the most basic of applications and is not suited for most workloads.&lt;/p&gt;
+&lt;p&gt;The main performance bottleneck in this architecture is this virtual machine &lt;code class=&quot;highlighter-rouge&quot;&gt;VM E2.1.Micro&lt;/code&gt;. This shape is an oversubscribed 1/8th AMD core, which frankly is not very fast. It can only handle the most basic of applications and is not suited for most workloads.&lt;/p&gt;
 
-&lt;p&gt;So in order to get a perfect Lighthouse score the blog itself needs to be optimized as much as possible.&lt;/p&gt;
+&lt;p&gt;So in order to get a perfect Lighthouse score the blog itself needed to be optimized as much as possible.&lt;/p&gt;
 
 &lt;h3 id=&quot;using-static-html&quot;&gt;Using static HTML&lt;/h3&gt;
 
 &lt;p&gt;The most efficient way I could imagine to run this blog is to use static HTML only, in combination with a lightweight web server. At the same time, I wanted the blog to be easily manageable and to have a nice CMS (Content Management System) for creating blog articles.&lt;/p&gt;
 
-&lt;p&gt;This is where Jekyll comes into play. Jekyll is a static site generator that is perfectly suited for creating a blog. A static site generator (SSG) is a software application that creates plain HTML pages from text templates. I chose Jekyll over other SSGs, because:&lt;/p&gt;
+&lt;p&gt;This is where Jekyll comes into play. &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; is a static site generator that is perfectly suited for creating a blog. A static site generator (SSG) is a software application that creates HTML pages from text templates. I chose Jekyll over other SSGs, because:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;It uses Markdown as source templating language (and I use markdown anyways my personal notes). This way I can write my articles using &lt;a href=&quot;https://joplinapp.org/&quot;&gt;Joplin&lt;/a&gt; and publish them easily.&lt;/li&gt;
-  &lt;li&gt;It’s easy to use and has a huge ecosystem, including tools for SEO optimization&lt;/li&gt;
-  &lt;li&gt;Can be customized in almost any way (e.g. using CSS for styling or adding some minimal Javascript, which powers the light/dark mode on this page).&lt;/li&gt;
+  &lt;li&gt;It uses Markdown as source templating language (and I use markdown anyways for my personal notes). This way I can write my articles using &lt;a href=&quot;https://joplinapp.org/&quot;&gt;Joplin&lt;/a&gt; and publish them easily.&lt;/li&gt;
+  &lt;li&gt;It’s easy to use and has a huge ecosystem, including tools for SEO optimization.&lt;/li&gt;
+  &lt;li&gt;Can be customized in almost any way (e.g. using CSS for styling or adding some minimal JavaScript, which powers the light/dark mode on this page).&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;What is also useful is that I can use Github actions to run my Jekyll build pipelines for free. This means that every time I commit my Markdown files to my Git repository, the static HTML files get generated automatically.&lt;/p&gt;
@@ -86,7 +88,7 @@ Your browser does not support the video tag.
 
 &lt;h3 id=&quot;hosting-large-files-such-as-gifs-and-videos&quot;&gt;Hosting large files such as GIFs and videos&lt;/h3&gt;
 
-&lt;p&gt;In order to host larger files such as GIFs and videos I use Oracle Cloud Object Storage. This is basically the equivalent to AWS S3 (it is even S3 compatible). Objects in the object storage can be easily published via a link and videos can be consumed seamlessly.&lt;/p&gt;
+&lt;p&gt;In order to host larger files (such as the video above) I use Oracle Cloud Object Storage. This is basically the equivalent to AWS S3 (it is even S3 compatible). Objects in the object storage can be easily published via a link and videos can be consumed seamlessly. Oracle Cloud Free Tier offers 10GB of free object storage.&lt;/p&gt;
 
 &lt;h3 id=&quot;hiding-behind-a-cdn-for-scalability&quot;&gt;Hiding behind a CDN for scalability&lt;/h3&gt;
 
@@ -100,7 +102,7 @@ Your browser does not support the video tag.
 
 &lt;p&gt;&lt;img src=&quot;/images/pages/personal-blog-architecture.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;You can find the full Lighthouse report on my blog &lt;a href=&quot;https://maximilian.tech/lighthouse.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can find the full Lighthouse report on my blog &lt;a href=&quot;https://maximilian.tech/lighthouse.html&quot;&gt;here&lt;/a&gt;. If you have suggestions to improve this architecture feel free leave some feedback below.&lt;/p&gt;
 </description>
         <pubDate>Fri, 29 Jan 2021 16:15:41 +0000</pubDate>
         <link>https://maximilian.tech/2021/01/29/free-blog-hosting-getting-the-perfect-lighthouse-score-100-100-100-100/</link>
