@@ -71,7 +71,7 @@ Netlify CMS is an open-source content management system. It can be integrated in
 
 The CMS accesses my personal Github account where all code is hosted. This way I get a full CMS as well as article versioning (through Git) for free and without any performance impact to my site 😎.
 
-<video controls autoplay>
+<video controls autoplay loop>
   <source src="https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/1ZOMn5PpduboChp9fCalZIvLQXxfcPAtZM-V8tJMfxmkprsp-qIGwV79pouX8flB/n/franqguxqsfs/b/public-resources/o/blog-publish-with-netflify-cms.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video> 
