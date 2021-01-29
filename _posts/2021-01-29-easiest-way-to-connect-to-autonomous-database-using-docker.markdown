@@ -36,7 +36,7 @@ Head to the [Oracle Cloud console](https://console.eu-frankfurt-1.oraclecloud.co
 
 ![](/images/posts/download-wallet.png)
 
-After unzipping the wallet, there is one file that we need to edit. In `sqlnet.ora` we need to  replace "`?/network/admin`" with the name of the folder containing the client credentials (within the Docker container). In our case, we are not going to hardcode this path, but instead we will pass an environment variable called `TNS_ADMIN` to the Docker container. Thus, I changed my `sqlnet.ora` file from
+After unzipping the wallet, there is one file that we need to edit. In `sqlnet.ora` we need to  replace "`?/network/admin`" with the name of the folder containing the client credentials (within the Docker container). In our case, we are not going to hardcode this path, but instead we will pass an environment variable called `TNS_ADMIN` to the Docker container. Thus, we must change the `sqlnet.ora` file from
 
 ```
 WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="?/network/admin")))
@@ -52,7 +52,7 @@ SSL_SERVER_DN_MATCH=yes
 
 ### Connect to the database
 
-We can now launch the docker container with a single command to connect to the database. 
+We can now establish a database connection using a single Docker command: 
 
 ```
 docker run -it --rm -e TNS_ADMIN=/usr/lib/oracle/19.5/client64/lib/network/admin -v /local/path/to/your/unzipped/wallet:/usr/lib/oracle/19.5/client64/lib/network/admin oracle/instantclient:19 sqlplus admin@mydb_medium
@@ -62,8 +62,8 @@ You **will need to adapt two things**: Change `/local/path/to/your/unzipped/wall
 
 Let's deconstruct this command:
 
-* `docker run -it`: We are running the Docker container as an interactice terminal.
-* `--rm`: The --rm causes Docker to automatically remove the container after we are done.
+* `docker run -it`: We are running the Docker container as an interactive terminal.
+* `--rm`: The `--rm` flag causes Docker to automatically remove the container after we are done.
 * `-e TNS_ADMIN=/usr/lib/oracle/19.5/client64/lib/network/admin`: We define an environment variable within the container the specifies the location of the credential wallet.
 * `-v /local/path/to/your/unzipped/wallet:/usr/lib/oracle/19.5/client64/lib/network/admin oracle/instantclient:19`: We mount the unzipped wallet folder from our local computer to right location within the Docker container (as noted [here](https://github.com/oracle/docker-images/blob/main/OracleInstantClient/README.md#using-wallets-with-instant-client)).
 * `oracle/instantclient:19`: Name of our Docker image that we previously built. 
@@ -86,7 +86,7 @@ Then try the following steps:
 
 Find the full console output below:
 
-```
+```bash
 ➜  oracle-instantclient curl https://raw.githubusercontent.com/oracle/docker-images/main/OracleInstantClient/oraclelinux7/19/Dockerfile --output Dockerfile
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -131,3 +131,4 @@ SQL> exit
 Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
 Version 19.5.0.0.0
 ```
+Done, if there are any question feel free to reach out through the comment section.
