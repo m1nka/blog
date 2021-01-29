@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Free blog hosting: Getting the perfect Lighthouse score (100/100/100/100) "
+title: Achieving the perfect Lighthouse score for my blog using free services only
 tags:
   - oci
   - cloud
 image: /images/posts/perfect-lighthouse-score.jpg
 date: 2021-01-29T16:15:41.052Z
 ---
-When I launched this blog, I aimed at hosting it using free tier offerings only. Pretty cheap right ;) When using any kind of free services, usually performance is not great. So, is it possible to host a blog completely for free and still archieve the perfect Lighthouse score?
+When I launched this blog, I aimed at hosting it *using free services only*. Pretty cheap right ;) When using any kind of free tier offerings usually performance is not great. So, is it possible to host a blog completely for free and still achieve [the perfect Lighthouse score](https://maximilian.tech/lighthouse.html)?
 
 ## What's Lighthouse and why is it important?
 
@@ -22,7 +22,7 @@ Lighthouse features audits for performance, accessibility, progressive web apps,
 * Best Practices
 * SEO
 
-While the last three categories are quite easy to archive, the first one (performance) was quite challenging using the free tier offerings only. 
+While the last three categories are quite easy to achieve, the first one (performance) was quite challenging using the free tier offerings only. 
 
 ### Architectural overview
 
@@ -88,6 +88,8 @@ This is where Cloudflare came to the rescue. I put the complete domain behind Cl
 
 ## Bringing it all together
 
-I use Markdown to compose blog articles using Joplin. These blog articles are then published using Netflify CMS, which is hosted for free using unpkg.com. Once an article is published, Netlify CMS (which is authorized through my Github account) pushes the changes to my Github repository. There are Github Action pipelines in place, which are triggered on every commit and build the site using Jekyll. Jekyll transforms my Markdown files to static HTML and copies all files into a `dist` folder. Another pipeline then copies the `dist` folder to my virtual machine using `scp`. 
+I use Markdown to compose blog articles using Joplin. These blog articles are then published using Netflify CMS, which is hosted for free using unpkg.com. Once an article is published, Netlify CMS (which is authorized through my Github account) pushes the changes to my Github repository. There are Github Action pipelines in place, which are triggered on every commit and build the site using Jekyll. Jekyll transforms my Markdown files to static HTML and copies all files into a `dist` folder. Another pipeline then copies the `dist` folder to my virtual machine using `scp`.
+
+![](/images/pages/personal-blog-architecture.png)
 
 You can find the full Lighthouse report on my blog [here](https://maximilian.tech/lighthouse.html).
