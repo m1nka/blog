@@ -1,15 +1,17 @@
 ---
 layout: post
-title: Achieving the perfect Lighthouse score for my blog using free services only
+title: Achieving the perfect Lighthouse score for my blog (using free services only)
 tags:
   - oci
   - cloud
 image: /images/posts/perfect-lighthouse-score.jpg
 date: 2021-01-29T16:15:41.052Z
 ---
-When I launched this blog, I aimed at hosting it *using free services only*. Pretty cheap right ;) When using any kind of free tier offerings usually performance is not great. So, is it possible to host a blog completely for free and still achieve [the perfect Lighthouse score](https://maximilian.tech/lighthouse.html)?
+When I launched this blog, I aimed at hosting it *using free services only*. Pretty cheap right? ;) 
 
-## What's Lighthouse and why is it important?
+When using any kind of free tier offerings usually performance is not great. So, is it possible to host a blog completely for free and still achieve [the perfect Lighthouse score](https://maximilian.tech/lighthouse.html)?
+
+### What's Lighthouse and why is it important?
 
 [Lighthouse](https://developers.google.com/web/tools/lighthouse) is an [open-source](https://github.com/GoogleChrome/lighthouse), automated tool made by Google for measuring the quality of web pages. It is important, since search engines like Google rank search results not only on relevance, but also on metrics such as page load speed and accessibility.  
 
@@ -32,19 +34,19 @@ This blog is hosted completely for free on [Oracle Cloud free tier](https://www.
 
 Oracle Cloud offers small virtual machines `VM E2.1.Micro` for free, where the site runs on an Apache web server.
 
-The main performance bottleneck in this architecture is this virtual machine `VM E2.1.Micro`. This shape is an oversubscribed 1/8th AMD core, which frankly is not very fast. It can only the most basic of applications and is not suited for most workloads.
+The main performance bottleneck in this architecture is this virtual machine `VM E2.1.Micro`. This shape is an oversubscribed 1/8th AMD core, which frankly is not very fast. It can only handle the most basic of applications and is not suited for most workloads.
 
-So in order to get a perfect Lighthouse score the blog itself needs to be optimized as much as possible. 
+So in order to get a perfect Lighthouse score the blog itself needed to be optimized as much as possible. 
 
 ### Using static HTML
 
 The most efficient way I could imagine to run this blog is to use static HTML only, in combination with a lightweight web server. At the same time, I wanted the blog to be easily manageable and to have a nice CMS (Content Management System) for creating blog articles.
 
-This is where Jekyll comes into play. Jekyll is a static site generator that is perfectly suited for creating a blog. A static site generator (SSG) is a software application that creates plain HTML pages from text templates. I chose Jekyll over other SSGs, because:
+This is where Jekyll comes into play. [Jekyll](https://jekyllrb.com/) is a static site generator that is perfectly suited for creating a blog. A static site generator (SSG) is a software application that creates HTML pages from text templates. I chose Jekyll over other SSGs, because:
 
-* It uses Markdown as source templating language (and I use markdown anyways my personal notes). This way I can write my articles using [Joplin](https://joplinapp.org/) and publish them easily.
-* It's easy to use and has a huge ecosystem, including tools for SEO optimization
-* Can be customized in almost any way (e.g. using CSS for styling or adding some minimal Javascript, which powers the light/dark mode on this page).
+* It uses Markdown as source templating language (and I use markdown anyways for my personal notes). This way I can write my articles using [Joplin](https://joplinapp.org/) and publish them easily.
+* It's easy to use and has a huge ecosystem, including tools for SEO optimization.
+* Can be customized in almost any way (e.g. using CSS for styling or adding some minimal JavaScript, which powers the light/dark mode on this page).
 
 What is also useful is that I can use Github actions to run my Jekyll build pipelines for free. This means that every time I commit my Markdown files to my Git repository, the static HTML files get generated automatically.
 
@@ -78,7 +80,7 @@ Your browser does not support the video tag.
 
 ### Hosting large files such as GIFs and videos
 
-In order to host larger files such as GIFs and videos I use Oracle Cloud Object Storage. This is basically the equivalent to AWS S3 (it is even S3 compatible). Objects in the object storage can be easily published via a link and videos can be consumed seamlessly.
+In order to host larger files (such as the video above) I use Oracle Cloud Object Storage. This is basically the equivalent to AWS S3 (it is even S3 compatible). Objects in the object storage can be easily published via a link and videos can be consumed seamlessly. Oracle Cloud Free Tier offers 10GB of free object storage.
 
 ### Hiding behind a CDN for scalability
 
@@ -92,4 +94,4 @@ I use Markdown to compose blog articles using Joplin. These blog articles are th
 
 ![](/images/pages/personal-blog-architecture.png)
 
-You can find the full Lighthouse report on my blog [here](https://maximilian.tech/lighthouse.html).
+You can find the full Lighthouse report on my blog [here](https://maximilian.tech/lighthouse.html). If you have suggestions to improve this architecture feel free leave some feedback below.
