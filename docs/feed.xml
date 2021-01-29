@@ -5,8 +5,8 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 Jan 2021 12:41:43 +0000</pubDate>
-    <lastBuildDate>Fri, 29 Jan 2021 12:41:43 +0000</lastBuildDate>
+    <pubDate>Fri, 29 Jan 2021 13:31:28 +0000</pubDate>
+    <lastBuildDate>Fri, 29 Jan 2021 13:31:28 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -41,7 +41,7 @@ docker images | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;oracle
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/download-wallet.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;After unzipping the wallet, there is one file that we need to edit. In &lt;code class=&quot;highlighter-rouge&quot;&gt;sqlnet.ora&lt;/code&gt; we need to  replace “&lt;code class=&quot;highlighter-rouge&quot;&gt;?/network/admin&lt;/code&gt;” with the name of the folder containing the client credentials (within the Docker container). In our case, we are not going to hardcode this path, but instead we will pass an environment variable called &lt;code class=&quot;highlighter-rouge&quot;&gt;TNS_ADMIN&lt;/code&gt; to the Docker container. Thus, I changed my &lt;code class=&quot;highlighter-rouge&quot;&gt;sqlnet.ora&lt;/code&gt; file from&lt;/p&gt;
+&lt;p&gt;After unzipping the wallet, there is one file that we need to edit. In &lt;code class=&quot;highlighter-rouge&quot;&gt;sqlnet.ora&lt;/code&gt; we need to  replace “&lt;code class=&quot;highlighter-rouge&quot;&gt;?/network/admin&lt;/code&gt;” with the name of the folder containing the client credentials (within the Docker container). In our case, we are not going to hardcode this path, but instead we will pass an environment variable called &lt;code class=&quot;highlighter-rouge&quot;&gt;TNS_ADMIN&lt;/code&gt; to the Docker container. Thus, we must change the &lt;code class=&quot;highlighter-rouge&quot;&gt;sqlnet.ora&lt;/code&gt; file from&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY=&quot;?/network/admin&quot;)))
 SSL_SERVER_DN_MATCH=yes
@@ -55,7 +55,7 @@ SSL_SERVER_DN_MATCH=yes
 
 &lt;h3 id=&quot;connect-to-the-database&quot;&gt;Connect to the database&lt;/h3&gt;
 
-&lt;p&gt;We can now launch the docker container with a single command to connect to the database.&lt;/p&gt;
+&lt;p&gt;We can now establish a database connection using a single Docker command:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -it --rm -e TNS_ADMIN=/usr/lib/oracle/19.5/client64/lib/network/admin -v /local/path/to/your/unzipped/wallet:/usr/lib/oracle/19.5/client64/lib/network/admin oracle/instantclient:19 sqlplus admin@mydb_medium
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -65,8 +65,8 @@ SSL_SERVER_DN_MATCH=yes
 &lt;p&gt;Let’s deconstruct this command:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker run -it&lt;/code&gt;: We are running the Docker container as an interactice terminal.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--rm&lt;/code&gt;: The –rm causes Docker to automatically remove the container after we are done.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker run -it&lt;/code&gt;: We are running the Docker container as an interactive terminal.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;--rm&lt;/code&gt;: The &lt;code class=&quot;highlighter-rouge&quot;&gt;--rm&lt;/code&gt; flag causes Docker to automatically remove the container after we are done.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-e TNS_ADMIN=/usr/lib/oracle/19.5/client64/lib/network/admin&lt;/code&gt;: We define an environment variable within the container the specifies the location of the credential wallet.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-v /local/path/to/your/unzipped/wallet:/usr/lib/oracle/19.5/client64/lib/network/admin oracle/instantclient:19&lt;/code&gt;: We mount the unzipped wallet folder from our local computer to right location within the Docker container (as noted &lt;a href=&quot;https://github.com/oracle/docker-images/blob/main/OracleInstantClient/README.md#using-wallets-with-instant-client&quot;&gt;here&lt;/a&gt;).&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;oracle/instantclient:19&lt;/code&gt;: Name of our Docker image that we previously built.&lt;/li&gt;
@@ -91,50 +91,51 @@ SSL_SERVER_DN_MATCH=yes
 
 &lt;p&gt;Find the full console output below:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  oracle-instantclient curl https://raw.githubusercontent.com/oracle/docker-images/main/OracleInstantClient/oraclelinux7/19/Dockerfile --output Dockerfile
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  oracle-instantclient curl https://raw.githubusercontent.com/oracle/docker-images/main/OracleInstantClient/oraclelinux7/19/Dockerfile &lt;span class=&quot;nt&quot;&gt;--output&lt;/span&gt; Dockerfile
 
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100  3486  100  3486    0     0   2829      0  0:00:01  0:00:01 --:--:--  2827
-➜  oracle-instantclient docker build --pull -t oracle/instantclient:19 .
+100  3486  100  3486    0     0   2829      0  0:00:01  0:00:01 &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt;:--:--  2827
+➜  oracle-instantclient docker build &lt;span class=&quot;nt&quot;&gt;--pull&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; oracle/instantclient:19 &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
 
-[+] Building 3.1s (7/7) FINISHED                                                          
- =&amp;gt; [internal] load build definition from Dockerfile                                 0.0s
- =&amp;gt; =&amp;gt; transferring dockerfile: 3.53kB                                               0.0s
- =&amp;gt; [internal] load .dockerignore                                                    0.0s
- =&amp;gt; =&amp;gt; transferring context: 2B                                                      0.0s
- =&amp;gt; [internal] load metadata for docker.io/library/oraclelinux:7-slim                3.0s
- =&amp;gt; [auth] library/oraclelinux:pull token for registry-1.docker.io                   0.0s
- =&amp;gt; [1/2] FROM docker.io/library/oraclelinux:7-slim@sha256:4d9168e6703a121761f2fce0  0.0s
- =&amp;gt; CACHED [2/2] RUN  yum -y install oracle-release-el7 &amp;amp;&amp;amp;      yum -y install orac  0.0s
- =&amp;gt; exporting to image                                                               0.0s
- =&amp;gt; =&amp;gt; exporting layers                                                              0.0s
- =&amp;gt; =&amp;gt; writing image sha256:7912f4ea71a23f84150a37de9cf55167d60b74f20247656cbacb68c  0.0s
- =&amp;gt; =&amp;gt; naming to docker.io/oracle/instantclient:19                                   0.0s
-➜  oracle-instantclient docker images | grep oracle                     
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+] Building 3.1s &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;7/7&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; FINISHED                                                          
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;internal] load build definition from Dockerfile                                 0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; transferring dockerfile: 3.53kB                                               0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;internal] load .dockerignore                                                    0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; transferring context: 2B                                                      0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;internal] load metadata &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;docker.io/library/oraclelinux:7-slim                3.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;auth] library/oraclelinux:pull token &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;registry-1.docker.io                   0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1/2] FROM docker.io/library/oraclelinux:7-slim@sha256:4d9168e6703a121761f2fce0  0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; CACHED &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2/2] RUN  yum &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;oracle-release-el7 &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;      yum &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;orac  0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; exporting to image                                                               0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; exporting layers                                                              0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; writing image sha256:7912f4ea71a23f84150a37de9cf55167d60b74f20247656cbacb68c  0.0s
+ &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; naming to docker.io/oracle/instantclient:19                                   0.0s
+➜  oracle-instantclient docker images | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;oracle                     
 
 oracle/instantclient   19        7912f4ea71a2   31 minutes ago   383MB
-➜  oracle-instantclient ls                         
-Dockerfile  Wallet_mydb
+➜  oracle-instantclient &lt;span class=&quot;nb&quot;&gt;ls                         
+&lt;/span&gt;Dockerfile  Wallet_mydb
 ➜  oracle-instantclient vim Wallet_mydb/sqlnet.ora
-➜  oracle-instantclient docker run -it --rm -e TNS_ADMIN=/usr/lib/oracle/19.5/client64/lib/network/admin -v /Users/nova/dev/oracle-instantclient/Wallet_mydb:/usr/lib/oracle/19.5/client64/lib/network/admin oracle/instantclient:19 sqlplus admin@mydb_medium
+➜  oracle-instantclient docker run &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;TNS_ADMIN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/lib/oracle/19.5/client64/lib/network/admin &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; /Users/nova/dev/oracle-instantclient/Wallet_mydb:/usr/lib/oracle/19.5/client64/lib/network/admin oracle/instantclient:19 sqlplus admin@mydb_medium
 
-SQL*Plus: Release 19.0.0.0.0 - Production on Fri Jan 29 12:17:15 2021
+SQL&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;Plus: Release 19.0.0.0.0 - Production on Fri Jan 29 12:17:15 2021
 Version 19.9.0.0.0
 
-Copyright (c) 1982, 2020, Oracle.  All rights reserved.
+Copyright &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 1982, 2020, Oracle.  All rights reserved.
 
 Enter password: 
-Last Successful login time: Fri Jan 29 2021 12:10:29 +00:00
+Last Successful login &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;: Fri Jan 29 2021 12:10:29 +00:00
 
 Connected to:
 Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
 Version 19.5.0.0.0
 
-SQL&amp;gt; exit
-Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+SQL&amp;gt; &lt;span class=&quot;nb&quot;&gt;exit
+&lt;/span&gt;Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
 Version 19.5.0.0.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Done, if there are any question feel free to reach out through the comment section.&lt;/p&gt;
 </description>
         <pubDate>Fri, 29 Jan 2021 12:28:04 +0000</pubDate>
         <link>https://maximilian.tech/2021/01/29/easiest-way-to-connect-to-autonomous-database-using-docker/</link>
