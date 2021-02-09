@@ -5,8 +5,8 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 Jan 2021 17:45:28 +0000</pubDate>
-    <lastBuildDate>Fri, 29 Jan 2021 17:45:28 +0000</lastBuildDate>
+    <pubDate>Tue, 09 Feb 2021 11:20:52 +0000</pubDate>
+    <lastBuildDate>Tue, 09 Feb 2021 11:20:52 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -114,8 +114,9 @@ Your browser does not support the video tag.
         <description>&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.docker.com/products/docker-desktop&quot;&gt;Docker Client&lt;/a&gt; installed&lt;/li&gt;
   &lt;li&gt;An &lt;a href=&quot;https://www.oracle.com/goto/adbs/quickstart&quot;&gt;Autonomous Database instance&lt;/a&gt; which is up and running (either ATP or ADW)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.docker.com/products/docker-desktop&quot;&gt;Docker Client&lt;/a&gt; installed locally and logged in with &lt;code class=&quot;highlighter-rouge&quot;&gt;docker login&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Accept the terms and conditions of Oracle Instant Client Docker Image by navigating to &lt;a href=&quot;https://hub.docker.com/_/oracle-instant-client&quot;&gt;Dockerhub&lt;/a&gt; and selecting “Proceed to checkout” (it’s free)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;build-the-docker-container&quot;&gt;Build the Docker container&lt;/h2&gt;
@@ -234,6 +235,7 @@ SQL&amp;gt; &lt;span class=&quot;nb&quot;&gt;exit
 &lt;/span&gt;Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
 Version 19.5.0.0.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;Done, if there are any question feel free to reach out through the comment section.&lt;/p&gt;
 </description>
         <pubDate>Fri, 29 Jan 2021 12:28:04 +0000</pubDate>
