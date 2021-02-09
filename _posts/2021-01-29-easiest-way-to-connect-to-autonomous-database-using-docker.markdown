@@ -10,8 +10,9 @@ date: 2021-01-29T12:28:04.654Z
 ---
 ## Prerequisites
 
-* [Docker Client](https://www.docker.com/products/docker-desktop) installed
 * An [Autonomous Database instance](https://www.oracle.com/goto/adbs/quickstart) which is up and running (either ATP or ADW)
+* [Docker Client](https://www.docker.com/products/docker-desktop) installed locally and logged in with `docker login`
+* Accept the terms and conditions of Oracle Instant Client Docker Image by navigating to [Dockerhub](https://hub.docker.com/_/oracle-instant-client) and selecting "Proceed to checkout" (it's free)
 
 ## Build the Docker container
 
@@ -131,4 +132,5 @@ SQL> exit
 Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
 Version 19.5.0.0.0
 ```
+
 Done, if there are any question feel free to reach out through the comment section.
