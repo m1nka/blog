@@ -23,7 +23,7 @@ The full set of APIs exposed by PDB Lifecycle Management can be found [here](htt
 
 ## Installation instructions
 
-> This tutorial was created using a clean Oracle 19c database running on Oracle Datbase Cloud Service. However these steps should work for any Oracle database (that uses the CDB/multitenant architecture). 
+> This tutorial was created using a clean Oracle 19c database running on Oracle Database Cloud Service. However these steps should work for any Oracle database (that uses the CDB/multitenant architecture). 
 
 ### Prepare database
 
@@ -47,7 +47,7 @@ Download the latest [Oracle REST Data Services](https://www.oracle.com/database/
 
 ```
 scp ords-20.4.3.050.1904.zip opc@158.101.164.123:/home/opc/
-ssh -i oracle_cloud opc@158.101.164.123
+ssh opc@158.101.164.123
 unzip -d ords ords-20.4.3.050.1904.zip
 cd ords
 ```
@@ -144,7 +144,7 @@ ORDS is now installed, however in order to use the PDB lifecycle APIs we need to
 
 ```shell
 echo db.cdb.adminUser=C##DBAPI_CDB_ADMIN as SYSDBA > cdbAdmin.properties
-echo db.cdb.adminUser.password=WElcome123### >> cdbAdmin.properties
+echo db.cdb.adminUser.password=<PASSWORD> >> cdbAdmin.properties
 java -jar ords.war set-properties --conf apex_pu cdbAdmin.properties
 rm cdbAdmin.properties
 ```
