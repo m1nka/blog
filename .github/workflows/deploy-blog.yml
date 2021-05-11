@@ -16,9 +16,9 @@ jobs:
         with:
           fetch-depth: 1
       - name: 🧪 Build and deploy
-        uses: victoriadrake/jekyll-cd@698f19e
+        uses: victoriadrake/jekyll-cd@698f19ec2091eeb42528a0b36a96e40806a100da
       - name: copy files via ssh key
-        uses: appleboy/scp-action@edc8ec9        
+        uses: appleboy/scp-action@edc8ec9139a2687bcebf0249d0352ff2a988df00        
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -27,7 +27,7 @@ jobs:
           source: "docs/*"
           target: "/home/opc/temp/"
       - name: executing remote ssh commands using key
-        uses: appleboy/ssh-action@fd39ef0
+        uses: appleboy/ssh-action@fd39ef0f1814d986b5d9c5246ad0414060fe2e14
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
