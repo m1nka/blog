@@ -5,8 +5,8 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 May 2021 18:48:14 +0000</pubDate>
-    <lastBuildDate>Tue, 11 May 2021 18:48:14 +0000</lastBuildDate>
+    <pubDate>Tue, 11 May 2021 19:01:12 +0000</pubDate>
+    <lastBuildDate>Tue, 11 May 2021 19:01:12 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -31,19 +31,23 @@
 &lt;h2 id=&quot;installation-instructions&quot;&gt;Installation instructions&lt;/h2&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;This tutorial was created using a clean Oracle 19c database running on Oracle Datbase Cloud Service. However these steps should work for any Oracle database (that uses the CDB/multitenant architecture).&lt;/p&gt;
+  &lt;p&gt;This tutorial was created using a clean Oracle 19c database running on Oracle Database Cloud Service. However these steps should work for any Oracle database (that uses the CDB/multitenant architecture).&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;prepare-database&quot;&gt;Prepare database&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Connect to the database and make a note of the database SID or the database service name of the CDB.
+  &lt;li&gt;
+    &lt;p&gt;Connect to the database and make a note of the database SID or the database service name of the CDB.&lt;/p&gt;
+
     &lt;ul&gt;
       &lt;li&gt;Find the SID using &lt;code class=&quot;highlighter-rouge&quot;&gt;select instance from v$thread;&lt;/code&gt;&lt;/li&gt;
       &lt;li&gt;Alternatively connect to the CDB and use &lt;code class=&quot;highlighter-rouge&quot;&gt;Show parameter service_name;&lt;/code&gt; to get the database service name&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;The PDB lifecycle management needs a user in the root container with &lt;code class=&quot;highlighter-rouge&quot;&gt;sysdba&lt;/code&gt; priviledges so let’s create one.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The PDB lifecycle management needs a user in the root container with &lt;code class=&quot;highlighter-rouge&quot;&gt;sysdba&lt;/code&gt; priviledges so let’s create one.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;##&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DBAPI_CDB_ADMIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -61,7 +65,7 @@
 &lt;p&gt;Download the latest &lt;a href=&quot;https://www.oracle.com/database/technologies/appdev/rest-data-services-downloads.html&quot;&gt;Oracle REST Data Services&lt;/a&gt; release, copy it to your desired location and unzip the files to a new directory.&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scp ords-20.4.3.050.1904.zip opc@158.101.164.123:/home/opc/
-ssh -i oracle_cloud opc@158.101.164.123
+ssh opc@158.101.164.123
 unzip -d ords ords-20.4.3.050.1904.zip
 cd ords
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -158,7 +162,7 @@ Enter 1 if you wish to start in standalone mode or 2 to exit [1]:2
 &lt;p&gt;ORDS is now installed, however in order to use the PDB lifecycle APIs we need to provide ORDS with the credentials of the database user &lt;code class=&quot;highlighter-rouge&quot;&gt;C##DBAPI_CDB_ADMIN&lt;/code&gt; that we initially created. Run the following:&lt;/p&gt;
 
 &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;db.cdb.adminUser&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;C##DBAPI_CDB_ADMIN as SYSDBA &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; cdbAdmin.properties
-&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;db.cdb.adminUser.password&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;WElcome123### &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; cdbAdmin.properties
+&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;db.cdb.adminUser.password&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;PASSWORD&amp;gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; cdbAdmin.properties
 java &lt;span class=&quot;nt&quot;&gt;-jar&lt;/span&gt; ords.war set-properties &lt;span class=&quot;nt&quot;&gt;--conf&lt;/span&gt; apex_pu cdbAdmin.properties
 &lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;cdbAdmin.properties
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -204,9 +208,11 @@ Enter the HTTP port [8080]:
 
 &lt;p&gt;Then select the variables tab and enter the protocol &lt;code class=&quot;highlighter-rouge&quot;&gt;http&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;base_url&lt;/code&gt; (including the port) of your web server.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/posts/postman-request.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/posts/postman-variables.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, select &lt;code class=&quot;highlighter-rouge&quot;&gt;Get all PDBs&lt;/code&gt; and hit &lt;code class=&quot;highlighter-rouge&quot;&gt;Send&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/postman-request.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;using-curl-to-access-the-api&quot;&gt;Using cURL to access the API&lt;/h3&gt;
 
