@@ -5,8 +5,8 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 May 2021 19:01:12 +0000</pubDate>
-    <lastBuildDate>Tue, 11 May 2021 19:01:12 +0000</lastBuildDate>
+    <pubDate>Tue, 11 May 2021 20:53:45 +0000</pubDate>
+    <lastBuildDate>Tue, 11 May 2021 20:53:45 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -37,17 +37,13 @@
 &lt;h3 id=&quot;prepare-database&quot;&gt;Prepare database&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Connect to the database and make a note of the database SID or the database service name of the CDB.&lt;/p&gt;
-
+  &lt;li&gt;Connect to the database and make a note of the database SID or the database service name of the CDB.
     &lt;ul&gt;
       &lt;li&gt;Find the SID using &lt;code class=&quot;highlighter-rouge&quot;&gt;select instance from v$thread;&lt;/code&gt;&lt;/li&gt;
       &lt;li&gt;Alternatively connect to the CDB and use &lt;code class=&quot;highlighter-rouge&quot;&gt;Show parameter service_name;&lt;/code&gt; to get the database service name&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The PDB lifecycle management needs a user in the root container with &lt;code class=&quot;highlighter-rouge&quot;&gt;sysdba&lt;/code&gt; priviledges so let’s create one.&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;The PDB lifecycle management needs a user in the root container with &lt;code class=&quot;highlighter-rouge&quot;&gt;sysdba&lt;/code&gt; priviledges so let’s create one.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;##&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DBAPI_CDB_ADMIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
