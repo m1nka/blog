@@ -5,10 +5,258 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 Feb 2021 11:20:52 +0000</pubDate>
-    <lastBuildDate>Tue, 09 Feb 2021 11:20:52 +0000</lastBuildDate>
+    <pubDate>Tue, 11 May 2021 18:34:06 +0000</pubDate>
+    <lastBuildDate>Tue, 11 May 2021 18:34:06 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
+    
+      <item>
+        <title>Fix LC_CTYPE warning message in Oracle Linux</title>
+        <description>&lt;p&gt;Are you annoyed by this warning in Oracle Linux (or CentOS)?&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/profile.d/lang.sh: line 19: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Run this “one-liner” to fix this error message:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;echo $'LANG=en_US.utf-8\nLC_ALL=en_US.utf-8' | sudo tee /etc/environment
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That’s it.&lt;/p&gt;
+
+&lt;h3 id=&quot;manual-steps&quot;&gt;Manual steps&lt;/h3&gt;
+
+&lt;p&gt;If the one-liner does not work for you, try the steps below:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;vi /etc/environment&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Enter the following content:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Save and exit&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 11 May 2021 18:18:54 +0000</pubDate>
+        <link>https://maximilian.tech/2021/05/11/fix-lc_ctype-warning-message-in-oracle-linux/</link>
+        <guid isPermaLink="true">https://maximilian.tech/2021/05/11/fix-lc_ctype-warning-message-in-oracle-linux/</guid>
+      </item>
+    
+      <item>
+        <title>How to configure PDB Lifecycle Management and ORDS for Oracle Database</title>
+        <description>&lt;p&gt;Oracle REST Data Services (ORDS) provides a RESTful API to talk to an Oracle Database. Additionally, it provides access to the PDB Lifecycle Management API, which allows users to manage database lifecycle operations via REST.&lt;/p&gt;
+
+&lt;p&gt;This is extremely useful in order to orchestrate Oracle database with DevOps or CI/CD tools as well as to use Oracle database in combination with Kubernetes/Openshift. This article covers how to configure PDB Lifecycle Management APIs for Oracle database.&lt;/p&gt;
+
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;ORDS is a Java web application that can be run in standalone-mode or using Tomcat. The application connects to the Oracle database of interest and exposes a set of RESTful APIs. The application can run on the database instance or on a separate server (recommended). It mainly offers the following APIs / features:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;RESTful Web Services&lt;/strong&gt;: Access database tables and views via REST&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;SQL Web Developer&lt;/strong&gt;: A web application that offers IDE-like features for SQL and to manage a RESTful development environment&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Database Management API&lt;/strong&gt;: Lots of endpoints to manage your Oracle DB, including the PDB Lifecycle Management&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The full set of APIs exposed by PDB Lifecycle Management can be found &lt;a href=&quot;https://docs.oracle.com/en/database/oracle/oracle-database/21/dbrst/api-pluggable-database-lifecycle-management.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;installation-instructions&quot;&gt;Installation instructions&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This tutorial was created using a clean Oracle 19c database running on Oracle Datbase Cloud Service. However these steps should work for any Oracle database (that uses the CDB/multitenant architecture).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;prepare-database&quot;&gt;Prepare database&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Connect to the database and make a note of the database SID or the database service name of the CDB.
+    &lt;ul&gt;
+      &lt;li&gt;Find the SID using &lt;code class=&quot;highlighter-rouge&quot;&gt;select instance from v$thread;&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Alternatively connect to the CDB and use &lt;code class=&quot;highlighter-rouge&quot;&gt;Show parameter service_name;&lt;/code&gt; to get the database service name&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The PDB lifecycle management needs a user in the root container with &lt;code class=&quot;highlighter-rouge&quot;&gt;sysdba&lt;/code&gt; priviledges so let’s create one.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;##&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DBAPI_CDB_ADMIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SYSDBA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;##&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DBAPI_CDB_ADMIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CONTAINER&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That’s it, we are ready for the ORDS installation.&lt;/p&gt;
+
+&lt;h3 id=&quot;install-ords-webserver-on-a-vm&quot;&gt;Install ORDS webserver on a VM&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For this tutorial I am using a newly created virtual machine with a clean installation of CentOS / Oracle Linux.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Download the latest &lt;a href=&quot;https://www.oracle.com/database/technologies/appdev/rest-data-services-downloads.html&quot;&gt;Oracle REST Data Services&lt;/a&gt; release, copy it to your desired location and unzip the files to a new directory.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;scp ords-20.4.3.050.1904.zip opc@158.101.164.123:/home/opc/
+ssh -i oracle_cloud opc@158.101.164.123
+unzip -d ords ords-20.4.3.050.1904.zip
+cd ords
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Since ORDS is packaged as a &lt;code class=&quot;highlighter-rouge&quot;&gt;.war&lt;/code&gt; file, let’s make sure Java is installed with &lt;code class=&quot;highlighter-rouge&quot;&gt;java -version&lt;/code&gt; and install Java if necessary using &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo yum install java-1.8.0-openjdk&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, we can start the ORDS installation flow . The following parameters need to be entered:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A location to store configuration data: If the folder does not exist it will be created automatically.&lt;/li&gt;
+  &lt;li&gt;The name of the database server: Enter the address of the server (localhost or remote network address)&lt;/li&gt;
+  &lt;li&gt;Database listen port&lt;/li&gt;
+  &lt;li&gt;The database SID or database service name, which we made a note of earlier&lt;/li&gt;
+  &lt;li&gt;A database password for ORDS_PUBLIC_USER: This user will be created by ORDS to connect to the database for all ORDS calls. ORDS will also save the password (encrpyted) within its configuration files so no need to remember it.&lt;/li&gt;
+  &lt;li&gt;Enter administrator username: &lt;code class=&quot;highlighter-rouge&quot;&gt;sys&lt;/code&gt; in my case&lt;/li&gt;
+  &lt;li&gt;Enter administrator password&lt;/li&gt;
+  &lt;li&gt;Next you will be asked if you are using &lt;code class=&quot;highlighter-rouge&quot;&gt;Oracle Application Express or migrating from mod_plsql then you must enter 1 [1]&lt;/code&gt;. If you are not, then enter &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Enter a number to select a feature to enable&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Do not yet start the webserver in standalone mode. See the logs below for the full installation flow.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[opc@ords-instance-956270 ords]$ java -jar ords.war install
+This Oracle REST Data Services instance has not yet been configured.
+Please complete the following prompts
+
+
+Enter the location to store configuration data: /home/opc/ords/config/
+Enter the name of the database server [localhost]:db.pubsubnet.amatest.oraclevcn.com
+Enter the database listen port [1521]:1521
+Enter 1 to specify the database service name, or 2 to specify the database SID [1]:1
+Enter the database service name:DB0511_fra1rd.pubsubnet.amatest.oraclevcn.com
+Enter the database password for ORDS_PUBLIC_USER:
+Confirm password:
+Requires to login with administrator privileges to verify Oracle REST Data Services schema.
+
+Enter the administrator username:sys
+Enter the database password for SYS AS SYSDBA:
+Confirm password:
+Connecting to database user: SYS AS SYSDBA url: jdbc:oracle:thin:@//db.pubsubnet.amatest.oraclevcn.com:1521/DB0511_fra1rd.pubsubnet.amatest.oraclevcn.com
+
+Retrieving information...
+Your database connection is to a CDB.  ORDS common user ORDS_PUBLIC_USER will be created in the CDB.  ORDS schema will be installed in the PDBs.
+Root CDB$ROOT - create ORDS common user 
+PDB PDB$SEED - install ORDS 20.4.3.r0501904 (mode is READ ONLY, open for READ/WRITE)
+PDB PDB1 - install ORDS 20.4.3.r0501904 
+
+Enter 1 if you want to use PL/SQL Gateway or 2 to skip this step.
+If using Oracle Application Express or migrating from mod_plsql then you must enter 1 [1]:2
+Enter a number to select a feature to enable:
+   [1] SQL Developer Web  (Enables all features)
+   [2] REST Enabled SQL
+   [3] Database API
+   [4] REST Enabled SQL and Database API
+   [5] None
+Choose [1]:1
+2021-05-11T14:10:48.648Z INFO        reloaded pools: []
+
+
+Installing Oracle REST Data Services version 20.4.3.r0501904 in CDB$ROOT
+... Log file written to /home/opc/ords_cdb_install_core_CDB_ROOT_2021-05-11_141049_00053.log
+... Verified database prerequisites
+... Created Oracle REST Data Services proxy user
+Completed installation for Oracle REST Data Services version 20.4.3.r0501904. Elapsed time: 00:00:02.427 
+
+Installing Oracle REST Data Services version 20.4.3.r0501904 in PDB$SEED
+... Log file written to /home/opc/ords_cdb_install_core_PDB_SEED_2021-05-11_141053_00382.log
+... Verified database prerequisites
+... Created Oracle REST Data Services proxy user
+... Created Oracle REST Data Services schema
+... Granted privileges to Oracle REST Data Services
+... Created Oracle REST Data Services database objects
+... Log file written to /home/opc/ords_cdb_install_datamodel_PDB_SEED_2021-05-11_141107_00978.log
+... Log file written to /home/opc/ords_cdb_install_apex_PDB_SEED_2021-05-11_141109_00300.log
+Completed installation for Oracle REST Data Services version 20.4.3.r0501904. Elapsed time: 00:00:16.923 
+
+Installing Oracle REST Data Services version 20.4.3.r0501904 in PDB1
+... Log file written to /home/opc/ords_cdb_install_core_PDB1_2021-05-11_141110_00925.log
+... Verified database prerequisites
+... Created Oracle REST Data Services proxy user
+... Created Oracle REST Data Services schema
+... Granted privileges to Oracle REST Data Services
+... Created Oracle REST Data Services database objects
+... Log file written to /home/opc/ords_cdb_install_datamodel_PDB1_2021-05-11_141121_00441.log
+... Log file written to /home/opc/ords_cdb_install_apex_PDB1_2021-05-11_141122_00382.log
+Completed installation for Oracle REST Data Services version 20.4.3.r0501904. Elapsed time: 00:00:12.397 
+
+Completed CDB installation for Oracle REST Data Services version 20.4.3.r0501904.
+Total elapsed time: 00:00:34.297 
+
+Enter 1 if you wish to start in standalone mode or 2 to exit [1]:2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ORDS is now installed, however in order to use the PDB lifecycle APIs we need to provide ORDS with the credentials of the database user &lt;code class=&quot;highlighter-rouge&quot;&gt;C##DBAPI_CDB_ADMIN&lt;/code&gt; that we initially created. Run the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;db.cdb.adminUser&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;C##DBAPI_CDB_ADMIN as SYSDBA &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; cdbAdmin.properties
+&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;db.cdb.adminUser.password&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;WElcome123### &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; cdbAdmin.properties
+java &lt;span class=&quot;nt&quot;&gt;-jar&lt;/span&gt; ords.war set-properties &lt;span class=&quot;nt&quot;&gt;--conf&lt;/span&gt; apex_pu cdbAdmin.properties
+&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;cdbAdmin.properties
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;These credentials can now be found within your config folder, e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;cat config/ords/conf/apex_pu.xml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, we need to setup some web server credentials with the &lt;code class=&quot;highlighter-rouge&quot;&gt;SQL Administrator&lt;/code&gt; role to protect the API. In this case we are using ORDS in standalone mode, so we can create these credentials with this command, which will prompt for a password (this password will be used to authorize the REST calls):&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;war&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sql_admin&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;SQL Administrator&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Done! Now, we can run ORDS in standalone mode. For simplicity I am not using HTTPS in this tutorial. Also make sure to open the desired firewall port (in my case &lt;code class=&quot;highlighter-rouge&quot;&gt;8080&lt;/code&gt;) before proceeding.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo firewall-cmd --permanent --add-port=8080/tcp
+sudo firewall-cmd --reload
+
+java -jar ords.war standalone
+Enter 1 if using HTTP or 2 if using HTTPS [1]:1
+Enter the HTTP port [8080]:
+2021-05-11T14:18:42.609Z INFO        HTTP and HTTP/2 cleartext listening on host: localhost port: 8080
+...
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;accessing-pdb-lifecycle-management-api&quot;&gt;Accessing PDB Lifecycle Management API&lt;/h2&gt;
+
+&lt;p&gt;You can interact with the PDB Lifecycle Management API with &lt;code class=&quot;highlighter-rouge&quot;&gt;cURL&lt;/code&gt;, &lt;a href=&quot;https://postman.com/&quot;&gt;Postman&lt;/a&gt; or other tools.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-postman-to-access-the-api&quot;&gt;Using Postman to access the API&lt;/h3&gt;
+
+&lt;p&gt;The easiest way to interact with the PDB Lifecycle Management API is to use Postman.&lt;/p&gt;
+
+&lt;p&gt;Import my &lt;a href=&quot;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/rpg4hcyeb3cXT_-iDi6ySImjweJmu8ri3Nuz8pJhxJUKrDMbYyY73kh93Q6HMG5Z/n/franqguxqsfs/b/public-resources/o/%5BORDS%5D%20PDB%20Lifecycle%20Management.postman_collection.json&quot;&gt;PDB Lifecycle Management API Postman collection&lt;/a&gt; by opening Postman and choosing &lt;strong&gt;File -&amp;gt; Import -&amp;gt; Link&lt;/strong&gt; and entering the following link:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://objectstorage.eu-frankfurt-1.oraclecloud.com/p/rpg4hcyeb3cXT_-iDi6ySImjweJmu8ri3Nuz8pJhxJUKrDMbYyY73kh93Q6HMG5Z/n/franqguxqsfs/b/public-resources/o/%5BORDS%5D%20PDB%20Lifecycle%20Management.postman_collection.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/postman-import-api.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select the collection (top level), choose &lt;code class=&quot;highlighter-rouge&quot;&gt;Authorization&lt;/code&gt; and under &lt;code class=&quot;highlighter-rouge&quot;&gt;Basic Auth&lt;/code&gt; enter a user name and password. This must correspond to the web server credentials that we entered earlier (username: &lt;code class=&quot;highlighter-rouge&quot;&gt;sql_admin&lt;/code&gt;, password: &lt;code class=&quot;highlighter-rouge&quot;&gt;yourpassword&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/postman-authorization.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then select the variables tab and enter the protocol &lt;code class=&quot;highlighter-rouge&quot;&gt;http&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;base_url&lt;/code&gt; (including the port) of your web server.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/postman-request.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, select &lt;code class=&quot;highlighter-rouge&quot;&gt;Get all PDBs&lt;/code&gt; and hit &lt;code class=&quot;highlighter-rouge&quot;&gt;Send&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-curl-to-access-the-api&quot;&gt;Using cURL to access the API&lt;/h3&gt;
+
+&lt;p&gt;Use the web server credentials that we entered earlier to make requests against the API:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -X GET \
+--user sql_admin:yourpassword \
+'http://158.101.164.123:8080/ords/_/db-api/stable/database/pdbs/' \
+--header 'Content-Type: application/json'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Tue, 11 May 2021 18:00:43 +0000</pubDate>
+        <link>https://maximilian.tech/2021/05/11/how-to-configure-pdb-lifecycle-management-and-ords-for-oracle-database/</link>
+        <guid isPermaLink="true">https://maximilian.tech/2021/05/11/how-to-configure-pdb-lifecycle-management-and-ords-for-oracle-database/</guid>
+      </item>
     
       <item>
         <title>Achieving the perfect Lighthouse score for my blog (using free services only)</title>
