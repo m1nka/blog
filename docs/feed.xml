@@ -5,8 +5,8 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 May 2021 20:53:45 +0000</pubDate>
-    <lastBuildDate>Tue, 11 May 2021 20:53:45 +0000</lastBuildDate>
+    <pubDate>Tue, 11 May 2021 21:14:01 +0000</pubDate>
+    <lastBuildDate>Tue, 11 May 2021 21:14:01 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
     
@@ -31,19 +31,23 @@
 &lt;h2 id=&quot;installation-instructions&quot;&gt;Installation instructions&lt;/h2&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;This tutorial was created using a clean Oracle 19c database running on Oracle Database Cloud Service. However these steps should work for any Oracle database (that uses the CDB/multitenant architecture).&lt;/p&gt;
+  &lt;p&gt;For this tutorial I used a clean Oracle 19c database VM running on Oracle Database Cloud Service. However, these steps should work for any Oracle database (that uses the CDB/multitenant architecture).&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;prepare-database&quot;&gt;Prepare database&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Connect to the database and make a note of the database SID or the database service name of the CDB.
+  &lt;li&gt;
+    &lt;p&gt;Connect to the database and make a note of the database SID or the database service name of the CDB.&lt;/p&gt;
+
     &lt;ul&gt;
       &lt;li&gt;Find the SID using &lt;code class=&quot;highlighter-rouge&quot;&gt;select instance from v$thread;&lt;/code&gt;&lt;/li&gt;
       &lt;li&gt;Alternatively connect to the CDB and use &lt;code class=&quot;highlighter-rouge&quot;&gt;Show parameter service_name;&lt;/code&gt; to get the database service name&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;The PDB lifecycle management needs a user in the root container with &lt;code class=&quot;highlighter-rouge&quot;&gt;sysdba&lt;/code&gt; priviledges so let’s create one.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The PDB lifecycle management needs a user in the root container with &lt;code class=&quot;highlighter-rouge&quot;&gt;sysdba&lt;/code&gt; priviledges so let’s create one.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USER&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;##&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DBAPI_CDB_ADMIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDENTIFIED&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -55,7 +59,7 @@
 &lt;h3 id=&quot;install-ords-webserver-on-a-vm&quot;&gt;Install ORDS webserver on a VM&lt;/h3&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;For this tutorial I am using a newly created virtual machine with a clean installation of CentOS / Oracle Linux.&lt;/p&gt;
+  &lt;p&gt;A newly created virtual machine with a clean installation of CentOS / Oracle Linux is used in this tutorial.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Download the latest &lt;a href=&quot;https://www.oracle.com/database/technologies/appdev/rest-data-services-downloads.html&quot;&gt;Oracle REST Data Services&lt;/a&gt; release, copy it to your desired location and unzip the files to a new directory.&lt;/p&gt;
@@ -79,10 +83,12 @@ cd ords
   &lt;li&gt;Enter administrator username: &lt;code class=&quot;highlighter-rouge&quot;&gt;sys&lt;/code&gt; in my case&lt;/li&gt;
   &lt;li&gt;Enter administrator password&lt;/li&gt;
   &lt;li&gt;Next you will be asked if you are using &lt;code class=&quot;highlighter-rouge&quot;&gt;Oracle Application Express or migrating from mod_plsql then you must enter 1 [1]&lt;/code&gt;. If you are not, then enter &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Enter a number to select a feature to enable&lt;/li&gt;
-&lt;/ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Enter a number to select features to enable: Choose [1] or [4] (if you do not, you need to manually set &lt;code class=&quot;highlighter-rouge&quot;&gt;database.api.enabled=true&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;restEnabledSql.active=true&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;defaults.xml&lt;/code&gt; in order for the PDB lifecycle management API to work)&lt;/p&gt;
 
-&lt;p&gt;Do not yet start the webserver in standalone mode. See the logs below for the full installation flow.&lt;/p&gt;
+    &lt;p&gt;Do not yet start the webserver in standalone mode (enter &lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;). See the logs below for the full installation flow.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[opc@ords-instance-956270 ords]$ java -jar ords.war install
 This Oracle REST Data Services instance has not yet been configured.
@@ -165,7 +171,7 @@ java &lt;span class=&quot;nt&quot;&gt;-jar&lt;/span&gt; ords.war set-properties 
 
 &lt;p&gt;These credentials can now be found within your config folder, e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;cat config/ords/conf/apex_pu.xml&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Finally, we need to setup some web server credentials with the &lt;code class=&quot;highlighter-rouge&quot;&gt;SQL Administrator&lt;/code&gt; role to protect the API. In this case we are using ORDS in standalone mode, so we can create these credentials with this command, which will prompt for a password (this password will be used to authorize the REST calls):&lt;/p&gt;
+&lt;p&gt;Finally, we need to set up some web server credentials with the &lt;code class=&quot;highlighter-rouge&quot;&gt;SQL Administrator&lt;/code&gt; role to protect the API. In this case we are using ORDS in standalone mode, so we can create these credentials with this command, which will prompt for a password (this password will be used to authorize the REST calls):&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;java&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jar&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;war&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sql_admin&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;SQL Administrator&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
