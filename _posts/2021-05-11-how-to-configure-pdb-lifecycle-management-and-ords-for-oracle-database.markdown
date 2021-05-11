@@ -28,6 +28,7 @@ The full set of APIs exposed by PDB Lifecycle Management can be found [here](htt
 ### Prepare database
 
 * Connect to the database and make a note of the database SID or the database service name of the CDB.
+
   * Find the SID using `select instance from v$thread;`
   * Alternatively connect to the CDB and use `Show parameter service_name;` to get the database service name
 * The PDB lifecycle management needs a user in the root container with `sysdba` priviledges so let's create one.
@@ -193,9 +194,11 @@ Select the collection (top level), choose `Authorization` and under `Basic Auth`
 
 Then select the variables tab and enter the protocol `http` and `base_url` (including the port) of your web server.
 
-![](/images/posts/postman-request.png)
+![](/images/posts/postman-variables.png)
 
-Finally, select `Get all PDBs` and hit `Send`.
+Finally, select `Get all PDBs` and hit `Send`. 
+
+![](/images/posts/postman-request.png)
 
 ### Using cURL to access the API
 
