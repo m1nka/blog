@@ -5,45 +5,10 @@
     <description>Personal blog where I write about cloud computing, cloud automation, tech, travel and more.</description>
     <link>https://maximilian.tech/</link>
     <atom:link href="https://maximilian.tech/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 May 2021 18:34:06 +0000</pubDate>
-    <lastBuildDate>Tue, 11 May 2021 18:34:06 +0000</lastBuildDate>
+    <pubDate>Tue, 11 May 2021 18:48:14 +0000</pubDate>
+    <lastBuildDate>Tue, 11 May 2021 18:48:14 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
 
-    
-      <item>
-        <title>Fix LC_CTYPE warning message in Oracle Linux</title>
-        <description>&lt;p&gt;Are you annoyed by this warning in Oracle Linux (or CentOS)?&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/profile.d/lang.sh: line 19: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Run this “one-liner” to fix this error message:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;echo $'LANG=en_US.utf-8\nLC_ALL=en_US.utf-8' | sudo tee /etc/environment
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;That’s it.&lt;/p&gt;
-
-&lt;h3 id=&quot;manual-steps&quot;&gt;Manual steps&lt;/h3&gt;
-
-&lt;p&gt;If the one-liner does not work for you, try the steps below:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;vi /etc/environment&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Enter the following content:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Save and exit&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Tue, 11 May 2021 18:18:54 +0000</pubDate>
-        <link>https://maximilian.tech/2021/05/11/fix-lc_ctype-warning-message-in-oracle-linux/</link>
-        <guid isPermaLink="true">https://maximilian.tech/2021/05/11/fix-lc_ctype-warning-message-in-oracle-linux/</guid>
-      </item>
     
       <item>
         <title>How to configure PDB Lifecycle Management and ORDS for Oracle Database</title>
@@ -256,6 +221,42 @@ Enter the HTTP port [8080]:
         <pubDate>Tue, 11 May 2021 18:00:43 +0000</pubDate>
         <link>https://maximilian.tech/2021/05/11/how-to-configure-pdb-lifecycle-management-and-ords-for-oracle-database/</link>
         <guid isPermaLink="true">https://maximilian.tech/2021/05/11/how-to-configure-pdb-lifecycle-management-and-ords-for-oracle-database/</guid>
+      </item>
+    
+      <item>
+        <title>Fix LC_CTYPE warning message in Oracle Linux</title>
+        <description>&lt;p&gt;Are you annoyed by this warning in Oracle Linux (or CentOS)?&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/profile.d/lang.sh: line 19: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Run this “one-liner” to fix this error message:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;echo $'LANG=en_US.utf-8\nLC_ALL=en_US.utf-8' | sudo tee /etc/environment
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That’s it.&lt;/p&gt;
+
+&lt;h3 id=&quot;manual-steps&quot;&gt;Manual steps&lt;/h3&gt;
+
+&lt;p&gt;If the one-liner does not work for you, try the steps below:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;vi /etc/environment&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Enter the following content:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;LANG=en_US.utf-8
+LC_ALL=en_US.utf-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Save and exit&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sun, 11 Apr 2021 18:18:00 +0000</pubDate>
+        <link>https://maximilian.tech/2021/04/11/fix-lc_ctype-warning-message-in-oracle-linux/</link>
+        <guid isPermaLink="true">https://maximilian.tech/2021/04/11/fix-lc_ctype-warning-message-in-oracle-linux/</guid>
       </item>
     
       <item>
