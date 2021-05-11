@@ -23,14 +23,15 @@ The full set of APIs exposed by PDB Lifecycle Management can be found [here](htt
 
 ## Installation instructions
 
-> This tutorial was created using a clean Oracle 19c database running on Oracle Database Cloud Service. However these steps should work for any Oracle database (that uses the CDB/multitenant architecture). 
+> For this tutorial I used a clean Oracle 19c database VM running on Oracle Database Cloud Service. However, these steps should work for any Oracle database (that uses the CDB/multitenant architecture). 
 
 ### Prepare database
 
-- Connect to the database and make a note of the database SID or the database service name of the CDB.
-  - Find the SID using `select instance from v$thread;`
-  - Alternatively connect to the CDB and use `Show parameter service_name;` to get the database service name
-- The PDB lifecycle management needs a user in the root container with `sysdba` priviledges so let's create one.
+* Connect to the database and make a note of the database SID or the database service name of the CDB.
+
+  * Find the SID using `select instance from v$thread;`
+  * Alternatively connect to the CDB and use `Show parameter service_name;` to get the database service name
+* The PDB lifecycle management needs a user in the root container with `sysdba` priviledges so let's create one.
 
 ```sql
 CREATE USER C##DBAPI_CDB_ADMIN IDENTIFIED BY <PASSWORD>;
@@ -41,7 +42,7 @@ That's it, we are ready for the ORDS installation.
 
 ### Install ORDS webserver on a VM
 
-> For this tutorial I am using a newly created virtual machine with a clean installation of CentOS / Oracle Linux. 
+> A newly created virtual machine with a clean installation of CentOS / Oracle Linux is used in this tutorial. 
 
 Download the latest [Oracle REST Data Services](https://www.oracle.com/database/technologies/appdev/rest-data-services-downloads.html) release, copy it to your desired location and unzip the files to a new directory. 
 
@@ -64,9 +65,9 @@ Now, we can start the ORDS installation flow . The following parameters need to 
 * Enter administrator username: `sys` in my case
 * Enter administrator password
 * Next you will be asked if you are using `Oracle Application Express or migrating from mod_plsql then you must enter 1 [1]`. If you are not, then enter `2`.
-* Enter a number to select a feature to enable
+* Enter a number to select features to enable: Choose \[1] or \[4] (if you do not, you need to manually set `database.api.enabled=true` and `restEnabledSql.active=true` in `defaults.xml` in order for the PDB lifecycle management API to work) 
 
-Do not yet start the webserver in standalone mode. See the logs below for the full installation flow.
+  Do not yet start the webserver in standalone mode (enter `2`). See the logs below for the full installation flow.
 
 ```
 [opc@ords-instance-956270 ords]$ java -jar ords.war install
@@ -151,7 +152,7 @@ rm cdbAdmin.properties
 
 These credentials can now be found within your config folder, e.g. `cat config/ords/conf/apex_pu.xml`. 
 
-Finally, we need to setup some web server credentials with the `SQL Administrator` role to protect the API. In this case we are using ORDS in standalone mode, so we can create these credentials with this command, which will prompt for a password (this password will be used to authorize the REST calls):
+Finally, we need to set up some web server credentials with the `SQL Administrator` role to protect the API. In this case we are using ORDS in standalone mode, so we can create these credentials with this command, which will prompt for a password (this password will be used to authorize the REST calls):
 
 ```java
 java -jar ords.war user sql_admin "SQL Administrator"
