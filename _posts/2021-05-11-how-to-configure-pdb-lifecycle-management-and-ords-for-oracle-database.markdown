@@ -27,11 +27,10 @@ The full set of APIs exposed by PDB Lifecycle Management can be found [here](htt
 
 ### Prepare database
 
-* Connect to the database and make a note of the database SID or the database service name of the CDB.
-
-  * Find the SID using `select instance from v$thread;`
-  * Alternatively connect to the CDB and use `Show parameter service_name;` to get the database service name
-* The PDB lifecycle management needs a user in the root container with `sysdba` priviledges so let's create one.
+- Connect to the database and make a note of the database SID or the database service name of the CDB.
+  - Find the SID using `select instance from v$thread;`
+  - Alternatively connect to the CDB and use `Show parameter service_name;` to get the database service name
+- The PDB lifecycle management needs a user in the root container with `sysdba` priviledges so let's create one.
 
 ```sql
 CREATE USER C##DBAPI_CDB_ADMIN IDENTIFIED BY <PASSWORD>;
