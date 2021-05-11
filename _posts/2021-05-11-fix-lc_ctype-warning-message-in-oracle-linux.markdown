@@ -4,7 +4,7 @@ title: Fix LC_CTYPE warning message in Oracle Linux
 tags:
   - troubleshooting
 image: /images/posts/annoying-warning-lc_ctype.jpg
-date: 2021-05-11T18:18:54.003Z
+date: 2021-04-11T18:18:00.000Z
 ---
 Are you annoyed by this warning in Oracle Linux (or CentOS)?
 
@@ -26,7 +26,8 @@ If the one-liner does not work for you, try the steps below:
 2. Enter the following content:
 
 ```
-
+LANG=en_US.utf-8
+LC_ALL=en_US.utf-8
 ```
 
 3. Save and exit
