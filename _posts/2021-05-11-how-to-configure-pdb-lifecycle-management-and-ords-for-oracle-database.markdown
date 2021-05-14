@@ -27,11 +27,10 @@ The full set of APIs exposed by PDB Lifecycle Management can be found [here](htt
 
 ### Prepare database
 
-* Connect to the database and make a note of the database SID or the database service name of the CDB.
-
-  * Find the SID using `select instance from v$thread;`
-  * Alternatively connect to the CDB and use `Show parameter service_name;` to get the database service name
-* The PDB lifecycle management needs a user in the root container with `sysdba` priviledges so let's create one.
+- Connect to the database and make a note of the database SID or the database service name of the CDB.
+  - Find the SID using `select instance from v$thread;`
+  - Alternatively connect to the CDB and use `Show parameter service_name;` to get the database service name
+- The PDB lifecycle management needs a user in the root container with `sysdba` priviledges so let's create one.
 
 ```sql
 CREATE USER C##DBAPI_CDB_ADMIN IDENTIFIED BY <PASSWORD>;
@@ -65,7 +64,7 @@ Now, we can start the ORDS installation flow . The following parameters need to 
 * Enter administrator username: `sys` in my case
 * Enter administrator password
 * Next you will be asked if you are using `Oracle Application Express or migrating from mod_plsql then you must enter 1 [1]`. If you are not, then enter `2`.
-* Enter a number to select features to enable: Choose \[1] or \[4] (if you do not, you need to manually set `database.api.enabled=true` and `restEnabledSql.active=true` in `defaults.xml` in order for the PDB lifecycle management API to work) 
+* Enter a number to select features to enable: Choose \[1] or \[4] * ** If you do not, you need to manually set `database.api.enabled=true` and `restEnabledSql.active=true` in `defaults.xml` in order for the PDB lifecycle management API to work 
 
   Do not yet start the webserver in standalone mode (enter `2`). See the logs below for the full installation flow.
 
