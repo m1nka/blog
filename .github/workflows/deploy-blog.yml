@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: 🧪 Build and deploy
-        uses: victoriadrake/jekyll-cd@698f19ec2091eeb42528a0b36a96e40806a100da
+        uses: victoriadrake/jekyll-cd@bb775fd060be80d8f295d9214c7f98f871413809
       - name: copy files via ssh key
         uses: appleboy/scp-action@edc8ec9139a2687bcebf0249d0352ff2a988df00        
         with:
