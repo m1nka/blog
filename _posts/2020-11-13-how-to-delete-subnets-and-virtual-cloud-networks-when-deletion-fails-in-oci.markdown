@@ -9,7 +9,7 @@ tags:
 image: /images/posts/just-some-errors.jpg
 date: 2020-11-13T12:59:02.035Z
 ---
-Terminating virtual cloud networks and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error:
+Terminating virtual cloud networks (VCN) and subnets in Oracle Cloud Infrastructure (OCI) is usually pretty straight forward. However, you might encounter this error:
 
 > The VCN cannot be terminated because there are associated resources in one or more compartments that you do not have access to.
 > (Conflict - **The Subnet ocid1.subnet... references the VNIC  coid1.vniic... You must remove the reference to proceed with this operation.)**
@@ -27,6 +27,8 @@ VNICs are automatically created with the following cloud resources:
 * API gateways
 * Mount targets (for file storage)
 * And basically everything else that exists in a subnet and has an IPv4 address
+
+So you need to track down that VNIC and delete it in order to terminate your subnet and virtual cloud network.
 
 ## How to find the VNIC and associated cloud resouce
 
