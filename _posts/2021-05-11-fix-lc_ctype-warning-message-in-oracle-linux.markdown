@@ -6,6 +6,8 @@ tags:
 image: /images/posts/annoying-warning-lc_ctype.jpg
 date: 2021-04-11T18:18:00.000Z
 ---
+This article is for future me. 
+
 Are you annoyed by this warning in Oracle Linux (or CentOS)?
 
 `/etc/profile.d/lang.sh: line 19: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory`
