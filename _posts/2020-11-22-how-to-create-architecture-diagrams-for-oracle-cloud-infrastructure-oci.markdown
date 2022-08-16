@@ -7,6 +7,8 @@ tags:
 image: /images/posts/visualize-oci-diagrams.jpg
 date: 2020-11-22T16:00:05.625Z
 ---
+> **Update**: There are two new ways to get started with creating architectural diagrams for Oracle Cloud Infastructure (OCI). See my articles [Draw.io starter template for OCI](https://maximilian.tech/2020/11/27/draw-io-starter-template-for-oci-oracle-cloud-infrastructure/) and [Best way to create architectural diagrams for OCI](https://maximilian.tech/2022/08/16/update-best-way-to-create-architectural-diagrams-for-oci-oracle-cloud-infrastructure/).
+
 Sometimes, we need to visualize cloud architectures. Usually we do this to share, document and discuss architectural decisions with colleagues, partners or clients. This article will introduce and compare multiple options on how to visualize cloud architectures for Oracle Cloud Infrastructure. The following tools were tested:
 
 * [Powerpoint](#powerpoint)
