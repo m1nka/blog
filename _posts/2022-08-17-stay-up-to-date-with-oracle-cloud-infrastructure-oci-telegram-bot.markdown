@@ -13,7 +13,7 @@ If you use Infrastructure-as-a-Service (Iaas) or Platform-as-a-Service (Paas) on
 
 I've created a small Telegram bot to help me stay up-to-date with news concerning OCI. You can access and follow this bot with the button below.
 
-<button href="" onClick="window.open('t.me/oci_news_bot')" style="vertical-align: middle;border-radius:5px;background-color: #27aeef;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;"><span style="top:3px;" data-icon='ei-external-link' data-size='s'></span><span style="position: relative; bottom: 5px;"><strong>Oracle Cloud Infrastructure (OCI) News Bot for Telegram</strong></span></button>
+<button href="" onClick="window.open('https://t.me/oci_news_bot')" style="vertical-align: middle;border-radius:5px;background-color: #27aeef;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;"><span style="top:3px;" data-icon='ei-external-link' data-size='s'></span><span style="position: relative; bottom: 5px;"><strong>Oracle Cloud Infrastructure (OCI) News Bot for Telegram</strong></span></button>
 
 You can also scan the image below to subscribe to the bot: 
 
