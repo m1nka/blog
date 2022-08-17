@@ -26,7 +26,7 @@ For example: This is the reference architecture for [deploying microservices to 
 
 To create an architectural diagram for Oracle Cloud Infrastructure, head to Oracle Architecture Center and find a reference architecture similar to what you want to design. Here are a few examples:
 
-* [Deploy a PostgreSQL database](<* https://docs.oracle.com/en/solutions/deploy-postgresql-db/index.html#GUID-BF3D244B-C261-41DD-A2CF-6FCC2D698A9D>): Good starting point for any architecture using multiple availability domains.
+* [Deploy a PostgreSQL database](https://docs.oracle.com/en/solutions/deploy-postgresql-db/index.html): Good starting point for any architecture using multiple availability domains.
 * [Deploy microservices to a Kubernetes cluster](https://docs.oracle.com/en/solutions/deploy-microservices/index.html#GUID-3BB86E87-11C6-4DF1-8CA9-1FD385A9B9E9): Use this diagram for small and simple deployments.
 * [Build a geospatial platform on Oracle Autonomous Database](https://docs.oracle.com/en/solutions/geospatial-platform-adw/index.html#GUID-6BA1059C-9771-4E1F-A265-3E0FE9F2B103): Use this diagram as a starting point to model data movement in cloud environments, data warehousing and integration use cases. 
 
