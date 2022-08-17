@@ -23,7 +23,7 @@ You can also scan the image below to subscribe to the bot:
 
 The way this bot works is it subscribes to two RSS feeds and automatically sends updates as Telegram messages:
 
-* https://www.ateam-oracle.com/rss
-* https://docs.cloud.oracle.com/en-us/laas/
+* [Oracle A-team Blog RSS Feed](https://www.ateam-oracle.com/rss)
+* [Oracle Cloud Infrastructure Release Notes RSS Feed](https://docs.cloud.oracle.com/en-us/iaas/releasenotes/feed)
 
 To subscribe to the RSS feeds I used [@TheFeedReaderBot](https://telegram.me/TheFeedReaderBot).
