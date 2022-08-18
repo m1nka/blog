@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "[Updated] Best way to create architectural diagrams for OCI (Oracle
-  Cloud Infrastructure)"
+title: "[Update] Create architectural diagrams for Oracle Cloud by adapting the
+  official reference architectures"
 tags:
   - cloud
   - oci
@@ -41,3 +41,5 @@ Download the draw.io source files using the download button below the diagram.
 After downloading the ZIP file, unzip the folder and you will find a `.drawio` file. You can use this `.drawio` file as a starting point to create you diagram. You will need to [download the draw.io app](https://www.diagrams.net/) or alternatively [head over to draw.io](https://app.diagrams.net/) to edit in your web browser.
 
 I have also created [a detailed article on how to use draw.io to create diagrams for Oracle Cloud Infrastructure](https://maximilian.tech/2020/11/27/draw-io-starter-template-for-oci-oracle-cloud-infrastructure/). That article outlines how to import an icon library into draw.io and how to use some advanced draw.io features [such as layers](https://www.diagrams.net/doc/layers).
+
+> **Update**: You can now find [official graphics for designing topologies and diagrams](https://docs.oracle.com/en-us/iaas/Content/General/Reference/graphicsfordiagrams.htm) for OCI in the Oracle Cloud documentation.
