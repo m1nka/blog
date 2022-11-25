@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Stay up-to-date with Oracle Cloud Infrastructure (OCI) Telegram Bot
+title: Stay up-to-date with Oracle Cloud Infrastructure (OCI) News Bot
 tags:
   - oci
   - cloud
