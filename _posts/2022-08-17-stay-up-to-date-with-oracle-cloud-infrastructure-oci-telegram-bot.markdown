@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Stay up-to-date with Oracle Cloud: Release notes and updates bot for OCI
+title: Stay up-to-date with Oracle Cloud: 'Release notes & updates' bot for OCI
 tags:
   - oci
   - cloud
