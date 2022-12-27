@@ -35,7 +35,6 @@ To setup Joplin synchronization with Oracle Cloud you need to perform the follow
    * Now you have your full **S3 URL** that you can use with Joplin and it might look something like this: `https://abcdefg.compat.objectstorage.eu-frankfurt-1.oraclecloud.com`. If you need additional info [check the docs](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm#usingAPI).
 4. **Joplin also requires an S3 region**. This is the same region identifier that we have looked up before. In my case its `eu-frankfurt-1`.
 5. **Finally, we need to create an S3 bucket.**
-
    * Go to https://cloud.oracle.com/object-storage/buckets
    * On the left choose a compartment. You can use the root compartment or alternatively create a new compartment [here](https://cloud.oracle.com/identity/compartments)). Learn more about compartments [here](https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcompartments.htm#Working).
    * Choose a bucket name (like `joplin-notes`), choose `Default storage tier` and create the bucket.
