@@ -8,9 +8,9 @@ tags:
 image: /images/posts/oracle-cloud-oci-object-storage-s3-for-joplin.png
 date: 2022-12-27T15:25:27.092Z
 ---
-Joplin is a fantastic open source note-taking app. You automatically sync your notes between devices using various tools and protocols, such as WebDAV, Dropbox, Nextcloud, and others.
+Joplin is a fantastic open source note-taking app. You can automatically sync your notes between devices using various tools and protocols, such as Dropbox, Nextcloud, WebDAV and others.
 
-My preferred way to sync my notes is using S3 object storage, since it supports versioning, is easy to use and supports end-to-end encryption (using customer-managed keys).
+My preferred way to sync my notes is using S3 object storage, since it's fast and easy to use, supports versioning and is fully encrypted (even supports customer-managed keys).
 
 Oracle Cloud [offers 10 Gb of free Object Storage](https://www.oracle.com/cloud/free/) and also provides an [S3 compatibility API](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm). 
 
@@ -41,4 +41,4 @@ To setup Joplin synchronization with Oracle Cloud you need to perform the follow
    * Note down the bucket name.
 6. It's important to choose **Force path style** within Joplin settings when configuring S3 Object Storage with Oracle Cloud.
 
-That's it. Your final configuration within Joplin should like something like the screenshot above.
+That's it. Your final configuration within Joplin should look something like in the screenshot above.
