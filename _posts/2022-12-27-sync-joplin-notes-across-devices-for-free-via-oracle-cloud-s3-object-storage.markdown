@@ -29,8 +29,8 @@ Oracle Cloud [offers 10 Gb of free Object Storage](https://www.oracle.com/cloud/
     - To find your `bucketnamespace` name, open the Profile menu (User menu icon) and click Tenancy: &lt;your\_tenancy\_name&gt;. Your namespace string is listed under Object Storage Settings. If you need additional info [check the documentation](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/understandingnamespaces.htm#usingconsole).
     - Your `region` identifier is the id of your 'home region' that you chose when creating your Oracle Cloud account. You can find the full list of region identifiers [here](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm#About). In my case, my home region is Frankfurt and therefore my region identifier is `eu-frankfurt-1`.
     - Now you have your full **S3 URL** that you can use with Joplin and it might look something like this: `https://abcdefg.compat.objectstorage.eu-frankfurt-1.oraclecloud.com`. If you need additional info [check the docs](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm#usingAPI).
-4.  **Joplin also requires an S3 region**. This is the same region identifier that we have looked up before. In my case its `eu-frankfurt-1`.
-5.  **Finally, we need to create an S3 bucket.**
+4. **Joplin also requires an S3 region**. This is the same region identifier that we have looked up before. In my case its `eu-frankfurt-1`.
+5. **Finally, we need to create an S3 bucket.**
     - Go to https://cloud.oracle.com/object-storage/buckets
     - On the left choose a compartment. You can use the root compartment or alternatively create a new compartment [here](https://cloud.oracle.com/identity/compartments)). Learn more about compartments [here](https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingcompartments.htm#Working).
     - Choose a bucket name (like `joplin-notes`), choose `Default storage tier` and create the bucket.
