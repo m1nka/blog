@@ -18,7 +18,7 @@ Oracle Cloud [offers 10 Gb of free Object Storage](https://www.oracle.com/cloud/
 
 To setup Joplin synchronization with Oracle Cloud you need to perform the following steps:
 
-1. Register a free Oracle Cloud account at [https://www.oracle.com/cloud/free/](<1. https://www.oracle.com/cloud/free/>) and sign in. You then need to find the following information to fill in within Joplin settings under synchronization:
+1. Register a free Oracle Cloud account at [https://www.oracle.com/cloud/free/](https://www.oracle.com/cloud/free/) and sign in. You then need to find the following information to fill in within Joplin settings under synchronization:
    * S3 access key and S3 secret key
    * S3 URL
    * S3 region
@@ -41,4 +41,4 @@ To setup Joplin synchronization with Oracle Cloud you need to perform the follow
    * Note down the bucket name.
 6. It's important to choose **Force path style** within Joplin settings when configuring S3 Object Storage with Oracle Cloud.
 
-That's it. Your final configuration within Joplin should look something like in the screenshot above.
+That's it. Your final configuration within Joplin should look something like in the screenshot above. 
