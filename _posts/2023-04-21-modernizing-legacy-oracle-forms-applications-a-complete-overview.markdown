@@ -8,22 +8,22 @@ Many large companies are still using Oracle Forms & Reports. If you're part of t
 
 ### Table of contents
 
-1.  Is Oracle Forms still supported
-2.  Reasons to move away from Oracle Forms
-3.  Points to consider before getting started
-4.  Modernization paths
-    1.  Oracle APEX
-    2.  Auraplayer
-    3.  ORDS
-    4.  Custom implementation
+1.  [Is Oracle Forms still supported](#is-forms-still-supported)
+2.  [Reasons to move away from Oracle Forms](#reasons-to-move-away-from-forms)
+3.  [Points to consider before getting started](#before-getting-started)
+4.  [Modernization paths](#modernization-paths)
+    -  Oracle APEX
+    -  Auraplayer
+    -  ORDS
+    -  Custom implementation
 
-## Is Oracle Forms still supported?
+## Is Oracle Forms still supported? <a name="is-forms-still-supported"></a>
 
 A common question that often arises is: Does Oracle still support Oracle Forms? Are users forced to transition to another technology? For now, Oracle remains committed to providing support for Oracle Forms, so users are not forced to migrate to an alternative technology.
 
 The current Forms 12.2.x version is supported until December 2025 (as [documented in the Oracle Lifetime Support Policy for Fusion Middleware](https://www.oracle.com/us/assets/lifetime-support-middleware-069163.pdf)) and extended support ends December 2027. However, Oracle has already announced the next version of Fusion Middleware 14.1.2 (including a new version for Oracle Forms) in [this statement of direction](https://www.oracle.com/a/ocom/docs/middleware/fusion-middleware-statement-of-direction.pdf). It is currently not known how long the next Oracle Forms version will be supported, but if we assume that it has a similar EOL policy as previous versions it should be supported well beyond 2030.
 
-## Reasons to move away from Oracle Forms
+## Reasons to move away from Oracle Forms <a name="reasons-to-move-away-from-forms"></a>
 
 Even though Oracle will continue to support Oracle Forms, there are many reasons to move away from Forms. Here are some of the key reasons to consider upgrading:
 
@@ -36,25 +36,19 @@ Even though Oracle will continue to support Oracle Forms, there are many reasons
 
 In the end, it's essential for companies to think about their unique pain points and whether the issues they're facing with Oracle Forms are worth the effort of a redesign.
 
-## Points to consider before getting started
+## Points to consider before getting started <a name="before-getting-started"></a>
 
 In this chapter, we will discuss the main points to consider before modernizing an Oracle Forms installation.
 
-**Non-trivial Modernization Process**
+- **Non-trivial Modernization Process**: Oracle Forms modernization is not a trivial process; it requires a significant investment in time and resources. This is primarily due to the complexity of the legacy applications and the intricate dependencies between various components. Additionally, the modernization process involves not only updating the technology stack but also rethinking the architecture and design to meet modern standards and expectations.
 
-Oracle Forms modernization is not a trivial process; it requires a significant investment in time and resources. This is primarily due to the complexity of the legacy applications and the intricate dependencies between various components. Additionally, the modernization process involves not only updating the technology stack but also rethinking the architecture and design to meet modern standards and expectations.
+- **Availability of Forms Developers**: A major challenge in Oracle Forms modernization projects is the availability of (your) Forms developers, who are familiar with the functionality of the existing system. As the pool of experienced Forms developers continues to shrink, organizations must act proactively to avoid a scenario where all the knowledgeable developers have retired or left the company. For a modernization you will need to understand the existing code and these developers are essential for ensuring a smooth transition and mitigating risks during the modernization process.
 
-**Availability of Forms Developers**
+- **Business Processes and Scope Management**: Since modernizing Oracle Forms is not a simple software upgrade, you should not only look at updating the screens, but also about consider the underlying business processes. This will be the right moment to examine and optimize the business logic, workflows, and data structures to ensure that the modernized application remains efficient and maintainable. Because business processes are usually updated as part of Forms modernization projects, scope creep can become a problem, which will have an impact on the project's timeline and budget. Be sure not to get sidetracked by unnecessary changes and establish clear goals at the beginning of your project.
 
-A major challenge in Oracle Forms modernization projects is the availability of (your) Forms developers, who are familiar with the functionality of the existing system. As the pool of experienced Forms developers continues to shrink, organizations must act proactively to avoid a scenario where all the knowledgeable developers have retired or left the company. For a modernization you will need to understand the existing code and these developers are essential for ensuring a smooth transition and mitigating risks during the modernization process.
+## How to modernize Oracle Forms: Four different migration paths <a name="modernization-paths"></a>
 
-**Business Processes and Scope Management**
-
-Since modernizing Oracle Forms is not a simple software upgrade, you should not only look at updating the screens, but also about consider the underlying business processes. This will be the right moment to examine and optimize the business logic, workflows, and data structures to ensure that the modernized application remains efficient and maintainable. Because business processes are usually updated as part of Forms modernization projects, scope creep can become a problem, which will have an impact on the project's timeline and budget. Be sure not to get sidetracked by unnecessary changes and establish clear goals at the beginning of your project.
-
-## How to modernize Oracle Forms: Four migration paths
-
-In this article, we'll go over four potential upgrade paths for Oracle Forms. We will consider the pros and cons of each migration path:
+In this article, we'll go over four potential upgrade paths for Oracle Forms. We will consider the pros and cons of each technology:
 
 - Oracle APEX
 - Auraplayer
@@ -68,8 +62,6 @@ Oracle APEX (Application Express) can be seen as a modern successor to Oracle Fo
 Oracle APEX is an included feature of the Oracle Database and does not incur any additional cost.
 
 ### Oracle APEX architecture
-
-![apex-arch.png](:/311d10f6b83c473286e9e20d4d82ae04)
 
 Oracle APEX follows a three-tier architecture, comprising the database, mid-tier that handles web requests, and a web-based client. Let's take a closer look at each component:
 
