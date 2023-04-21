@@ -12,7 +12,6 @@ Many large companies are still using Oracle Forms & Reports. If you're part of t
 2. [Reasons to move away from Oracle Forms](#reasons-to-move-away-from-forms)
 3. [Points to consider before getting started](#before-getting-started)
 4. [Modernization paths](#modernization-paths)
-
    * [Oracle APEX](#apex)
    * [Auraplayer](#auraplayer)
    * [ORDS](#ords)
