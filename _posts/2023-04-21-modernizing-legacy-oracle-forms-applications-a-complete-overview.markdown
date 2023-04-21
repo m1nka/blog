@@ -157,7 +157,7 @@ A custom implementation means:
 In conclusion, modernizing legacy Oracle Forms applications is a difficult undertaking. As we've discussed, Oracle Forms is still supported, but there are compelling reasons to move away from it and embrace more modern technologies. There are several modernization paths to choose from, including Oracle APEX, AuraPlayer, ORDS, and custom implementations. The decision-making process for modernizing Oracle Forms applications should primarily revolve around the following key questions:
 
 * Is it really worth upgrading? Assess the benefits and trade-offs of modernization against the risks and costs involved. 
-* Which skills does my organization have? Evaluate the availability of experienced Forms developers and the potential need for training, mentoring, or knowledge transfer initiatives to ensure a smooth modernization process.
+* Which skills does my organization have? Evaluate the availability of Forms and PL/SQL developers and the implications on the modernization process.
 * How does the modernization fit into the overall IT strategy of my organization? Moreover, the shift towards cloud computing presents additional opportunities and considerations for modernizing Oracle Forms applications. 
 
 Don't hesitate to leave your thoughts and feedback in the comment section below.  Cheers!
