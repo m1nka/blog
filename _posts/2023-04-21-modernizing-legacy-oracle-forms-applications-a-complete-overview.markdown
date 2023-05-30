@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Modernizing Legacy Oracle Forms Applications: A Complete Overview"
+tags:
+  - cloud
+  - ""
 image: /images/posts/forms-eol.jpeg
 date: 2023-04-21T10:39:06.819Z
 ---
@@ -12,6 +15,7 @@ Many large companies are still using Oracle Forms & Reports. If you're part of t
 2. [Reasons to move away from Oracle Forms](#reasons-to-move-away-from-forms)
 3. [Points to consider before getting started](#before-getting-started)
 4. [Modernization paths](#modernization-paths)
+
    * [Oracle APEX](#apex)
    * [Auraplayer](#auraplayer)
    * [ORDS](#ords)
@@ -59,14 +63,20 @@ In this article, we'll go over four potential upgrade paths for Oracle Forms. We
 
 Oracle APEX (Application Express) can be seen as a modern successor to Oracle Forms, offering a low-code development platform that simplifies the process of building and deploying web applications. APEX has a very pleasant look and feel, is based on state-of-the-art web standards and enables users to easily build modern web applications. Both APEX and Forms share similarities in their foundation, as they are based on PL/SQL and provide low-code environments for developers. This makes APEX a natural choice for organizations looking to upgrade their Oracle Forms installations.
 
+![APEX screenshot](/images/posts/apex-screenshot.png)
+
 Oracle APEX is an included feature of the Oracle Database and does not incur any additional cost.
 
 ### Oracle APEX architecture
 
-Oracle APEX follows a three-tier architecture, comprising the database, mid-tier that handles web requests, and a web-based client. Let's take a closer look at each component:
+Oracle APEX follows a three-tier architecture, comprising the database, mid-tier that handles web requests, and a web-based client. 
+
+![APEX architecture](/images/posts/apex-archictecture.png)
+
+Let's take a closer look at each component:
 
 * **Database Level:** APEX is installed directly within an Oracle Database, utilizing the full potential of the database's security, scalability, and performance features. All application metadata, definitions, and PL/SQL code reside within the database.
-* **Mid-Tier ORDS:** ORDS (Oracle RESTful data services) serves as the middle layer, acting as a bridge between the database and the web-based client. ORDS is a stand-alone Java application that can be run in Tomcat, Weblogic or self-contained. It facilitates data and service requests from the client tier, translating them into database queries, and then sending the results back to the client. ORDS can be scaled horizontally (even in a Kubernetes cluster).
+* **Mid-Tier webserver:** ORDS (Oracle RESTful data services) typically serves as the middle layer, acting as a bridge between the database and the web-based client. ORDS is a stand-alone Java application that can be run in Tomcat, Weblogic or self-contained. It facilitates data and service requests from the client tier, translating them into database queries, and then sending the results back to the client. ORDS can be scaled horizontally (even in a Kubernetes cluster).
 * **Web-Based Client:** APEX applications are accessed through a web browser, making them platform-independent and easily accessible on various devices. The client-side user interface is rendered using HTML, CSS, and JavaScript, ensuring a modern and responsive user experience.
 
 Here's what you need to know about using APEX as an upgrade path. The advantages include:
@@ -101,10 +111,10 @@ Modernizing Oracle Forms with AuraPlayer has the following advantages:
 
 While AuraPlayer offers a practical approach to modernize Oracle Forms installations, there are potential drawbacks that organizations should consider before opting for this solution. Here are some reasons why AuraPlayer is probably not the best option:
 
-* Dependency on the company: Relying on AuraPlayer means that your modernization strategy is dependent on the company behind the product. AuraPlayer is (to my knowledge) not directly affiliated with Oracle. It's essential to evaluate whether the company is trustworthy and has long-term financial stability to ensure uninterrupted support and maintenance.
-* Additional costs: Using AuraPlayer requires maintaining Oracle Forms licenses and support costs in addition to the fees associated with AuraPlayer itself. This could result in higher overall expenses compared to other modernization options.
-* Retaining legacy clutter: AuraPlayer may serve as a temporary solution, but it doesn't fully address the underlying legacy issues. Instead, it puts a new face on existing Oracle Forms applications, which might not be sufficient for organizations looking to eliminate the old clutter and start fresh with a modern technology stack.
-* Limited long-term benefits: While AuraPlayer can help improve user experience and accessibility in the short term, it may not provide the long-term benefits that other modernization options offer, such as full integration with modern paradigms, cloud services, and a more extensive pool of developers with relevant skill sets.
+* **Dependency on the company**: Relying on AuraPlayer means that your modernization strategy is dependent on the company behind the product. AuraPlayer is (to my knowledge) not directly affiliated with Oracle. It's essential to evaluate whether the company is trustworthy and has long-term financial stability to ensure uninterrupted support and maintenance.
+* **Additional costs**: Using AuraPlayer requires maintaining Oracle Forms licenses and support costs in addition to the fees associated with AuraPlayer itself. This could result in higher overall expenses compared to other modernization options.
+* **Retaining legacy clutter**: AuraPlayer may serve as a temporary solution, but it doesn't fully address the underlying legacy issues. Instead, it puts a new face on existing Oracle Forms applications, which might not be sufficient for organizations looking to eliminate the old clutter and start fresh with a modern technology stack.
+* **Limited long-term benefits**: While AuraPlayer can help improve user experience and accessibility in the short term, it may not provide the long-term benefits that other modernization options offer, such as full integration with modern paradigms, cloud services, and a more extensive pool of developers with relevant skill sets.
 
 On paper, modernizing Oracle Forms with AuraPlayer presents a viable option for organizations looking to integrate their legacy applications with modern platforms, reuse existing business logic, simplify user experience, and achieve incremental modernization. However, personally I am sceptical about this migration path.
 
@@ -127,14 +137,14 @@ One of the reasons to use Oracle REST Data Services (ORDS) for modernizing Oracl
 
 Here are the advantages of modernizing Forms with ORDS:
 
-* Modern API-based architecture: RESTful APIs make integration with other apps and services easier.
-* PL/SQL compatibility: Keep using your existing PL/SQL code with minimal changes.
-* Robust security: ORDS offers security features like OAuth and HTTP/S to protect your data.
+* **Modern API-based architecture**: RESTful APIs make integration with other apps and services easier.
+* **PL/SQL compatibility**: Keep using your existing PL/SQL code with minimal changes.
+* **Robust security**: ORDS offers security features like OAuth and HTTP/S to protect your data.
 
 The disadvantages of using ORDS:
 
-* UI development: ORDS doesn't help with creating user interfaces, it really only provides REST interfaces. You'll still need to develop a front-end application.
-* Complexity for large installation: When managing a large installation of ORDS APIs, you will need to come up with a robust operating model (monitoring, error handling, change management, integration with version control like Git) for ORDS.
+* **UI development**: ORDS doesn't help with creating user interfaces, it really only provides REST interfaces. You'll still need to develop a front-end application.
+* **Complexity for large installation**: When managing a large installation of ORDS APIs, you will need to come up with a robust operating model (monitoring, error handling, change management, integration with version control like Git) for ORDS.
 
 A valid alternative to using ORDS might be to create RESTful APIs via frameworks like Springboot. Springboot offers a lot of tooling to create RESTful APIs and (contrary to ORDS) is open source software. Check out the next chapter for more information.
 
