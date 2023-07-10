@@ -18,7 +18,7 @@ jobs:
       - name: 🧪 Build and deploy
         uses: victoriadrake/jekyll-cd@bb775fd060be80d8f295d9214c7f98f871413809
       - name: copy files via ssh key
-        uses: appleboy/scp-action@edc8ec9139a2687bcebf0249d0352ff2a988df00        
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
