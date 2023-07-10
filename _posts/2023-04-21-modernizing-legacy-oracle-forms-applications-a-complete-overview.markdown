@@ -3,7 +3,6 @@ layout: post
 title: "Modernizing Legacy Oracle Forms Applications: A Complete Overview"
 tags:
   - cloud
-  - ""
 image: /images/posts/forms-eol.jpeg
 date: 2023-04-21T10:39:06.819Z
 ---
