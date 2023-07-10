@@ -14,19 +14,18 @@ Many large companies are still using Oracle Forms & Reports. If you're part of t
 2. [Reasons to move away from Oracle Forms](#reasons-to-move-away-from-forms)
 3. [Points to consider before getting started](#before-getting-started)
 4. [Modernization paths](#modernization-paths)
+   * 4.1 [Oracle APEX](#apex)
+   * 4.2 [Auraplayer](#auraplayer)
+   * 4.3 [ORDS](#ords)
+   * 4.4 [Custom implementation](#custom-implementation)
 
-   * [Oracle APEX](#apex)
-   * [Auraplayer](#auraplayer)
-   * [ORDS](#ords)
-   * [Custom implementation](#custom-implementation)
-
-## Is Oracle Forms still supported? <a name="is-forms-still-supported"></a>
+## 1. Is Oracle Forms still supported? <a name="is-forms-still-supported"></a>
 
 A common question that often arises is: Does Oracle still support Oracle Forms? Are users forced to transition to another technology? For now, Oracle remains committed to providing support for Oracle Forms, so users are not forced to migrate to an alternative technology.
 
 The current Forms 12.2.x version is supported until December 2025 (as [documented in the Oracle Lifetime Support Policy for Fusion Middleware](https://www.oracle.com/us/assets/lifetime-support-middleware-069163.pdf)) and extended support ends December 2027. However, Oracle has already announced the next version of Fusion Middleware 14.1.2 (including a new version for Oracle Forms) in [this statement of direction](https://www.oracle.com/a/ocom/docs/middleware/fusion-middleware-statement-of-direction.pdf). It is currently not known how long the next Oracle Forms version will be supported, but if we assume that it has a similar EOL policy as previous versions it should be supported well beyond 2030.
 
-## Reasons to move away from Oracle Forms <a name="reasons-to-move-away-from-forms"></a>
+## 2. Reasons to move away from Oracle Forms <a name="reasons-to-move-away-from-forms"></a>
 
 Even though Oracle will continue to support Oracle Forms, there are many reasons to move away from Forms. Here are some of the key reasons to consider upgrading:
 
@@ -39,26 +38,26 @@ Even though Oracle will continue to support Oracle Forms, there are many reasons
 
 In the end, it's essential for companies to think about their unique pain points and whether the issues they're facing with Oracle Forms are worth the effort of a redesign.
 
-## Points to consider before getting started <a name="before-getting-started"></a>
+## 3. Points to consider before getting started <a name="before-getting-started"></a>
 
 In this chapter, we will discuss the main points to consider before modernizing an Oracle Forms installation.
 
-**Non-trivial Modernization Process**: Oracle Forms modernization is not a trivial process; it requires a significant investment in time and resources. This is primarily due to the complexity of the legacy applications and the intricate dependencies between various components. Additionally, the modernization process involves not only updating the technology stack but also rethinking the architecture and design to meet modern standards and expectations.
+**Non-trivial Modernization Process**: Oracle Forms modernization is not a trivial process; it requires a significant investment in time and resources. This is primarily due to the complexity of the legacy applications and the intricate dependencies between various components. Additionally, the modernization process involves not only updating the technology stack, but also rethinking the architecture and design to meet modern standards and expectations.
 
 **Availability of Forms Developers**: A major challenge in Oracle Forms modernization projects is the availability of (your) Forms developers, who are familiar with the functionality of the existing system. As the pool of experienced Forms developers continues to shrink, organizations must act proactively to avoid a scenario where all the knowledgeable developers have retired or left the company. For a modernization you will need to understand the existing code and these developers are essential for ensuring a smooth transition and mitigating risks during the modernization process.
 
 **Business Processes and Scope Management**: Since modernizing Oracle Forms is not a simple software upgrade, you should not only look at updating the screens, but also about consider the underlying business processes. This will be the right moment to examine and optimize the business logic, workflows, and data structures to ensure that the modernized application remains efficient and maintainable. Because business processes are usually updated as part of Forms modernization projects, scope creep can become a problem, which will have an impact on the project's timeline and budget. Be sure not to get sidetracked by unnecessary changes and establish clear goals at the beginning of your project.
 
-## How to modernize Oracle Forms: Four different migration paths <a name="modernization-paths"></a>
+## 4. How to modernize Oracle Forms: Four different migration paths <a name="modernization-paths"></a>
 
 In this article, we'll go over four potential upgrade paths for Oracle Forms. We will consider the pros and cons of each technology:
 
-* Oracle APEX
-* Auraplayer
-* ORDS
-* Custom implementation
+* [Oracle APEX](#apex)
+* [Auraplayer](#auraplayer)
+* [ORDS](#ords)
+* [Custom implementation](#custom-implementation)
 
-### Oracle APEX (Application Express) <a name="apex"></a>
+### 4.1 Oracle APEX (Application Express) <a name="apex"></a>
 
 Oracle APEX (Application Express) can be seen as a modern successor to Oracle Forms, offering a low-code development platform that simplifies the process of building and deploying web applications. APEX has a very pleasant look and feel, is based on state-of-the-art web standards and enables users to easily build modern web applications. Both APEX and Forms share similarities in their foundation, as they are based on PL/SQL and provide low-code environments for developers. This makes APEX a natural choice for organizations looking to upgrade their Oracle Forms installations.
 
@@ -66,7 +65,7 @@ Oracle APEX (Application Express) can be seen as a modern successor to Oracle Fo
 
 Oracle APEX is an included feature of the Oracle Database and does not incur any additional cost.
 
-### Oracle APEX architecture
+#### Oracle APEX architecture
 
 Oracle APEX follows a three-tier architecture, comprising the database, mid-tier that handles web requests, and a web-based client. 
 
@@ -95,7 +94,7 @@ Migrating Oracle Forms to Oracle APEX is not a straightforward process, even tho
 
 However, this should still provide the easiest migration path compared to any other technology. And if you have access to PL/SQL developers, APEX will most likely be the best option. Ultimately, the decision to modernize Oracle Forms using Oracle APEX should take into consideration the specific needs and resources of the organization.
 
-### Modernizing with Auraplayer <a name="auraplayer"></a>
+### 4.2 Modernizing with Auraplayer <a name="auraplayer"></a>
 
 > I'd like to add a disclaimer that I have no affiliation with AuraPlayer and am not promoting their product in any way. In additional, it's essential to evaluate whether the company is trustworthy and has long-term financial stability to ensure uninterrupted long-term support and maintenance. I have not tried this product myself.
 
@@ -121,7 +120,7 @@ For small Oracle Forms installation it seems to make more sense to modernize usi
 
 If you are to integrate your legacy application via RESTful APIs check out the next migration path: ORDS.
 
-## Modernizing with ORDS (Oracle RESTful Data Services) <a name="ords"></a>
+## 4.3 Modernizing with ORDS (Oracle RESTful Data Services) <a name="ords"></a>
 
 Oracle REST Data Services (ORDS) ORDS is a solution for creating RESTful web services for Oracle databases. By using ORDS, you can turn your PL/SQL code into web services that can be easily integrated with other applications.
 
@@ -147,7 +146,7 @@ The disadvantages of using ORDS:
 
 A valid alternative to using ORDS might be to create RESTful APIs via frameworks like Springboot. Springboot offers a lot of tooling to create RESTful APIs and (contrary to ORDS) is open source software. Check out the next chapter for more information.
 
-## Modernizing with a custom implementation <a name="custom-implementation"></a>
+## 4.4 Modernizing with a custom implementation <a name="custom-implementation"></a>
 
 Modernizing Oracle Forms applications using a custom implementation approach offers organizations the most flexibility. Almost any technology can be used to re-create the functionality previously offered by Oracle Forms. While it offers the most flexibility and enables specific technology preferences, it also requires the most time and resources.
 
@@ -164,7 +163,7 @@ A custom implementation means:
 
 In conclusion, modernizing legacy Oracle Forms applications is a difficult undertaking. As we've discussed, Oracle Forms is still supported, but there are compelling reasons to move away from it and embrace more modern technologies. There are several modernization paths to choose from, including Oracle APEX, AuraPlayer, ORDS, and custom implementations. The decision-making process for modernizing Oracle Forms applications should primarily revolve around the following key questions:
 
-* Is it really worth upgrading? Assess the benefits and trade-offs of modernization against the risks and costs involved. 
+* Is it worth upgrading? Assess the benefits and trade-offs of modernization against the risks and costs involved. 
 * Which skills does my organization have? Evaluate the availability of Forms and PL/SQL developers and the implications on the modernization process.
 * How does the modernization fit into the overall IT strategy of my organization? Moreover, the shift towards cloud computing presents additional opportunities and considerations for modernizing Oracle Forms applications. 
 
