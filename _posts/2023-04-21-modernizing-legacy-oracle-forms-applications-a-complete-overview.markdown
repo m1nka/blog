@@ -4,7 +4,7 @@ title: "Modernizing Legacy Oracle Forms Applications: A Complete Overview"
 tags:
   - cloud
 image: /images/posts/forms-eol.jpeg
-date: 2023-04-21T10:39:06.819Z
+date: 2023-04-20T10:39:06.819Z
 ---
 Many large companies are still using Oracle Forms & Reports. If you're part of that group, you might find that it's becoming outdated and no longer meets your needs. However, migrating to a more modern technology can be quite difficult and usually requires significant time and resources. This article will go over the main points to consider, when modernizing Oracle Forms.
 
