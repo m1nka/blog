@@ -7,7 +7,7 @@ Run `bundle exec jekyll serve` to serve project locally.
 Project was forked from [aspirethemes/type](https://github.com/aspirethemes/type).
 
 # Type: Minimal and Clean Free Jekyll Theme
-
+  
 - [Configurations](#configurations)
 - [Deployment](#deployment)
 - [Posts](#posts)
