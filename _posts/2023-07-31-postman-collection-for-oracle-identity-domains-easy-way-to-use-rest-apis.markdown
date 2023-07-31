@@ -2,8 +2,10 @@
 layout: post
 title: "Postman collection for Oracle Identity Domains: Easy way to use REST APIs"
 tags:
+  - oci
   - cloud
   - tutorial
+  - automation
 image: /images/posts/scim-identity-domains.jpg
 date: 2023-07-31T09:15:39.884Z
 ---
@@ -22,7 +24,7 @@ Within the Oracle Cloud console, [head to Identity Domains](https://cloud.oracle
 - Once your Identity Domain is selected, choose **Applications** and **Add application**.
 - Choose **Confidential Application** and enter a name for the application, for example `identiy-domains-api-access` and click next.
 - Choose **Configure this application as a client now**
-- Under **'Authorization'**, check **Client credentials**
+- Under **Authorization**, check **Client credentials**
 - Under **Client type** select **Confidential**
 - Scroll down and in the **Token issuance policy** section, set **Authorized resources** to **Specific**.
 - Select **Add app roles** and choose the roles that you need. All roles [are documented here](https://docs.oracle.com/en/cloud/paas/identity-cloud/uaids/understand-administrator-roles.html#GUID-9B488723-43A1-47B1-ACB0-41FFD780FD5D). In my case I choose **User administrator**.
