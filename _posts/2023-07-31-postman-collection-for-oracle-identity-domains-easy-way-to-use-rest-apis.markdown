@@ -11,7 +11,7 @@ I recently had to find a way to automate the management of users and groups in 
 
 After dealing with the API documentation for a while, I came to the realization that Oracle Identity Domains is fully SCIM 2.0-compliant and therefore it should be very easy to interact with that API. I forked the official Postman SCIM 2.0 collection and adapted it to work with Oracle Identity Domains.
 
-This tutorial can be used to manage almost any component of Oracle Identity Domains via REST API.
+This tutorial can be used to manage almost any component of Oracle Identity Domains via REST API. If you want to skip the tutorial and just use the Postman collection directly you can find it [here](https://raw.githubusercontent.com/m1nka/oracle-identity-domains-postman-collection/main/Oracle%20Identity%20Domains%20-%20REST%20API.postman_collection.json).
 
 ## Step 1: Create a confidential application within your Oracle Identity Domain
 
