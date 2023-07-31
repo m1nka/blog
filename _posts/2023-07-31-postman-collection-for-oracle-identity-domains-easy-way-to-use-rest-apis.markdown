@@ -27,7 +27,7 @@ Within the Oracle Cloud console, [head to Identity Domains](https://cloud.oracle
 - Under **Authorization**, check **Client credentials**
 - Under **Client type** select **Confidential**
 - Scroll down and in the **Token issuance policy** section, set **Authorized resources** to **Specific**.
-- Select **Add app roles** and choose the roles that you need. All roles [are documented here](https://docs.oracle.com/en/cloud/paas/identity-cloud/uaids/understand-administrator-roles.html#GUID-9B488723-43A1-47B1-ACB0-41FFD780FD5D). In my case I choose **User administrator**.
+- Select **Add app roles** and choose the roles that you need. All roles [are documented here](https://docs.oracle.com/en-us/iaas/Content/Identity/roles/understand-administrator-roles.htm). In my case I choose **User administrator**.
 - Choose **Next** and then **Finish** to complete the setup.
 - On the application overview page, click Activate and confirm that you want to activate the application.
 
