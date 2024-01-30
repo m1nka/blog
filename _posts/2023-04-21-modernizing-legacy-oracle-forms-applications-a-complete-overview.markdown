@@ -31,7 +31,7 @@ Even though Oracle will continue to support Oracle Forms, there are many reasons
 
 * **Java Client limitations**: Switching from Java Client to web-based applications allows for easier access, improved scalability, and better compatibility with modern devices.
 * **Lack of PL/SQL skills**: With PL/SQL expertise becoming less common, organizations may struggle to find and retain skilled developers to maintain and develop Oracle Forms applications, making it more practical to adopt modern technologies with a wider talent pool available.
-* **Modern paradigms and cloud integration**: Legacy Oracle Forms may not align with contemporary architectural paradigms and the growing trend of cloud-based services, limiting scalability and flexibility. It also does not separate the application layer from the data layer, which might be undesirable.
+* **Modern paradigms and cloud integration**: Legacy Oracle Forms may not align with contemporary architectural paradigms and the growing trend of cloud-based services, limiting scalability and flexibility. 
 * **Outdated UI and UX**: Modernizing the user interface and simplifying user experience are important. Oracle Forms UI feels outdated and may lead to poor user satisfaction.
 * **Maintenance challenges**: Maintaining and enhancing existing Forms can be difficult and time-consuming, hindering innovation and progress.
 * **External use requirements**: Organizations increasingly need solutions that can be easily accessed and used by external stakeholders, such as customers and partners, for better collaboration and engagement.
@@ -122,7 +122,7 @@ If you are to integrate your legacy application via RESTful APIs check out the n
 
 ## 4.3 Modernizing with ORDS (Oracle RESTful Data Services) <a name="ords"></a>
 
-Oracle REST Data Services (ORDS) ORDS is a solution for creating RESTful web services for Oracle databases. By using ORDS, you can turn your PL/SQL code into web services that can be easily integrated with other applications.
+Oracle REST Data Services (ORDS) ORDS is a solution for creating RESTful web services for Oracle databases. By using ORDS, you can turn your PL/SQL code into web services that can be easily integrated with other applications. It can be freely used with Oracle Database.
 
 Oracle REST Data Services (ORDS) is a standalone Java application that enables the development and deployment of RESTful APIs for Oracle databases. ORDS acts as a middleware that translates RESTful HTTP(S) calls into database interactions, providing a modern and scalable way to access and manipulate data stored in Oracle databases. ORDS features include:
 
@@ -144,7 +144,7 @@ The disadvantages of using ORDS:
 * **UI development**: ORDS doesn't help with creating user interfaces, it really only provides REST interfaces. You'll still need to develop a front-end application.
 * **Complexity for large installation**: When managing a large installation of ORDS APIs, you will need to come up with a robust operating model (monitoring, error handling, change management, integration with version control like Git) for ORDS.
 
-A valid alternative to using ORDS might be to create RESTful APIs via frameworks like Springboot. Springboot offers a lot of tooling to create RESTful APIs and (contrary to ORDS) is open source software. Check out the next chapter for more information.
+Overall I consider this a strong modernization option for Forms. A valid alternative to using ORDS might be to create RESTful APIs via frameworks like Springboot. Springboot offers a lot of tooling to create RESTful APIs and (contrary to ORDS) is open source software. Check out the next chapter for more information.
 
 ## 4.4 Modernizing with a custom implementation <a name="custom-implementation"></a>
 
