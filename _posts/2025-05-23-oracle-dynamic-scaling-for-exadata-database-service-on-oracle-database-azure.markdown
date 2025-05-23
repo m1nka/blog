@@ -6,20 +6,16 @@ tags:
   - cloud
   - automation
   - tutorial
-  - azure
 image: /images/posts/odaa-odys.webp
 date: 2025-05-23T11:27:34.588Z
 ---
-One of the key benefits of migrating databases to the cloud is the ability to scale workloads far more easily than in traditional on-premise environments. This flexibility enables organizations to handle seasonal workload spikes and to reduce costs by scaling down resources at night, on weekends, or during off-peak periods.
+One of the main advantages of migrating databases to the cloud is the ease of scaling workloads compared to traditional on-premises environments. Oracle’s Exadata Database Service (ExaDB), available through Oracle Database@Azure, offers this flexibility as a managed solution. While ExaDB supports online scaling without downtime, the process is generally manual and requires user intervention.
 
-Exadata Database Service (ExaDB) is a managed database service available with Oracle Database@Azure. It’s engineered for organizations that require maximum performance, reliability, and scalability for critical databases, making it an ideal choice for large-scale, data-intensive workloads. Although ExaDB can be scaled online without downtime to adjust resources as needed, this process is typically a manual operation. For automated scaling, Oracle provides the Dynamic Scaling Engine (ODyS) to optimize database workload costs and ensure the database has the right amount of compute resources to handle variable workloads.
+For automated scaling, Oracle provides the **Dynamic Scaling Engine (ODyS)** to optimize database workload costs and ensure the database has the right amount of compute resources to handle variable workloads.
 
 ODyS scales workloads by monitoring CPU load metrics on the Exadata system or by using a weekly schedule to automatically adjust compute resources. ODyS supports ExaDB running on both Dedicated Infrastructure (ExaDB-D) and Exascale Infrastructure (ExaDB-XS). 
 
-This document provides an overview on how to configure ODyS for ExaDB on Oracle DB@Azure. Documentation for ODyS and how to install it can be found here:
-
-* [(ODyS) Oracle Dynamic Scaling Suite Main Index Page (Doc ID 2774779.1)](https://support.oracle.com/epmos/faces/DocumentDisplay?id=2774779.1&parent=WIDGET_REFERENCES&sourceId=2770544.1)
-* [Configure Dynamic Scaling in Oracle Exadata Cloud Infrastructure](https://docs.oracle.com/en/learn/dynamic_scaling_oeci/index.html)
+This document provides an overview on how to configure ODyS for ExaDB on Oracle DB@Azure. Documentation for ODyS and how to install it can be found here: [(ODyS) Oracle Dynamic Scaling Suite Main Index Page (Doc ID 2774779.1](https://support.oracle.com/epmos/faces/DocumentDisplay?id=2774779.1&parent=WIDGET_REFERENCES&sourceId=2770544.1)
 
 ## Architecture: ODyS for ExaDB on Oracle DB@Azure
 
@@ -27,9 +23,9 @@ When deploying the Dynamic Scaling Engine with Oracle Database@Azure, customers 
 
 In a direct deployment, ODyS is typically installed across all the virtual machine nodes within your Exadata VM Cluster. In this case, ODyS monitors and manages resource scaling directly from the Exadata environment. Alternatively, ODyS along with the Remote Dynamic Scaling plugin can be installed on an Azure VM or an OCI VM. In this setup, the Remote Dynamic Scaling plugin is required to connect to the Exadata system and track CPU usage remotely.
 
-![Dynamic Scaling for Oracle DB@Azure architecture](/images/posts/webppro_out_4e9e00bf2fa9befe575c6bdf5a0f9882.webp "Dynamic Scaling for Oracle DB@Azure architecture")
+Using an **OCI VM is the recommended approach for organizations with an OCI Universal Credits Model (UCM) subscription**, customers without a UCM subscription should opt for an Azure VM. In this article, we'll focus on deploying ODyS on an Azure virtual machine to scale an ExaDB VM cluster with Oracle Database@Azure.
 
-Using an **OCI VM is the recommended approach for organizations with an OCI Universal Credits Model (UCM) subscription, customers without a UCM subscription should opt for an Azure VM**. In this article, we'll focus on deploying ODyS on an Azure virtual machine to scale an ExaDB VM cluster with Oracle Database@Azure.
+![Dynamic Scaling for Oracle DB@Azure architecture](/images/posts/webppro_out_4e9e00bf2fa9befe575c6bdf5a0f9882.webp "Dynamic Scaling for Oracle DB@Azure architecture")
 
 ### Installation: ODyS on an Azure virtual machine
 
@@ -43,9 +39,7 @@ Finally, since the Oracle Cloud APIs are not privately accessible within Azure, 
 
 ## Takeaway: Improving resource efficiency with automated scaling
 
-Oracle Dynamic Scaling Engine provides a practical solution for organizations running Oracle databases on Exadata Database Service within Oracle Database@Azure. Automating the scaling process allows for better resource utilization, reduced operational costs, and consistent performance during varying workloads, eliminating the need for manual adjustments. With deployment options across Azure VMs, OCI VMs, and Exadata itself, ODyS offers a flexible approach to optimizing database management in a multi-cloud environment.
-
-For more details, refer to the Oracle Help Center or ODyS documentation:
+Oracle Dynamic Scaling Engine provides a practical solution for organizations running Oracle databases on Exadata Database Service within Oracle Database@Azure. Automating the scaling process allows for better resource utilization, reduced operational costs, and consistent performance during varying workloads, eliminating the need for manual adjustments. With deployment options across Azure VMs, OCI VMs, and Exadata itself, ODyS offers a flexible approach to optimizing database management in a multi-cloud environment.For more details, refer to the Oracle Help Center or ODyS documentation:
 
 * [Oracle Database@Azure](https://www.oracle.com/cloud/azure/oracle-database-at-azure/)
 * [Configure Dynamic Scaling in Oracle Exadata Cloud Infrastructure](https://docs.oracle.com/en/learn/dynamic_scaling_oeci/index.html)
