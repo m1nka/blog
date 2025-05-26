@@ -9,7 +9,7 @@ tags:
 image: /images/posts/odaa-odys.webp
 date: 2025-05-23T11:27:34.588Z
 ---
-One of the main advantages of migrating databases to the cloud is the ease of scaling workloads compared to traditional on-premises environments. Oracle’s Exadata Database Service (ExaDB), available through Oracle Database@Azure, offers this flexibility as a managed solution. While ExaDB supports online scaling without downtime, the process is generally manual and requires user intervention.
+One of the main advantages of migrating databases to the cloud is the ease of scaling workloads compared to traditional on-premises environments. Oracle’s Exadata Database Service (ExaDB), available through Oracle Database@Azure, provides a managed database consolidation platform that enables online scaling of compute resources without downtime. While ExaDB supports online scaling without downtime, the process is generally manual and requires user intervention.
 
 For automated scaling, Oracle provides the **Dynamic Scaling Engine (ODyS)** to optimize database workload costs and ensure the database has the right amount of compute resources to handle variable workloads.
 
@@ -19,7 +19,7 @@ This document provides an overview on how to configure ODyS for ExaDB on Oracle 
 
 ## Architecture: ODyS for ExaDB on Oracle DB@Azure
 
-When deploying the Dynamic Scaling Engine with Oracle Database@Azure, customers have two main options: running it directly on the Exadata system itself or on a separate virtual machine.
+When deploying the Dynamic Scaling Engine with Oracle Database@Azure, customers have two main options: running ODyS directly on the Exadata system itself or on a separate virtual machine.
 
 In a direct deployment, ODyS is typically installed across all the virtual machine nodes within your Exadata VM Cluster. In this case, ODyS monitors and manages resource scaling directly from the Exadata environment. Alternatively, ODyS along with the Remote Dynamic Scaling plugin can be installed on an Azure VM or an OCI VM. In this setup, the Remote Dynamic Scaling plugin is required to connect to the Exadata system and track CPU usage remotely.
 
