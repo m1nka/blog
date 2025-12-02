@@ -13,7 +13,6 @@ When migrating an on-premises Oracle database to Oracle Autonomous Database (ADB
 ## Prerequisites
 
 This tutorial assumes that you have a Virtual Network (VNet) with the following resources deployed:
-
 * **Primary subnet with Oracle Delegation:**  This subnet must be delegated to the `Oracle.Database/networkAttachments`​ service. This is the subnet where your Autonomous Database is deployed.
 * **Autonomous Database:**  You should have deployed an Autonomous Database with a private endpoint and be able to connect to it.
 * (Optional) **Secondary subnet to deploy Azure resources:**  A separate subnet should be used for your private endpoints. The endpoints could also be deployed to a peered VNet.
@@ -37,6 +36,8 @@ To begin, you need to create an Azure Storage Account that supports the NFSv3 pr
    * **Private Endpoint:**  To ensure secure and private communication, configure a private endpoint for your storage account. This endpoint should be placed in the separate subnet you designated for private endpoints in the prerequisites. This step ensures that traffic between your Autonomous Database and the storage account never leaves the Azure private network. You can select "Integrate with private DNS zone" or use a custom DNS solution.
 
 ![](/images/posts/merge-sa-1-20250819184244-u8hx6qf.webp)
+
+Change the configuration on the storage account like this:
 
 1. **Create a container:**  Once the Storage Account has finished provisioning, open the Storage Account, head to **Data Storage** -> **Containers** and create a new container. You can leave the option "No Root Squash".
 2. **Secure Transfer**: The `DBMS_CLOUD_ADMIN`​ package in Oracle Autonomous Database does not directly support the use of stunnel or TLS wrappers like `aznfs`​uses for encrypting NFSv3 connections. Since the traffic is already secured by staying within your private Azure network via the private endpoint, disabling this option is necessary for the connection to work. On your storage account, go to **Settings** -> **Configuration**, and disable **Secure transfer required**.
@@ -69,7 +70,7 @@ To allow communication, you must configure your firewalls:
   - Ensure the Azure NSG that controls traffic to the subnet where storage account's private endpoint is allows inbound traffic from the ADB-S private IP address on the ports mentioned above.
   - Also, if you have Advanced Networking enabled, you would be able to add an Azure NSG to the Oracle Delegated subnet. Ensure this NSG allows traffic as well, similar to the OCI NSG.
 
-#### Check your DNS Configuration in the OCI Virtual Cloud Network
+### Check your DNS Configuration in the OCI Virtual Cloud Network
 
 There are multiple ways to configure DNS with Oracle DB@Azure. Depending on whether you have private DNS forwarding enabled between OCI and Azure the following steps might differ. Importantly, you need to make sure the Autonomous Database instance is able to resolve the URL to the private endpoint of the Azure Storage Account.
 
@@ -80,20 +81,16 @@ If you have not yet configured DNS forwarding, you need to manually manage the D
 3. On the Virtual Cloud Network details page in the OCI console, select your DNS resolver.
 4. Open the Default Private View.
 5. Under **Private Zones**, you can select **Create zone**, to add a new DNS zone to your existing Private View.
-
-   * Select zone type **Primary**, and enter your zone name (in my case it's `blob.core.windows.net`​) and hit **Create**.
-   * Select your newly created DNS zone, and **Manage records**. You will be able to select **Add record**:
-
-     * Enter the name of your DNS record, in my case it's `maxfielduseastnfssa`​.
-     * Select **A - IPv4 address** record.
-     * Select a low **TTL**, like 600 (which could potentially simplify if you make a mistake).
-   * Select **Save Changes**, then **Review changes** and finally **Publish records**.
+   - Select zone type **Primary**, and enter your zone name (in my case it's `blob.core.windows.net`​) and hit **Create**.
+   - Select your newly created DNS zone, and **Manage records**. You will be able to select **Add record**:
+     - Enter the name of your DNS record, in my case it's `maxfielduseastnfssa`​.
+     - Select **A - IPv4 address** record.
+     - Select a low **TTL**, like 600 (which could potentially simplify if you make a mistake).
+   - Select **Save Changes**, then **Review changes** and finally **Publish records**.
 
 If your OCI Virtual Cloud Network is deployed in your home region you may use OCI Cloud Shell with an ephemeral IP address on your VCN to test the DNS resolution using `nslookup maxfielduseastnfssa.blob.core.windows.net`​, which in my case returns `10.0.0.7`​.
 
 > **Note:**  Do not try to use OCI Cloud Shell to test the connectivity towards Azure private IP addresses like the Storage Account private endpoint, this connectivity is blocked.
-
-- - -
 
 ## Mounting Azure Blob Storage on Autonomous Database
 
@@ -120,7 +117,7 @@ CREATE OR REPLACE DIRECTORY BLOBNFS_DIR AS 'BLOBNFS';
 Finally, attach the file system using `DBMS_CLOUD_ADMIN`​:
 
 ```sql
-exec DBMS_CLOUD_ADMIN.ATTACH_FILE_SYSTEM(file_system_name => 'MAXFIELDUSEASTNFSSA', file_system_location => 'maxfielduseastnfssa.privatelink.blob.core.windows.net:/maxfielduseastnfssa/maxcontainer', directory_name => 'BLOBNFS_DIR', description => 'Azure blob as nfs', params => JSON_OBJECT('nfs_version' value 3));
+exec DBMS_CLOUD_ADMIN.ATTACH_FILE_SYSTEM(file_system_name => 'MAXFIELDUSEASTNFSSA', file_system_location => 'maxfielduseastnfssa.blob.core.windows.net:/maxfielduseastnfssa/maxcontainer', directory_name => 'BLOBNFS_DIR', description => 'Azure blob as nfs', params => JSON_OBJECT('nfs_version' value 3));
 ```
 
 You should see `PL/SQL procedure successfully completed.`​ You can test the attachment by listing the contents:
