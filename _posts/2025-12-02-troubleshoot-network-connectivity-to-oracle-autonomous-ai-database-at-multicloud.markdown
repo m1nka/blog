@@ -9,13 +9,13 @@ date: 2025-12-02T14:26:27.537Z
 ---
 This article provides some tips on how to troubleshoot network connectivity to an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system and is only reachable on the database ports.
 
-> Part 2 of this article series covers the connectivity in the opposite direction.
+> Part 2 of this article series covers the connectivity in the opposite direction, e.g. from ADB-S to an NFS or key management system.
 
 ## Architecture overview
 
 For this article, we assume you are using the networking option `Private endpoint access only`​ with the ADB-S instance. This means the Autonomous AI Database is only reachable on a private endpoint (PE) within your Vnet (Azure) or VPC (Google). Please see the archicture overview below.
 
-> **Tip for Oracle DB@Azure:**  When configuring Oracle DB@Azure, **always ensure you leave enough IP space for a secondary subnet** on your database VNet. You can use this to deploy an jump host Azure VM, making future debugging much easier.​
+> **Tip for Azure:** When configuring Oracle Database@Azure, always ensure you leave enough IP space for a secondary subnet on your database VNet. You can use this to deploy an jump host Azure VM, making future debugging much easier.​
 
 ![](/images/posts/odbatx-multicloud-architecture.webp "Oracle Database@X architecture")
 
@@ -31,13 +31,13 @@ For this article, we assume you are using the networking option `Private endpoin
 
 ### Routing & Testing connectivity
 
-> **Tip for Oracle DB@Azure:**  It is highly recommended to [activate Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) on your Azure subscription before adding the Oracle.Database subnet delegation. Also check the[ supported network topologies](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#supported-topologies).
+> **Tip for Azure:** It is highly recommended to [activate Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) on your Azure subscription before adding the Oracle.Database subnet delegation. Also check the[ supported network topologies](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#supported-topologies).
 >
-> **Tip for Oracle DB@Azure:**  If you are using UDRs, see the [Azure documentation about route specificity](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#udr-requirements-for-routing-traffic-to-oracle-databaseazure).
+> **Tip for Azure:** If you are using UDRs with Oracle DB@Azure delegated subnet, see the [Azure documentation about route specificity](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#udr-requirements-for-routing-traffic-to-oracle-databaseazure).
 
 The Autonomous Database Private Endpoint (PE) has a unique IPv4 address that needs to be reachable. This private endpoint should automatically be routable from within your Google VPC or Azure VNet, where your database resides (without any additional configuration). Beyond that, native Azure Vnet routing and Google VPC routing applies. If you are connecting from on-premise, it's recommended to try testing connectivity from the same VNet / VPC first.
 
-#### How to test connectivity to ADB-S
+### How to test connectivity to ADB-S
 
 You can connect to an Autonomous AI database private endpoint using the **Database Private URL** (recommended) or using the **Database Private IPv4 address** directly. You can find both the Database Private URL and the Database Private IP address on the Autonomous Database instance details page on the Azure/GCP portal.
 
@@ -134,7 +134,7 @@ Go to the security rules section.
 
 Add an appropriate **Ingress rule:**
 
-* Create a **stateful** rule (stateless=no),
+* Create a **stateful** rule (Stateless=No),
 * select your **source CIDR range** from on-prem or different VNet
 * and select **TCP traffic.**
 
@@ -152,6 +152,6 @@ If you have [Advanced Networking enabled](https://learn.microsoft.com/en-us/azur
 
 Similarly, for Oracle Database@Google Cloud, OCI NSGs always apply and control traffic to and from the database.
 
-Additionally, VPC firewalls also apply, however only Egress connections from Google Compute Engine, Kubernetes, Cloud Run, etc.. Note that the VPC firewall rules will not apply at Ingress level to the database (OCI VNICs are strictly speaking not part of VPC).
+Additionally, VPC firewalls also apply, however only Egress connections from Google Compute Engine, Kubernetes, Cloud Run, etc.. Note that the VPC firewall rules will not apply at Ingress level to the database (OCI VNICs are not directly part of Google VPC).
 
 ‍
