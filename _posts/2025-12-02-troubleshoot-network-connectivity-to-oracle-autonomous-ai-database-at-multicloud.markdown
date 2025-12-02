@@ -32,7 +32,7 @@ For this article, we assume you are using the networking option `Private endpoin
 ### Routing & Testing connectivity
 
 > **Tip for Azure:** It is highly recommended to [activate Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) on your Azure subscription before adding the Oracle.Database subnet delegation. Also check the[ supported network topologies](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#supported-topologies).
->
+
 > **Tip for Azure:** If you are using UDRs with Oracle DB@Azure delegated subnet, see the [Azure documentation about route specificity](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#udr-requirements-for-routing-traffic-to-oracle-databaseazure).
 
 The Autonomous Database Private Endpoint (PE) has a unique IPv4 address that needs to be reachable. This private endpoint should automatically be routable from within your Google VPC or Azure VNet, where your database resides (without any additional configuration). Beyond that, native Azure Vnet routing and Google VPC routing applies. If you are connecting from on-premise, it's recommended to try testing connectivity from the same VNet / VPC first.
@@ -101,14 +101,12 @@ Address: 10.0.1.206
 By default, DNS resolution **should work from the same Vnet (Azure) or same VPC (Google)** . If you are connecting from a different VNet or VPC, it's normal that DNS resolution does not automatically work. Additional configuration is necessary, please refer to the documentation below.
 
 Refer to these articles on DNS resolution with Oracle Database@Azure:
-
-* [Oracle Database@Azure DNS documentation](https://docs.oracle.com/en-us/iaas/Content/database-at-azure/network-dns.htm)
-* [Microsoft Blog: Oracle Database@Azure DNS Setup](https://techcommunity.microsoft.com/blog/fasttrackforazureblog/oracle-databaseazure-dns-setup/4304513)
+- [Oracle Database@Azure DNS documentation](https://docs.oracle.com/en-us/iaas/Content/database-at-azure/network-dns.htm)
+- [Microsoft Blog: Oracle Database@Azure DNS Setup](https://techcommunity.microsoft.com/blog/fasttrackforazureblog/oracle-databaseazure-dns-setup/4304513)
 
 For DNS resolution with Oracle Database@Google Cloud, check the following articles:
-
-* [Oracle Database@Google Cloud DNS documentation](https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/network-dns.htm)
-* [Solution playbook: Configure DNS resolution in Oracle DB@Google Cloud](https://docs.oracle.com/en/solutions/dns-resolution-oracle-db-at-google-cloud/configure1.html)
+- [Oracle Database@Google Cloud DNS documentation](https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/network-dns.htm)
+- [Solution playbook: Configure DNS resolution in Oracle DB@Google Cloud](https://docs.oracle.com/en/solutions/dns-resolution-oracle-db-at-google-cloud/configure1.html)
 
 ### Firewalls and Network Security Groups
 
@@ -117,7 +115,7 @@ The most common issue is that a firewall rule is blocking the connection. Next t
 #### OCI Network Security Groups (OCI NSGs)
 
 > **Note:**  In OCI, connections are always dropped per default, unless there is an allow statement in place. Having no OCI NSG or Security List configured at all does not work, because all traffic would be disallowed.
->
+
 > **Note:**  It's recommended to use [OCI NSGs](https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/networksecuritygroups.htm) only, and leave the [OCI Security List](https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm) section empty.
 
 To check your OCI NSGs, navigate to your Autonomous AI database instance in Azure/Google and click `Go to OCI`​ (Azure) or `Manage in OCI`​:
@@ -133,10 +131,9 @@ Go to the security rules section.
 ![](/images/posts/odbatx-security-rules.webp "Select tab security rules")
 
 Add an appropriate **Ingress rule:**
-
-* Create a **stateful** rule (Stateless=No),
-* select your **source CIDR range** from on-prem or different VNet
-* and select **TCP traffic.**
+- Create a **stateful** rule (Stateless=No),
+- select your **source CIDR range** from on-prem or different VNet
+- and select **TCP traffic.**
 
 > **Note:**  With Oracle DB@Azure, TCP connectivity is allowed per default on the OCI NSG from the same VNet. With Oracle DB@Google Cloud, per default TCP connectivity is allowed from anywhere.​
 
@@ -153,5 +150,3 @@ If you have [Advanced Networking enabled](https://learn.microsoft.com/en-us/azur
 Similarly, for Oracle Database@Google Cloud, OCI NSGs always apply and control traffic to and from the database.
 
 Additionally, VPC firewalls also apply, however only Egress connections from Google Compute Engine, Kubernetes, Cloud Run, etc.. Note that the VPC firewall rules will not apply at Ingress level to the database (OCI VNICs are not directly part of Google VPC).
-
-‍
