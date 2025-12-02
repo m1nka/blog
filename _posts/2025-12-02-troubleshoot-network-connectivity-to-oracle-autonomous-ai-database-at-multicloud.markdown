@@ -4,6 +4,7 @@ title: "Troubleshoot network connectivity to Oracle Autonomous AI Database at
   Multicloud "
 tags:
   - cloud
+  - troubleshooting
 image: /images/posts/adb-connectivity-p1.webp
 date: 2025-12-02T14:26:27.537Z
 ---
