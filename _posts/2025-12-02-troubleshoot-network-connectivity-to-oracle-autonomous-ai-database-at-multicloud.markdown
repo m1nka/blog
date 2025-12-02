@@ -16,21 +16,20 @@ This article provides some tips on how to troubleshoot network connectivity to a
 
 For this article, we assume you are using the networking option `Private endpoint access only`​ with the ADB-S instance. This means the Autonomous AI Database is only reachable on a private endpoint (PE) within your Vnet (Azure) or VPC (Google). Please see the archicture overview below.
 
-> **Tip for Azure:** When configuring Oracle Database@Azure, always ensure you leave enough IP space for a secondary subnet on your database VNet. You can use this to deploy an jump host Azure VM, making future debugging much easier.​
 
 ![](/images/posts/odbatx-multicloud-architecture.webp "Oracle Database@X architecture")
+
+> **Tip for Azure:** When configuring Oracle Database@Azure, always ensure you leave enough IP space for a secondary subnet on your database VNet. You can use this to deploy an jump host Azure VM, making future debugging much easier.​
 
 ## Debugging connections to Autonomous DB
 
 **Use case:**  Connecting an SQL client or application to your ADB-S instance.
 
-### Checklist
-
-1. **Routing & Testing connectivity:**  Is the Autonomous DB Private Endpoint (PE) reachable?
+1. **Routing & Testing:** How to test connectivity?
 2. **DNS**: Can you resolve the DNS name?
 3. **Firewall**: Are there any firewall rules blocking the connection?
 
-### Routing & Testing connectivity
+### 1. Routing & Testing connectivity
 
 > **Tip for Azure:** It is highly recommended to [activate Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) on your Azure subscription before adding the Oracle.Database subnet delegation. Also check the[ supported network topologies](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#supported-topologies).
 
@@ -85,7 +84,7 @@ In this case, try to test with the IPv4 address of the ADB-S PE directly like th
 $ curl -v telnet://10.0.1.206:1521
 ```
 
-### DNS
+### 2. DNS resolution
 
 You can double check if the DNS name resolution works by running `nslookup`​:
 
@@ -109,7 +108,7 @@ For DNS resolution with Oracle Database@Google Cloud, check the following articl
 - [Oracle Database@Google Cloud DNS documentation](https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/network-dns.htm)
 - [Solution playbook: Configure DNS resolution in Oracle DB@Google Cloud](https://docs.oracle.com/en/solutions/dns-resolution-oracle-db-at-google-cloud/configure1.html)
 
-### Firewalls and Network Security Groups
+### 3. Firewalls and Network Security Groups
 
 The most common issue is that a firewall rule is blocking the connection. Next to the native firewalls in Azure and Google, you need to allow connectivity on OCI.
 
