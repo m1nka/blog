@@ -16,8 +16,7 @@ This tutorial assumes that you have a Virtual Network (VNet) with the following 
 
 * **Primary subnet with Oracle Delegation:**  This subnet must be delegated to the `Oracle.Database/networkAttachments`​ service. This is the subnet where your Autonomous Database is deployed.
 * **Autonomous Database:**  You should have deployed an Autonomous Database with a private endpoint and be able to connect to it.
-* (Optional) **Secondary subnet to deploy Azure resources:**  A separate subnet should be used for your private endpoints. The endpoints could also be deployed to a peered VNet.
-* (Optional, but recommended) **Azure VM**: Deploy an Azure VM into the secondary subnet.
+* (Optional, but recommended) **Secondary subnet for PE and Azure VM:**  A separate subnet should be used for your private endpoints. The endpoints could also be deployed to a peered VNet. Deploy an Azure VM into the secondary subnet.
 
 > **Important**: Verify if you have [activated Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features), before adding the subnet delegation. Without Advanced Networking the connection between your database to a [private endpoint](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) in the same virtual network on Azure-delegated subnets will not function properly. You can use VNet peering to work around this limitation.
 
