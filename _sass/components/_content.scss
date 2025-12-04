@@ -13,4 +13,14 @@
       color: $color-brand;
     }
   }
+
+  // Reduce paragraph spacing for more compact blog posts
+  p {
+    margin-bottom: $base-spacing-unit + half($base-spacing-unit); // 24px instead of 32px
+  }
+
+  // Maintain proper heading separation from content above
+  h2, h3, h4, h5, h6 {
+    margin-top: double($base-spacing-unit); // 32px
+  }
 }
