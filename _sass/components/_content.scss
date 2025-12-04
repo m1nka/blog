@@ -5,6 +5,8 @@
 .c-content {
   text-align: justify;
   text-justify: inter-word;
+  line-height: 1.65; // Reduced from 1.7 for slightly more compact blog posts
+
   a:not(.c-btn) {
     text-decoration: underline;
     text-decoration-skip: ink;
@@ -16,11 +18,12 @@
 
   // Reduce paragraph spacing for more compact blog posts
   p {
-    margin-bottom: $base-spacing-unit + half($base-spacing-unit); // 24px instead of 32px
+    margin-bottom: 17px; // 15% reduction from 20px
   }
 
   // Maintain proper heading separation from content above
   h2, h3, h4, h5, h6 {
     margin-top: double($base-spacing-unit); // 32px
+    margin-bottom: $base-spacing-unit + half($base-spacing-unit); // 24px instead of 32px
   }
 }

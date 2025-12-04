@@ -10,7 +10,7 @@ particlesJS.load('particles-js', '/js/particles.json', () => {
 // dark theme toggle
 function toggleTheme() {
   if (!getTheme()) {
-    setTheme('light');
+    setTheme('dark'); // Default to dark theme
   }
   if (getTheme() === 'dark') {
     document.documentElement.setAttribute('data-theme', 'light');
