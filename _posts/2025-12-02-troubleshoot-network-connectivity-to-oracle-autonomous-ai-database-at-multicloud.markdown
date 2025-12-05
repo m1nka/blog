@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Troubleshoot network connectivity to Oracle Autonomous AI Database at
-  Multicloud "
+title: "Part 1: Troubleshoot network connectivity to Oracle Autonomous AI Database at
+  Multicloud"
 tags:
   - cloud
   - troubleshooting
@@ -10,14 +10,14 @@ date: 2025-12-02T14:26:27.537Z
 ---
 This article provides some tips on how to troubleshoot network connectivity to an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system and is only reachable on the database ports.
 
-> Part 2 of this article series covers the connectivity in the opposite direction, e.g. from ADB-S to an NFS or key management system.
+> [Part 2 of this article](https://maximilian.tech/2025/12/05/part-2-troubleshoot-network-connectivity-from-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from ADB-S to an NFS or key management system.
 
 ## Architecture overview
 
 For this article, we assume you are using the networking option `Private endpoint access only`​ with the ADB-S instance. This means the Autonomous AI Database is only reachable on a private endpoint (PE) within your Vnet (Azure) or VPC (Google). Please see the archicture overview below.
 
 
-![](/images/posts/odbatx-multicloud-architecture.webp "Oracle Database@X architecture")
+![](/images/posts/network-debugging-article-Page-1-1.webp "Oracle Database@X architecture")
 
 > **Tip for Azure:** When configuring Oracle Database@Azure, always ensure you leave enough IP space for a secondary subnet on your database VNet. You can use this to deploy an jump host Azure VM, making future debugging much easier.​
 

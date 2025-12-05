@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Part 2: Troubleshoot network connectivity from Oracle Autonomous AI
-  Database at Multicloud "
+  Database at Multicloud"
 tags:
   - cloud
   - troubleshooting
@@ -10,7 +10,7 @@ date: 2025-12-05T13:40:51.549Z
 ---
 This article provides some tips on how to troubleshoot outbound network connectivity from an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. You might **need an outbound private connection** from ADB-S to mount an NFS share or you might want to integrate ADB-S with Azure Key Vault. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system, limiting the diagnostic tools and methods available to verify connectivity to external endpoints.
 
-> Part 1 of this article series covers the connectivity in the opposite direction, e.g. from a VM or an on-premise client to ADB-S.
+> [Part 1 of this article](https://maximilian.tech/2025/12/02/troubleshoot-network-connectivity-to-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from a VM or an on-premise client to ADB-S.
 
 ## Architecture overview
 
@@ -19,7 +19,7 @@ For this article, we assume you are using the networking option `Private endpoin
 ![adb-s-at-x-architecture-to-pe](/images/posts/adb-s-at-x-architecture-to-pe.webp)
 
 > **Tip for Azure:**  It is highly recommended to [activate Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) on your Azure subscription before adding the Oracle.Database subnet delegation. Also check the[ supported network topologies](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#supported-topologies) and limitations without Advanced Networking.
->
+
 > **Tip for Azure:**  If you **don't** have Advanced Networking enabled, I recommend to checkout [this blog article](https://sites.oracle.com/site/maa/post/nfs-options-zdm-migration-oracle-database-azure) when choosing NFS share and network topology.
 
 ## Debugging connections from Autonomous DB
@@ -52,13 +52,11 @@ Select the default private view:
 
 ![Screenshot 2025-12-05 at 10.02.31](/images/posts/select-default-private-view.webp)
 
-Go to the tab `Private Zones` and create a new private zone:
-
-* **Example:**  If you want to connect to `maxfielduseastnfssa.blob.core.windows.net`​ you should create the zone for `blob.core.windows.net`.
+Go to the tab `Private Zones` and create a new private zone. For example, if you want to connect to `maxfielduseastnfssa.blob.core.windows.net`​ you should create the zone for `blob.core.windows.net`.
 
 ![create-private-zone](/images/posts/create-private-zone.webp)
 
-Select the newly created zone, go to tab `Records`​ and `Manage records`​. `Add record`​ with the following fields: Name (e.g. `maxfielduseastnfssa`​), Type: `A - IPv4 address`, TTL (time to live), and the IPv4 address at the bottom.
+Select the newly created zone, go to tab `Records`​ and `Manage records`​. Then, `Add record`​ with type: `A - IPv4 address`.
 
 > Tip: I recommend setting the TTL (Time to Live) very low, e.g. 60 or 120. It makes debugging much easier, also if you ever quickly need a configuration change, you will be able to execute it much faster.
 
@@ -66,7 +64,7 @@ Select the newly created zone, go to tab `Records`​ and `Manage records`​. `
 
 Click `Save changes`​, `Review changes`​ and `Publish changes`.
 
-> Tip: If you are working in a VCN in your [Oracle Cloud home region](https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingregions.htm#The), you can use [OCI Cloud Shell](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro.htm) with [an ephemeral endpoint](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro_topic-Cloud_Shell_Networking.htm#Cloud_Shell_Private_Access) to execute an `nslookup`​ to verify DNS resolution. It's currently not possible to verify DNS outside of your home region using ADB-S. Note that **private connectivity from the Cloud Shell to Azure VNets is always blocked**.
+> Optional: If you are working in a VCN in your [Oracle Cloud home region](https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingregions.htm#The), you can use [OCI Cloud Shell](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro.htm) with [an ephemeral endpoint](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro_topic-Cloud_Shell_Networking.htm#Cloud_Shell_Private_Access) to execute an `nslookup`​ to verify DNS resolution. It's currently not possible to verify DNS outside of your home region using ADB-S. Note that **private connectivity from the Cloud Shell to Azure VNets is always blocked**.
 
 ## 2. Set outbound connections to private endpoint
 
@@ -222,11 +220,11 @@ END;
 
 ### Advanced Networking (Oracle DB@Azure only)
 
-If [Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) is not active on your Deit can likely [cause issues](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#constraints). The only way to find out is via Microsoft SR.
+If [Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) is not active on your Oracle.Database delegated subnet, it can [cause complications](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#constraints). The only way to find out is via Microsoft SR.
 
 ### NFS version
 
-Be sure to choose the right NFS version when using `DBMS_CLOUD_ADMIN.ATTACH_FILE_SYSTEM`.
+Be sure to choose the right NFS version when using the `DBMS_CLOUD_ADMIN` command for `ATTACH_FILE_SYSTEM`.
 
 ### DNS caching
 
