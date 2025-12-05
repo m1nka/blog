@@ -2,10 +2,10 @@
 layout: post
 title: Oracle Dynamic Scaling for Exadata Database Service on Oracle Database@Azure
 tags:
-  - oci
   - cloud
   - automation
   - tutorial
+  - azure
 image: /images/posts/odaa-odys.webp
 date: 2025-05-23T11:27:34.588Z
 ---

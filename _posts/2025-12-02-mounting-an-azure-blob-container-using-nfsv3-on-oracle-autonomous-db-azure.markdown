@@ -3,8 +3,8 @@ layout: post
 title: Mounting an Azure Blob Container using NFSv3 on Oracle Autonomous DB@Azure
 tags:
   - cloud
-  - oci
   - tutorial
+  - azure
 image: /images/posts/adb-blob-nfsv3-20250819185848-eap6gfp.webp
 date: 2025-12-02T09:51:44.529Z
 ---

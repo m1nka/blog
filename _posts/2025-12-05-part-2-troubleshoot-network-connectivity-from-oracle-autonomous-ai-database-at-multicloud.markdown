@@ -5,6 +5,8 @@ title: "Part 2: Troubleshoot network connectivity from Oracle Autonomous AI
 tags:
   - cloud
   - troubleshooting
+  - azure
+  - google
 image: /images/posts/adb-connectivity-p1.webp
 date: 2025-12-05T13:40:51.549Z
 ---
