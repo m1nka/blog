@@ -4,7 +4,7 @@ title: About
 image: '/images/pages/me.jpeg'
 ---
 
-Hi 👋 I'm Max. You have stumbled across my blog where I write about cloud computing, tech, travel and more. Currently, I work as a Cloud Engineer at Oracle. I graduated from University of Vienna with a degree in Business Informatics and have worked as a full stack developer after that. Since I regularly work on cloud technologies, I've decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️
+Hi 👋 I'm Max. You have stumbled across my blog where I write about cloud computing, tech, travel and more. Currently, I work in Multicloud Backbelt team at Oracle. I graduated from University of Vienna with a degree in Business Informatics, became a founder and have worked as full stack developer and cloud architect after that. Since I regularly work on cloud technologies, I've decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️
 
 For any inquiries you can reach out to me [by mail](mailto:blog@maximilian.tech). 
 
@@ -17,3 +17,5 @@ This blog is hosted completely for free on [Oracle Cloud free tier](https://www.
 The blog is based on the static-site generator Jekyll. [Netlify CMS](https://www.netlifycms.org/) is used to manage the blog content. Netlify CMS commits all changes to a Git repository hosted by Github. There are Github action pipelines in place, which build the page using Jekyll and use `scp` to copy the static files to the webserver.
 
 Also checkout [this article](https://maximilian.tech/2021/01/29/free-blog-hosting-getting-the-perfect-lighthouse-score-100-100-100-100/) where I go into more details on how I built this blog.
+
+> **Update 2025**: I decided to move the blog to a new platform. The combination of Github Actions and GitHub Pages is just too perfect for Jekyll.
