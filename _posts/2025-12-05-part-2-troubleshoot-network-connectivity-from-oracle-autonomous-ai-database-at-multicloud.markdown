@@ -8,19 +8,19 @@ tags:
 image: /images/posts/adb-connectivity-p1.webp
 date: 2025-12-05T13:40:51.549Z
 ---
-This article provides some tips on how to troubleshoot outbound network connectivity from an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. You might **need an outbound private connection** from ADB-S to mount an NFS share or you might want to integrate ADB-S with Azure Key Vault. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system, limiting the diagnostic tools and methods available to verify connectivity to external endpoints.
+This article provides some tips on how to troubleshoot outbound network connectivity from an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. You might **need an outbound private connection** from ADB-S to mount an NFS share or you might want to integrate ADB-S with an external key management system. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system, limiting the diagnostic tools and methods available to verify connectivity to external endpoints.
 
 > [Part 1 of this article](https://maximilian.tech/2025/12/02/troubleshoot-network-connectivity-to-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from a VM or an on-premise client to ADB-S.
 
 ## Architecture overview
 
-For this article, we assume you are using the networking option `Private endpoint access only` with the ADB-S instance. This means the Autonomous AI Database is only reachable on a private endpoint (PE) within your Vnet (Azure) or VPC  (Google). Please see the archicture overview below.
+For this article, we assume you are using the networking option `Private endpoint access only` with the ADB-S instance. This means the Autonomous AI Database is only reachable on a private endpoint (PE) within your Vnet (Azure) or VPC  (Google). Please see the architecture overview below.
 
 ![adb-s-at-x-architecture-to-pe](/images/posts/adb-s-at-x-architecture-to-pe.webp)
 
 > **Tip for Azure:**  It is highly recommended to [activate Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) on your Azure subscription before adding the Oracle.Database subnet delegation. Also check the[ supported network topologies](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#supported-topologies) and limitations without Advanced Networking.
 
-> **Tip for Azure:**  If you **don't** have Advanced Networking enabled, I recommend to checkout [this blog article](https://sites.oracle.com/site/maa/post/nfs-options-zdm-migration-oracle-database-azure) when choosing NFS share and network topology.
+> **Tip for Azure:**  If you **don't** have Advanced Networking enabled, I recommend to check out [this blog article](https://sites.oracle.com/site/maa/post/nfs-options-zdm-migration-oracle-database-azure) when choosing NFS share and network topology.
 
 ## Debugging connections from Autonomous DB
 
@@ -86,7 +86,7 @@ Finally, if you would ever need to reset this parameter you could run `ALTER DAT
 
 ## 3. Open ADB-S network ACLs
 
-Connect to your Autonomous DB instance and open the networking ACLs from ADB-S (find the [API reference here](https://docs.oracle.com/en/database/oracle/oracle-database/26/arpls/DBMS_NETWORK_ACL_ADMIN.html#GUID-2512526D-0B2A-44BF-890D-03B5BBCB8442)). You can use wildcards such as `*.blob.core.windows.net`​ too. For connecting to NFS Share you would need `resolve`​ and `connect`​, for integrating with an external key vault you would also need `http`:
+Connect to your Autonomous DB instance and open the networking ACLs from ADB-S (find the [API reference here](https://docs.oracle.com/en/database/oracle/oracle-database/26/arpls/DBMS_NETWORK_ACL_ADMIN.html#GUID-2512526D-0B2A-44BF-890D-03B5BBCB8442)). You can use wildcards such as `*.blob.core.windows.net`​ too. For connecting to an NFS Share you would need `resolve`​ and `connect`​, for integrating with an external key vault you would additionally need `http`:
 
 ```sql
 BEGIN
@@ -131,7 +131,7 @@ SELECT HOST,
 
 Make sure your Network Security Groups allow outgoing traffic from the ADB-S instance to your Azure private endpoint. You need to check in both places:
 
-* **OCI NSG attached to your ADB-S instance:**  Per default there should be an `Egress rule`​ for destination `0.0.0.0/0` for all protocols. So unless this rule was changed or deleted you don't have to configure anything.
+* **OCI NSG attached to your ADB-S instance:**  By default there should be an `Egress rule`​ for destination `0.0.0.0/0` for all protocols. So unless this rule was changed or deleted you don't have to configure anything.
 * **Azure NSGs and firewalls:**  Also make sure to allow traffic on the Azure VNets.
 
 ## 5. Testing the outbound connection
@@ -162,7 +162,7 @@ exec DBMS_CLOUD_ADMIN.ATTACH_FILE_SYSTEM(file_system_name => 'MAXFIELDUSEASTNFSS
 
 If the mount was successful, you should see `PL/SQL procedure successfully completed.`​ You can list the contents using `SELECT * FROM TABLE(DBMS_CLOUD.LIST_FILES('MYNFS_DIR'));`.
 
-If the mount is unsuccessful, it would like something like this:
+If the mount is unsuccessful, it would look something like this:
 
 ```bash
 ERROR at line 1:
@@ -228,7 +228,7 @@ Be sure to choose the right NFS version when using the `DBMS_CLOUD_ADMIN` comman
 
 ### DNS caching
 
-Because ADB-S is a shared service, it's not completely clear how the DNS caching works in the background. In addition, beware that Azure private endpoint addresses are often publicly resolvable with public IP addresses. For example when I create an Azure Key Vault with a private endpoint using `emea-maxakv.vault.azure.net`​, which resolves to `10.0.0.11` it will also publicly resolve to a different address:
+Because ADB-S is a shared service, it's not completely clear how the DNS caching works in the background. In addition, beware that Azure private endpoint addresses are often publicly resolvable with public IP addresses. For example when I create an Azure Key Vault with a private endpoint using `emea-maxakv.vault.azure.net`​, which resolves to `10.0.0.11`, it will also publicly resolve to a different address:
 
 ```bash
 [azureuser@maxeastusvm ~]$ nslookup emea-maxakv.vault.azure.net
@@ -261,7 +261,7 @@ Name:	est.tm.prd.r.kv.aadg.trafficmanager.net
 Address: 40.71.10.202
 ```
 
-This can cause situations, where the ADB-S instance has cached a wrong entry. In these cases, unfortunately the only solution seems to be to ... wait it out... and try again the next day. I would recommend following this tutorial in the right order, don't execute any tests before configuring the private DNS and setting outbound connectivity to private. 
+This can cause situations where the ADB-S instance has cached a wrong entry. In these cases, unfortunately the only solution seems to be to ... wait it out... and try again the next day. I would recommend following this tutorial in the right order; don't execute any tests before configuring the private DNS and setting outbound connectivity to private. 
 
 ## Conclusion
 

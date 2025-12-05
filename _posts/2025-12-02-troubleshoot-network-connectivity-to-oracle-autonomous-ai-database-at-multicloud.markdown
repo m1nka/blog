@@ -14,12 +14,12 @@ This article provides some tips on how to troubleshoot network connectivity to a
 
 ## Architecture overview
 
-For this article, we assume you are using the networking option `Private endpoint access only`​ with the ADB-S instance. This means the Autonomous AI Database is only reachable on a private endpoint (PE) within your Vnet (Azure) or VPC (Google). Please see the archicture overview below.
+For this article, we assume you are using the networking option `Private endpoint access only`​ with the ADB-S instance. This means the Autonomous AI Database is only reachable on a private endpoint (PE) within your VNet (Azure) or VPC (Google). Please see the architecture overview below.
 
 
 ![](/images/posts/network-debugging-article-Page-1-1.webp "Oracle Database@X architecture")
 
-> **Tip for Azure:** When configuring Oracle Database@Azure, always ensure you leave enough IP space for a secondary subnet on your database VNet. You can use this to deploy an jump host Azure VM, making future debugging much easier.​
+> **Tip for Azure:** When configuring Oracle Database@Azure, always ensure you leave enough IP space for a secondary subnet on your database VNet. You can use this to deploy a jump host Azure VM, making future debugging much easier.​
 
 ## Debugging connections to Autonomous DB
 
@@ -35,7 +35,7 @@ For this article, we assume you are using the networking option `Private endpoin
 
 > **Tip for Azure:** If you are using UDRs with Oracle DB@Azure delegated subnet, see the [Azure documentation about route specificity](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#udr-requirements-for-routing-traffic-to-oracle-databaseazure).
 
-The Autonomous Database Private Endpoint (PE) has a unique IPv4 address that needs to be reachable. This private endpoint should automatically be routable from within your Google VPC or Azure VNet, where your database resides (without any additional configuration). Beyond that, native Azure Vnet routing and Google VPC routing applies. If you are connecting from on-premise, it's recommended to try testing connectivity from the same VNet / VPC first.
+The Autonomous Database Private Endpoint (PE) has a unique IPv4 address that needs to be reachable. This private endpoint should automatically be routable from within your Google VPC or Azure VNet, where your database resides (without any additional configuration). Beyond that, native Azure VNet routing and Google VPC routing applies. If you are connecting from on-premise, it's recommended to try testing connectivity from the same VNet / VPC first.
 
 ### How to test connectivity to ADB-S
 
@@ -98,7 +98,7 @@ Name:	fpncrhpq.adb.us-ashburn-1.oraclecloud.com
 Address: 10.0.1.206
 ```
 
-By default, DNS resolution **should work from the same Vnet (Azure) or same VPC (Google)** . If you are connecting from a different VNet or VPC, it's normal that DNS resolution does not automatically work. Additional configuration is necessary, please refer to the documentation below.
+By default, DNS resolution **should work from the same VNet (Azure) or same VPC (Google)** . If you are connecting from a different VNet or VPC, it's normal that DNS resolution does not automatically work. Additional configuration is necessary, please refer to the documentation below.
 
 Refer to these articles on DNS resolution with Oracle Database@Azure:
 - [Oracle Database@Azure DNS documentation](https://docs.oracle.com/en-us/iaas/Content/database-at-azure/network-dns.htm)
