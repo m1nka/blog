@@ -4,13 +4,15 @@ particlesJS.load('particles-js', '/js/particles.json', () => {
   // console.log('callback - particles.js config loaded');
   if (getTheme() === 'dark') {
     setParticleDarkTheme();
+  } else {
+    setParticleLightTheme();
   }
 });
 
 // dark theme toggle
 function toggleTheme() {
   if (!getTheme()) {
-    setTheme('dark'); // Default to dark theme
+    setTheme('light'); // Default to light theme
   }
   if (getTheme() === 'dark') {
     document.documentElement.setAttribute('data-theme', 'light');
