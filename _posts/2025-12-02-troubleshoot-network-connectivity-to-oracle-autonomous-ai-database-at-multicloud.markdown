@@ -34,9 +34,9 @@ For this article, we assume you are using the networking option `Private endpoin
 
 **Use case:**  Connecting an SQL client or application to your ADB-S instance.
 
-1. **[Routing & Testing](#1-routing--testing-connectivity):** How to test connectivity?
-2. **[DNS](#2-dns-resolution)**: Can you resolve the DNS name?
-3. **[Firewall](#3-firewalls-and-network-security-groups)**: Are there any firewall rules blocking the connection?
+1. [Routing & Testing](#1-routing--testing-connectivity): How to test connectivity?
+2. [DNS](#2-dns-resolution): Can you resolve the DNS name?
+3. [Firewall](#3-firewalls-and-network-security-groups): Are there any firewall rules blocking the connection?
 
 ### 1. Routing & Testing connectivity
 

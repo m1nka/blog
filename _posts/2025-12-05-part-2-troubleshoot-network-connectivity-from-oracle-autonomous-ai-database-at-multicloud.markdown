@@ -32,11 +32,11 @@ For this article, we assume you are using the networking option `Private endpoin
 
 **Use case:**  You need an outgoing connection from ADB-S to Azure Blob, mounting an NFS share or you want to integrate ADB-S with Azure Key Vault.
 
-1. **[Configure DNS](#1-configure-dns-for-your-autonomous-db):**  ADB-S uses the FQDN to connect to a target.
-2. **[Route outbound connections](#2-set-outbound-connections-to-private-endpoint):** Route outbound connections privately.
-3. **[Open ACLs](#3-open-adb-s-network-acls):**  Create Access Control Lists on ADB-S instance.
-4. **[Check firewall settings](#4-check-firewall-settings-nsgs):**  Make sure traffic is allowed to your target.
-5. **[Testing](#5-testing-the-outbound-connection):**  How to test the connection?
+1. [Configure DNS](#1-configure-dns-for-your-autonomous-db): ADB-S uses the FQDN to connect to a target.
+2. [Route outbound connections](#2-set-outbound-connections-to-private-endpoint): Route outbound connections privately.
+3. [Open ACLs](#3-open-adb-s-network-acls): Create Access Control Lists on ADB-S instance.
+4. [Check firewall settings](#4-check-firewall-settings-nsgs): Make sure traffic is allowed to your target.
+5. [Testing](#5-testing-the-outbound-connection): How to test the connection?
 
 ## 1. Configure DNS for your Autonomous DB
 

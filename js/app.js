@@ -105,15 +105,17 @@ TxtType.prototype.tick = function() {
   }, delta);
 };
 
-// Add copy buttons and heading anchors as soon as DOM is ready (before images/disqus load)
+// Add copy buttons, heading anchors, and scroll to top button as soon as DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     addCopyButtons();
     addHeadingAnchors();
+    addScrollToTopButton();
   });
 } else {
   addCopyButtons();
   addHeadingAnchors();
+  addScrollToTopButton();
 }
 
 window.onload = function() {
@@ -214,5 +216,38 @@ function addHeadingAnchors() {
 
     // Append anchor at the end of the heading
     heading.appendChild(anchor);
+  });
+}
+
+function addScrollToTopButton() {
+  // Only add scroll-to-top button on blog post pages
+  const isPostPage = document.querySelector('.c-post');
+  if (!isPostPage) return;
+
+  // Create the button
+  const scrollButton = document.createElement('button');
+  scrollButton.className = 'scroll-to-top';
+  scrollButton.innerHTML = '↑';
+  scrollButton.setAttribute('aria-label', 'Scroll to top');
+
+  // Add click handler to scroll to top
+  scrollButton.onclick = function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Add to body
+  document.body.appendChild(scrollButton);
+
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', function() {
+    // Show button after scrolling down 300px
+    if (window.pageYOffset > 300) {
+      scrollButton.classList.add('visible');
+    } else {
+      scrollButton.classList.remove('visible');
+    }
   });
 }
