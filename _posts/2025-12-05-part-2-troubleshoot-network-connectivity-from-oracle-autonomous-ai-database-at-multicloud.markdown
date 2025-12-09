@@ -146,11 +146,29 @@ select utl_inaddr.get_host_address('maxfielduseastnfssa.blob.core.windows.net') 
 
 Note that the address that gets returned is **not the address that was resolved via DNS**. Instead, if it returns an address it means that it was able to resolve the host address, if it doesn't return an address it was not able to resolve DNS. It is just a *yes-or-no-check*. 
 
+This output would be an example for an unsuccessful check:
+```sql
+ERROR at line 1:
+ORA-29257: host maxfielduseastnfssa.blob.core.windows.net unknown
+ORA-06512: at "SYS.UTL_INADDR", line 19
+ORA-06512: at "SYS.UTL_INADDR", line 40
+ORA-06512: at line 1
+```
+
+And this is how it looks like after adding the DNS entry (in my case it's `10.0.0.7`), when it can resolve successfully (ignore the public URL):
+```sql
+SQL> select utl_inaddr.get_host_address('maxfielduseastnfssa.blob.core.windows.net') from dual;
+
+UTL_INADDR.GET_HOST_ADDRESS('MAXFIELDUSEASTNFSSA.BLOB.CORE.WINDOWS.NET')
+--------------------------------------------------------------------------------
+254.56.129.31
+```
+
 Now it's time to test your connection directly.
 
 ### Testing NFS mount
 
-To test an NFS mount, create a directory:
+To test connectivity with an NFS mount, the only option is to mount the NFS directly. Start by creating a directory:
 
 ```sql
 CREATE OR REPLACE DIRECTORY MYNFS_DIR AS 'MYNFS';
@@ -176,53 +194,121 @@ ORA-06512: at line 2
 
 It will likely be related to network connectivity or NFS compatibility, also see the common issues section at the bottom.
 
-### Testing HTTP request
+### Testing with Azure Blob
 
-If you are testing an outgoing HTTP request (e.g. to use an external key vault) instead of NFS, you can use the following command.
+To test the private connectivity from ADB-S to Azure Blob, first lookup your credentials:
+
+![](/images/posts/credentials-storage-account.webp)
+
+You will need the `Storage account name` and `Key`. Create the credential for Azure Blob on ADB-S like this:
+
+```sql
+EXEC DBMS_CLOUD.CREATE_CREDENTIAL(credential_name => 'BLOBCREDS', username => '<Storage account name>', password => '<Key>');
+```
+
+You can then use the storage account URL of the private endpoint in combination with your Storage account container name to list objects:
+
+```sql
+SELECT * FROM DBMS_CLOUD.LIST_OBJECTS('BLOBCREDS','https://maxfielduseastnfssa.blob.core.windows.net/maxcontainer/');
+```
+
+### Testing with HTTP request
+
+You can configure connectivity directly like desribed above, in most cases that's the best option. However, if it does not work, you may want to test connectivity via HTTP. This can be useful, because HTTP will often provide better error messages for debugging networking issues. 
+
+- Test connectivity to Azure Key Vault Private Endpoint: `https://your-vault-pe.vault.azure.net/healthstatus`
+- Test connectivity to Azure Blob Storage: `https://your-blob-pe.blob.core.windows.net/?restype=service&comp=properties`
+
+I recommend testing the HTTP request from a Linux machine using `curl -v` first, before trying from ADB-S instance using SQL like this:
 
 ```sql
 SET SERVEROUTPUT ON;
+SET DEFINE OFF;
+
 BEGIN
-	DECLARE
-	    req   UTL_HTTP.REQ;
-        resp  UTL_HTTP.RESP;
-		name  VARCHAR2(256);
-        value VARCHAR2(10024);
-	BEGIN
-        req := UTL_HTTP.BEGIN_REQUEST('https://emea-maxakv.vault.azure.net/healthstatus');
-        UTL_HTTP.SET_HEADER(req, 'User-Agent', 'Mozilla/4.0');
-        resp := UTL_HTTP.GET_RESPONSE(req);
-
-        FOR i IN 1..UTL_HTTP.GET_HEADER_COUNT(resp) LOOP
-            UTL_HTTP.GET_HEADER(resp, i, name, value);
-            DBMS_OUTPUT.PUT_LINE(name || ': ' || value);
-        END LOOP;
-
-        LOOP
-            UTL_HTTP.READ_LINE(resp, value, TRUE);
-            DBMS_OUTPUT.PUT_LINE(value);
-        END LOOP;
-
+DECLARE
+    req   UTL_HTTP.REQ;
+    resp  UTL_HTTP.RESP;
+    name  VARCHAR2(256);
+    value VARCHAR2(10024);
+BEGIN
+    -- Test Azure Blob Storage endpoint. Replace with any other HTTP endpoint.
+    req := UTL_HTTP.BEGIN_REQUEST('https://maxfielduseastnfssas.blob.core.windows.net/?restype=service&comp=properties');
+    UTL_HTTP.SET_HEADER(req, 'User-Agent', 'Mozilla/4.0');
+    UTL_HTTP.SET_HEADER(req, 'x-ms-version', '2021-08-06');
+    
+    resp := UTL_HTTP.GET_RESPONSE(req);
+    
+    DBMS_OUTPUT.PUT_LINE('HTTP Status Code: ' || resp.status_code);
+    DBMS_OUTPUT.PUT_LINE('HTTP Reason Phrase: ' || resp.reason_phrase);
+    DBMS_OUTPUT.PUT_LINE('--- Response Headers ---');
+    
+    FOR i IN 1..UTL_HTTP.GET_HEADER_COUNT(resp) LOOP
+        UTL_HTTP.GET_HEADER(resp, i, name, value);
+        DBMS_OUTPUT.PUT_LINE(name || ': ' || value);
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('--- Response Body ---');
+    LOOP
+        UTL_HTTP.READ_LINE(resp, value, TRUE);
+        DBMS_OUTPUT.PUT_LINE(value);
+    END LOOP;
+    
+    UTL_HTTP.END_RESPONSE(resp);
+EXCEPTION
+    WHEN UTL_HTTP.END_OF_BODY THEN
         UTL_HTTP.END_RESPONSE(resp);
-
-    EXCEPTION
-        WHEN UTL_HTTP.END_OF_BODY THEN
-            UTL_HTTP.END_RESPONSE(resp);
-        WHEN OTHERS THEN
-            DBMS_OUTPUT.PUT_LINE('SQLERRM: ' || SQLERRM);
-            DBMS_OUTPUT.PUT_LINE('SQLCODE: ' || SQLCODE);
-            DBMS_OUTPUT.PUT_LINE('DETAILS: ' || UTL_HTTP.get_detailed_sqlerrm);
-            RAISE;
-    END;
+        DBMS_OUTPUT.PUT_LINE('--- Connection Successful ---');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('SQLERRM: ' || SQLERRM);
+        DBMS_OUTPUT.PUT_LINE('SQLCODE: ' || SQLCODE);
+        DBMS_OUTPUT.PUT_LINE('DETAILS: ' || UTL_HTTP.get_detailed_sqlerrm);
+        RAISE;
+END;
 END;
 /
 ```
 
+An unsuccessful attempt might look like this (target host or object does not exist):
+```sql
+SQLERRM: ORA-29273: HTTP request failed
+SQLCODE: -29273
+DETAILS: ORA-12545: Connect failed because target host or object does not exist
+....
+```
+
+A successful attempt might look like this (don't worry about the missing authentication, that's expected):
+```sql
+HTTP Status Code: 401
+HTTP Reason Phrase: Server failed to authenticate the request. Please refer to
+the information in the www-authenticate header.
+--- Response Headers ---
+....
+--- Response Body ---
+i>?<?xml version="1.0"
+encoding="utf-8"?><Error><Code>NoAuthenticationInformation</Code><Message>Server
+failed to authenticate the request. Please refer to the information in the
+www-authenticate header.
+RequestId:fac3c660-c01e-00f7-0e23-69cafb000000
+Time:2025-12-09T15:50:39.0326001Z</Message></Error>
+--- Connection Successful ---
+
+PL/SQL procedure successfully completed.
+```
+
+Now you know that connectivity can be established successfully. 
+
 ## Common issues
 
-### Advanced Networking (Oracle DB@Azure only)
+### Advanced Networking (Azure only)
 
-If [Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) is not active on your Oracle.Database delegated subnet, it can [cause complications](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#constraints). The only way to find out is via Microsoft SR.
+If [Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) is not active on your Oracle.Database delegated subnet, it can cause [issues](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#constraints). The only way to find out is via Microsoft SR.
+
+### NFS secure transfer (Azure)
+
+The `DBMS_CLOUD_ADMIN`​ package in Oracle Autonomous Database does not directly support the use of stunnel or TLS wrappers like `aznfs` ​uses for encrypting NFS connections. Since the traffic is already secured by staying within your private Azure network via the private endpoint, disabling this option is necessary for the connection to work. On your storage account, go to **Settings** -> **Configuration**, and disable **Secure transfer required**.
+
+![](/images/posts/create-sa-3-20250819184255-fiyzzps.webp)
 
 ### NFS version
 
@@ -263,8 +349,8 @@ Name:	est.tm.prd.r.kv.aadg.trafficmanager.net
 Address: 40.71.10.202
 ```
 
-This can cause situations where the ADB-S instance has cached a wrong entry. In these cases, unfortunately the only solution seems to be to ... wait it out... and try again the next day. I would recommend following this tutorial in the right order; don't execute any tests before configuring the private DNS and setting outbound connectivity to private. 
+This can cause situations where the ADB-S instance has cached a wrong entry. In these cases, unfortunately the only solution seems to be to **... wait it out...** and try again the next day. I would recommend following this tutorial in the right order; don't execute any tests before configuring the private DNS and setting outbound connectivity to private. I unfortunately ran into this issue multiple times. 
 
 ## Conclusion
 
-Hopefully this helped you to enable outbound connectivity from ADB-S with Oracle's Multicloud offering. Let me know in the comments if you have any questions. Cheers!
+Hopefully this helped you to enable outbound connectivity. Let me know in the comments if you have any questions. Cheers!

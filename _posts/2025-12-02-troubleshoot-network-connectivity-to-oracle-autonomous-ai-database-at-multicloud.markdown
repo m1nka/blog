@@ -70,7 +70,7 @@ curl -v telnet://fpncrhpq.adb.us-ashburn-1.oraclecloud.com:1521
 * TCP_NODELAY set
 ```
 
-If the `telnet`​ command answers with `Could not resolve host`​ , it means the DNS name could not be resolved:
+If the `curl`​ command answers with `Could not resolve host`​ , it means the DNS name could not be resolved:
 
 ```bash
 $ curl -v telnet://nodnsentry.adb.us-ashburn-1.oraclecloud.com:1521
