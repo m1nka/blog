@@ -12,7 +12,11 @@ date: 2025-12-05T13:40:51.549Z
 ---
 This article provides some tips on how to troubleshoot outbound network connectivity from an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. You might **need an outbound private connection** from ADB-S to mount an NFS share or you might want to integrate ADB-S with an external key management system. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system, limiting the diagnostic tools and methods available to verify connectivity to external endpoints.
 
-> [Part 1 of this article](https://maximilian.tech/2025/12/02/troubleshoot-network-connectivity-to-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from a VM or an on-premise client to ADB-S.
+> [Part 1 of this article](/2025/12/02/troubleshoot-network-connectivity-to-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from a VM or an on-premise client to ADB-S.
+
+- [Architecture overview](#architecture-overview)
+- [Debugging connections from Autonomous DB](#debugging-connections-from-autonomous-db)
+- [Common issues](#common-issues)
 
 ## Architecture overview
 
@@ -28,15 +32,15 @@ For this article, we assume you are using the networking option `Private endpoin
 
 **Use case:**  You need an outgoing connection from ADB-S to Azure Blob, mounting an NFS share or you want to integrate ADB-S with Azure Key Vault.
 
-1. **DNS:**  ADB-S uses the FQDN to connect to a target, make sure DNS is configured.
-2. **Route outbound connections:**  Make sure to force outbound connections from the ADB-S Private Endpoint through the Multicloud link to Azure/Google Cloud.
-3. **Open ACLs:**  Create ACL on ADB-S instance.
-4. **Check firewall settings:**  Make sure traffic is allowed to your target.
-5. **Testing:**  Test the connection
+1. **[Configure DNS](#1-configure-dns-for-your-autonomous-db):**  ADB-S uses the FQDN to connect to a target.
+2. **[Route outbound connections](#2-set-outbound-connections-to-private-endpoint):** Route outbound connections privately.
+3. **[Open ACLs](#3-open-adb-s-network-acls):**  Create Access Control Lists on ADB-S instance.
+4. **[Check firewall settings](#4-check-firewall-settings-nsgs):**  Make sure traffic is allowed to your target.
+5. **[Testing](#5-testing-the-outbound-connection):**  How to test the connection?
 
 ## 1. Configure DNS for your Autonomous DB
 
-Make sure the ADB-S instance can resolve the FQDN of your target. Typically, you need to configure DNS on the OCI private resolver.
+Make sure the ADB-S instance can resolve the FQDN of your target. Typically, you need to configure DNS on the OCI private resolver, but there are other DNS options available as well. 
 
 Go to your ADB-S instance in Azure/Google and click `Go to OCI`​ (Azure) or `Manage in OCI`:
 
@@ -78,13 +82,7 @@ Connect to your Autonomous AI DB instance and set the following parameter ([docu
 ALTER DATABASE PROPERTY SET ROUTE_OUTBOUND_CONNECTIONS = 'ENFORCE_PRIVATE_ENDPOINT';
 ```
 
-If you just want to check how the parameter is configured you can run this command:
-
-```sql
-SELECT PROPERTY_VALUE FROM DATABASE_PROPERTIES WHERE PROPERTY_NAME = 'ROUTE_OUTBOUND_CONNECTIONS';
-```
-
-Finally, if you would ever need to reset this parameter you could run `ALTER DATABASE PROPERTY SET ROUTE_OUTBOUND_CONNECTIONS = '';`.
+If you ever need to reset this parameter you can run `ALTER DATABASE PROPERTY SET ROUTE_OUTBOUND_CONNECTIONS = '';`.
 
 ## 3. Open ADB-S network ACLs
 
@@ -134,7 +132,7 @@ SELECT HOST,
 Make sure your Network Security Groups allow outgoing traffic from the ADB-S instance to your Azure private endpoint. You need to check in both places:
 
 * **OCI NSG attached to your ADB-S instance:**  By default there should be an `Egress rule`​ for destination `0.0.0.0/0` for all protocols. So unless this rule was changed or deleted you don't have to configure anything.
-* **Azure NSGs and firewalls:**  Also make sure to allow traffic on the Azure VNets.
+* **Azure NSGs or Google VPC firewall:**  Also make sure to allow traffic on the Azure VNets and Google VPCs.
 
 ## 5. Testing the outbound connection
 
@@ -164,7 +162,7 @@ UTL_INADDR.GET_HOST_ADDRESS('MAXFIELDUSEASTNFSSA.BLOB.CORE.WINDOWS.NET')
 
 Now it's time to test your connection directly.
 
-### Testing NFS mount
+### 5.1 Testing NFS mount
 
 To test connectivity with an NFS mount, the only option is to mount the NFS directly. Start by creating a directory:
 
@@ -192,7 +190,7 @@ ORA-06512: at line 2
 
 It will likely be related to network connectivity or NFS compatibility, also see the common issues section at the bottom.
 
-### Testing with Azure Blob
+### 5.2 Testing with Azure Blob
 
 To test the private connectivity from ADB-S to Azure Blob, first lookup your credentials:
 
@@ -210,7 +208,7 @@ You can then use the storage account URL of the private endpoint in combination 
 SELECT * FROM DBMS_CLOUD.LIST_OBJECTS('BLOBCREDS','https://maxfielduseastnfssa.blob.core.windows.net/maxcontainer/');
 ```
 
-### Testing with HTTP request
+### 5.3 Testing with HTTP request
 
 You can configure connectivity directly like desribed above, in most cases that's the best option. However, if it does not work, you may want to test connectivity via HTTP. This can be useful, because HTTP will often provide better error messages for debugging networking issues. 
 

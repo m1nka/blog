@@ -10,9 +10,16 @@ tags:
 image: /images/posts/adb-connectivity-p1.webp
 date: 2025-12-02T14:26:27.537Z
 ---
+
 This article provides some tips on how to troubleshoot network connectivity to an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system and is only reachable on the database ports.
 
-> [Part 2 of this article](https://maximilian.tech/2025/12/05/part-2-troubleshoot-network-connectivity-from-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from ADB-S to an NFS or key management system.
+- [Architecture overview](#architecture-overview)
+- [Debugging connections to Autonomous DB](#debugging-connections-to-autonomous-db)
+  - [1. Routing & Testing connectivity](#1-routing--testing-connectivity)
+  - [2. DNS resolution](#2-dns-resolution)
+  - [3. Firewalls and Network Security Groups](#3-firewalls-and-network-security-groups)
+
+> [Part 2 of this article](/2025/12/05/part-2-troubleshoot-network-connectivity-from-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from ADB-S to an NFS or key management system.
 
 ## Architecture overview
 
@@ -27,9 +34,9 @@ For this article, we assume you are using the networking option `Private endpoin
 
 **Use case:**  Connecting an SQL client or application to your ADB-S instance.
 
-1. **Routing & Testing:** How to test connectivity?
-2. **DNS**: Can you resolve the DNS name?
-3. **Firewall**: Are there any firewall rules blocking the connection?
+1. **[Routing & Testing](#1-routing--testing-connectivity):** How to test connectivity?
+2. **[DNS](#2-dns-resolution)**: Can you resolve the DNS name?
+3. **[Firewall](#3-firewalls-and-network-security-groups)**: Are there any firewall rules blocking the connection?
 
 ### 1. Routing & Testing connectivity
 
