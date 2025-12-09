@@ -157,8 +157,6 @@ ORA-06512: at line 1
 
 And this is how it looks like after adding the DNS entry (in my case it's `10.0.0.7`), when it can resolve successfully (ignore the public URL):
 ```sql
-SQL> select utl_inaddr.get_host_address('maxfielduseastnfssa.blob.core.windows.net') from dual;
-
 UTL_INADDR.GET_HOST_ADDRESS('MAXFIELDUSEASTNFSSA.BLOB.CORE.WINDOWS.NET')
 --------------------------------------------------------------------------------
 254.56.129.31

@@ -16,10 +16,70 @@ pre {
   word-wrap: break-word;
   word-break: break-all;
   white-space: no-wrap;
-  padding: double($base-spacing-unit);
+  padding: double($base-spacing-unit) $base-spacing-unit $base-spacing-unit $base-spacing-unit;
   margin-bottom: 0;
   font-size: $font-size-medium;
-  line-height: $line-height-medium;
+  line-height: 1.4;
+}
+
+.code-block-wrapper {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 4px 10px;
+  font-size: 11px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-code);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.7;
+  z-index: 1;
+  line-height: 1;
+  min-width: 60px;
+  text-align: center;
+  font-family: $font-monospace;
+  user-select: none;
+  -webkit-user-select: none;
+
+  &:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.copied {
+    background-color: rgba(76, 175, 80, 0.3);
+    border-color: rgba(76, 175, 80, 0.5);
+  }
+}
+
+[data-theme="light"] .code-copy-btn {
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  &.copied {
+    background-color: rgba(76, 175, 80, 0.2);
+    border-color: rgba(76, 175, 80, 0.6);
+  }
 }
 
 li code,

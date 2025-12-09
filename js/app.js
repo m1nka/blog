@@ -105,6 +105,13 @@ TxtType.prototype.tick = function() {
   }, delta);
 };
 
+// Add copy buttons as soon as DOM is ready (before images/disqus load)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', addCopyButtons);
+} else {
+  addCopyButtons();
+}
+
 window.onload = function() {
   var elements = document.getElementsByClassName('typewrite');
   for (var i=0; i<elements.length; i++) {
@@ -120,3 +127,45 @@ window.onload = function() {
   // css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
   document.body.appendChild(css);
 };
+
+function addCopyButtons() {
+  const codeBlocks = document.querySelectorAll('pre');
+
+  codeBlocks.forEach(function(codeBlock) {
+    // Skip if already wrapped
+    if (codeBlock.parentElement.classList.contains('code-block-wrapper')) {
+      return;
+    }
+
+    const code = codeBlock.querySelector('code');
+    const textToCopy = code ? code.textContent : codeBlock.textContent;
+
+    // Create wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block-wrapper';
+    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+    wrapper.appendChild(codeBlock);
+
+    const copyButton = document.createElement('button');
+    copyButton.className = 'code-copy-btn';
+    copyButton.textContent = 'Copy';
+
+    copyButton.onclick = function() {
+      navigator.clipboard.writeText(textToCopy).then(function() {
+        copyButton.textContent = 'Copied!';
+        copyButton.classList.add('copied');
+        setTimeout(function() {
+          copyButton.textContent = 'Copy';
+          copyButton.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        copyButton.textContent = 'Failed';
+        setTimeout(function() {
+          copyButton.textContent = 'Copy';
+        }, 2000);
+      });
+    };
+
+    wrapper.appendChild(copyButton);
+  });
+}
