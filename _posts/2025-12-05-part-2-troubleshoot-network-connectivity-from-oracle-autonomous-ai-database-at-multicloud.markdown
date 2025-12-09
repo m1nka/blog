@@ -12,11 +12,11 @@ date: 2025-12-05T13:40:51.549Z
 ---
 This article provides some tips on how to troubleshoot outbound network connectivity from an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. You might **need an outbound private connection** from ADB-S to mount an NFS share or you might want to integrate ADB-S with an external key management system. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system, limiting the diagnostic tools and methods available to verify connectivity to external endpoints.
 
-> [Part 1 of this article](/2025/12/02/troubleshoot-network-connectivity-to-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from a VM or an on-premise client to ADB-S.
-
 - [Architecture overview](#architecture-overview)
 - [Debugging connections from Autonomous DB](#debugging-connections-from-autonomous-db)
 - [Common issues](#common-issues)
+
+> [Part 1 of this article](/2025/12/02/troubleshoot-network-connectivity-to-oracle-autonomous-ai-database-at-multicloud/) series covers the connectivity in the opposite direction, e.g. from a VM or an on-premise client to ADB-S.
 
 ## Architecture overview
 
