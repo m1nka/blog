@@ -25,5 +25,24 @@
   h2, h3, h4, h5, h6 {
     margin-top: double($base-spacing-unit); // 32px
     margin-bottom: $base-spacing-unit + half($base-spacing-unit); // 24px instead of 32px
+    position: relative;
+
+    .heading-anchor {
+      margin-left: 8px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.75em;
+      cursor: pointer;
+    }
+
+    &:hover .heading-anchor {
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 }

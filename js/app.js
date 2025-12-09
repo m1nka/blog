@@ -105,11 +105,15 @@ TxtType.prototype.tick = function() {
   }, delta);
 };
 
-// Add copy buttons as soon as DOM is ready (before images/disqus load)
+// Add copy buttons and heading anchors as soon as DOM is ready (before images/disqus load)
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', addCopyButtons);
+  document.addEventListener('DOMContentLoaded', function() {
+    addCopyButtons();
+    addHeadingAnchors();
+  });
 } else {
   addCopyButtons();
+  addHeadingAnchors();
 }
 
 window.onload = function() {
@@ -167,5 +171,48 @@ function addCopyButtons() {
     };
 
     wrapper.appendChild(copyButton);
+  });
+}
+
+function addHeadingAnchors() {
+  // Only add anchors to blog post headings (inside .c-content)
+  const contentContainer = document.querySelector('.c-content');
+  if (!contentContainer) return;
+
+  const headings = contentContainer.querySelectorAll('h2[id], h3[id], h4[id], h5[id], h6[id]');
+
+  headings.forEach(function(heading) {
+    const headingId = heading.getAttribute('id');
+    if (!headingId) return;
+
+    // Create anchor link
+    const anchor = document.createElement('a');
+    anchor.className = 'heading-anchor';
+    anchor.href = '#' + headingId;
+    anchor.innerHTML = '🔗'; // Link icon
+    anchor.setAttribute('aria-label', 'Copy link to this section');
+
+    // Copy link on click
+    anchor.onclick = function(e) {
+      e.preventDefault();
+      const url = window.location.origin + window.location.pathname + '#' + headingId;
+
+      navigator.clipboard.writeText(url).then(function() {
+        // Visual feedback
+        const originalText = anchor.innerHTML;
+        anchor.innerHTML = '✔';
+        setTimeout(function() {
+          anchor.innerHTML = originalText;
+        }, 1500);
+      }).catch(function() {
+        console.error('Failed to copy link');
+      });
+
+      // Also update the URL in the browser
+      history.pushState(null, null, '#' + headingId);
+    };
+
+    // Append anchor at the end of the heading
+    heading.appendChild(anchor);
   });
 }
