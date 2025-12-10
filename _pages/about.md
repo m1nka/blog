@@ -4,7 +4,7 @@ title: About
 image: '/images/pages/me.jpeg'
 ---
 
-Hi 👋 I'm Max. You have stumbled across my blog where I write about cloud computing, tech, travel and more. Currently, I work in Multicloud Backbelt team at Oracle. I graduated from University of Vienna with a degree in Business Informatics, became a founder and have worked as full stack developer and cloud architect after that. Since I regularly work on cloud technologies, I've decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️
+Hi 👋 I'm Max. You have stumbled across my blog where I write about cloud computing, tech, travel and more. Currently, I work in the Multicloud Blackbelt team at Oracle. I graduated from University of Vienna with a degree in Business Informatics. I founded a startup in Vienna and have since worked as full stack developer and cloud engineer and architect. I've decided to share some of my learnings in this blog. I hope you find something entertaining or insightful ✌️
 
 For any inquiries you can reach out to me [by mail](mailto:blog@maximilian.tech). 
 
