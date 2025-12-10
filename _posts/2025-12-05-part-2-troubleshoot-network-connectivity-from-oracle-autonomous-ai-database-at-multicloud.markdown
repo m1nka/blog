@@ -136,7 +136,11 @@ Make sure your Network Security Groups allow outgoing traffic from the ADB-S ins
 
 ## 5. Testing the outbound connection
 
-You can test the private DNS resolution by running the following command: 
+Now let's test the connection!
+
+### 5.1 Testing DNS resolution
+
+You can (optionally) begin to test the private DNS resolution by running the following command: 
 
 ```sql
 select utl_inaddr.get_host_address('maxfielduseastnfssa.blob.core.windows.net') from dual;
@@ -162,7 +166,7 @@ UTL_INADDR.GET_HOST_ADDRESS('MAXFIELDUSEASTNFSSA.BLOB.CORE.WINDOWS.NET')
 
 Now it's time to test your connection directly.
 
-### 5.1 Testing NFS mount
+### 5.2 Testing NFS mount
 
 To test connectivity with an NFS mount, the only option is to mount the NFS directly. Start by creating a directory:
 
@@ -190,7 +194,9 @@ ORA-06512: at line 2
 
 It will likely be related to network connectivity or NFS compatibility, also see the common issues section at the bottom.
 
-### 5.2 Testing with Azure Blob
+### 5.3 Testing with Azure Blob
+
+> For more detailed instructions on using ADB-S with Azure Blob you can refer to [this blog article](https://macsdata.com/oracle/data-pump-import-adb-azure-blob-storage), which works very well. 
 
 To test the private connectivity from ADB-S to Azure Blob, first lookup your credentials:
 
@@ -208,7 +214,7 @@ You can then use the storage account URL of the private endpoint in combination 
 SELECT * FROM DBMS_CLOUD.LIST_OBJECTS('BLOBCREDS','https://maxfielduseastnfssa.blob.core.windows.net/maxcontainer/');
 ```
 
-### 5.3 Testing with HTTP request
+### 5.4 Testing with HTTP request
 
 You can configure connectivity directly like desribed above, in most cases that's the best option. However, if it does not work, you may want to test connectivity via HTTP. This can be useful, because HTTP will often provide better error messages for debugging networking issues. 
 
