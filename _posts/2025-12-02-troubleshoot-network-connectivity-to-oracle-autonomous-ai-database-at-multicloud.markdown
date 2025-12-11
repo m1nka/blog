@@ -28,7 +28,7 @@ For this article, we assume you are using the networking option `Private endpoin
 
 ![](/images/posts/network-debugging-article-Page-1-1.webp "Oracle Database@X architecture")
 
-> **Tip for Azure:** When configuring Oracle Database@Azure, always ensure you leave enough IP space for a secondary subnet on your database VNet. You can use this to deploy a jump host Azure VM, making future debugging much easier.​
+> **Tip for Azure:** When configuring Oracle Database@Azure, leave some IP space for a secondary subnet on your database VNet. You can use this to deploy a jump host Azure VM, making debugging easier.​
 
 ## Debugging connections to Autonomous DB
 
