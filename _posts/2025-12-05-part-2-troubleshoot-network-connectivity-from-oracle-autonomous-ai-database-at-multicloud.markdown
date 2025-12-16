@@ -10,7 +10,7 @@ tags:
 image: /images/posts/adb-connectivity-p1.webp
 date: 2025-12-05T13:40:51.549Z
 ---
-This article provides some tips on how to troubleshoot outbound network connectivity from an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. You might **need an outbound private connection** from ADB-S to mount an NFS share or you might want to integrate ADB-S with an external key management system. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system, limiting the diagnostic tools and methods available to verify connectivity to external endpoints.
+This article provides some tips on how to troubleshoot outbound network connectivity from an Oracle Autonomous AI Database (ADB-S) instance with Oracle Database@Azure and Oracle Database@Google Cloud. For example, perhaps you **need an outbound private connection** from ADB-S to mount an NFS share or you want to connect to Azure Blob. Troubleshooting can sometimes be difficult, because ADB-S does not expose the operating system, limiting the diagnostic tools and methods available to verify connectivity to external endpoints.
 
 - [Architecture overview](#architecture-overview)
 - [Debugging connections from Autonomous DB](#debugging-connections-from-autonomous-db)
@@ -306,7 +306,7 @@ Now you know that connectivity can be established successfully.
 
 If [Advanced Networking](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#advanced-network-features) is not active on your Oracle.Database delegated subnet, it can cause [issues](https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#constraints). The only way to find out is via Microsoft SR.
 
-### NFS secure transfer (Azure)
+### NFS secure transfer (Azure only)
 
 The `DBMS_CLOUD_ADMIN`​ package in Oracle Autonomous Database does not directly support the use of stunnel or TLS wrappers like `aznfs` ​uses for encrypting NFS connections. Since the traffic is already secured by staying within your private Azure network via the private endpoint, disabling this option is necessary for the connection to work. On your storage account, go to **Settings** -> **Configuration**, and disable **Secure transfer required**.
 
