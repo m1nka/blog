@@ -4,8 +4,6 @@ title: "Unified Multi-Cloud Cost Analytics: OCI FOCUS Reports to BigQuery"
 image: /images/posts/focus-oci-gcp.webp
 date: 2026-02-13T15:08:09.253Z
 ---
-# Unified Multi-Cloud Cost Analytics: Syncing OCI FOCUS Reports to BigQuery
-
 If you run workloads on both Google Cloud and Oracle Cloud Infrastructure — whether through [Oracle Interconnect for Google Cloud](https://www.oracle.com/cloud/google/), [Oracle Database@GCP](https://cloud.google.com/oracle/database), or simply using both platforms side by side — you probably know the pain of dealing with multiple billing formats, portals, and reports. Comparing costs across GCP and OCI shouldn't require spreadsheets and manual work.
 
 I recently built a tool that solves this problem by syncing OCI billing data into BigQuery in a format that's compatible with GCP's own cost exports. The repo is available here: [oci-focus-to-bigquery](https://github.com/m1nka/oci-focus-to-bigquery).
