@@ -4,13 +4,13 @@ title: "Unified Multi-Cloud Cost Analytics: OCI FOCUS Reports to BigQuery"
 image: /images/posts/focus-oci-gcp.webp
 date: 2026-02-13T15:08:09.253Z
 ---
-If you run workloads on both Google Cloud and Oracle Cloud Infrastructure — whether through [Oracle Interconnect for Google Cloud](https://www.oracle.com/cloud/google/), [Oracle Database@GCP](https://cloud.google.com/oracle/database), or simply using both platforms side by side — you probably know the pain of dealing with multiple billing formats, portals, and reports. Comparing costs across GCP and OCI shouldn't require spreadsheets and manual work.
+If you run workloads on both Google Cloud and Oracle Cloud Infrastructure — whether through [Oracle Interconnect for Google Cloud](https://www.oracle.com/cloud/google/interconnect/), [Oracle Database@Google Cloud](https://cloud.google.com/oracle/database), or simply using both platforms side by side — you probably know the pain of dealing with multiple billing formats, portals, and reports. Comparing costs across GCP and OCI shouldn't require spreadsheets and manual work.
 
 I recently built a tool that solves this problem by syncing OCI billing data into BigQuery in a format that's compatible with GCP's own cost exports. The repo is available here: [oci-focus-to-bigquery](https://github.com/m1nka/oci-focus-to-bigquery).
 
 ## What is FOCUS?
 
-The key ingredient that makes this possible is [FOCUS](https://focus.finops.org/) (FinOps Open Cost & Usage Specification). FOCUS is an open specification that defines a common schema for billing data across cloud providers. The idea is simple: instead of every cloud provider inventing their own billing format, they all export data in the same standardized format. This makes it significantly easier to compare and analyze costs across providers.
+This is possible using [FOCUS](https://focus.finops.org/) (FinOps Open Cost & Usage Specification). FOCUS is an open specification that defines a common schema for billing data across cloud providers. The idea is simple: instead of every cloud provider inventing their own billing format, they all export data in the same standardized format. This makes it significantly easier to compare and analyze costs across providers.
 
 Both Oracle Cloud and Google Cloud now support FOCUS:
 
@@ -45,7 +45,7 @@ endorse group read-usage-report-group to read objects in tenancy usage-report
 Allow group read-usage-report-group to manage usage-report in tenancy
 ```
 
-Note: the tenancy OCID above is an Oracle-managed tenancy that hosts the usage data — don't change it.
+**Note**: the tenancy OCID above is an Oracle-managed tenancy that hosts the usage data, don't change it.
 
 For more details on accessing OCI cost reports, see the [OCI Cost Reports documentation](https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costusagereportsoverview.htm).
 
@@ -120,16 +120,10 @@ For dashboards in Looker Studio or Grafana, the repo also includes a unified vie
 
 ## Wrapping up
 
-Multi-cloud cost visibility doesn't have to be painful. With FOCUS, both OCI and GCP now export billing data in a compatible format, and this tool bridges the gap by bringing OCI's data into BigQuery where it can be queried alongside GCP costs.
+Multi-cloud cost visibility shouldn't be painful. With FOCUS, both OCI and GCP now export billing data in a compatible format, and this tool bridges the gap by bringing OCI's data into BigQuery where it can be queried alongside GCP costs.
 
-The repo is open source (MIT license) and available on GitHub: [m1nka/oci-focus-to-bigquery](https://github.com/m1nka/oci-focus-to-bigquery). Contributions and feedback are welcome.
+The repo is open source (MIT license) and available on GitHub: [m1nka/oci-focus-to-bigquery](https://github.com/m1nka/oci-focus-to-bigquery). Contributions and feedback are welcome. 
 
-**Useful links:**
-
-* [FOCUS Specification](https://focus.finops.org/)
-* [OCI Cost Reports Documentation](https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costusagereportsoverview.htm)
-* [OCI FOCUS Announcement](https://blogs.oracle.com/cloud-infrastructure/announcing-focus-support-for-oci-cost-reports)
-* [GCP FOCUS Announcement](https://cloud.google.com/blog/topics/cost-management/cloud-costs-come-into-view-with-focus-v1-0-ga)
-* [GitHub Repository](https://github.com/m1nka/oci-focus-to-bigquery)
+You can also leave your feedback below in the comment section. Cheers.
 
 ‍
