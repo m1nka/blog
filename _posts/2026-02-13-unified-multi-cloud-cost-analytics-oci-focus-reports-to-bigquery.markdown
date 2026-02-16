@@ -1,6 +1,12 @@
 ---
 layout: post
 title: "Unified Multi-Cloud Cost Analytics: OCI FOCUS Reports to BigQuery"
+tags:
+  - cloud
+  - oci
+  - tutorial
+  - google
+  - automation
 image: /images/posts/focus-oci-gcp.webp
 date: 2026-02-13T15:08:09.253Z
 ---
