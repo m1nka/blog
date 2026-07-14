@@ -3,7 +3,7 @@ layout: post
 title: From availability zones to no availability at all
 tags:
   - travel
-image: /images/posts/photo_5956399520025350259_y-2.webp
+image: /images/posts/photo_5956399520025350264_y.webp
 date: 2026-07-14T08:02:30.424Z
 ---
 If you came here for your daily dose of Oracle Multicloud networking deep dives, I have bad news: this blog is about to get a lot less useful for you.
